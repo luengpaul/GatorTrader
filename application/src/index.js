@@ -14,28 +14,28 @@ app.get("/", (req, res) => {
 
 })
 
-app.get("/team/person1", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/person1.html'))
+app.get("/team/ibraheem", (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/team', '/ibraheem.html'))
 })
 
-app.get("/team/person2", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/person2.html'))
+app.get("/team/tom", (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/team', '/tom.html'))
 })
 
-app.get("/team/person3", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/person3.html'))
+app.get("/team/alexander", (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/team', '/alexander.html'))
 })
 
-app.get("/team/person4", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/person4.html'))
+app.get("/team/lance", (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/team', '/lance.html'))
 })
 
-app.get("/team/person5", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/person5.html'))
+app.get("/team/paul", (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/team', '/paul.html'))
 })
 
-app.get("/team/person6", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/person6.html'))
+app.get("/team/saleh", (req, res) => {
+  res.sendFile(path.join(__dirname, 'views/team', '/saleh.html'))
 })
 
 app.listen(3000, () => console.log('Server running on port 3000'))
