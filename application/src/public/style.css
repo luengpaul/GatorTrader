@@ -115,6 +115,11 @@ body, h1, h2, h3, h4, h5, h6 {
         display: none !important
     }
 }
+@media (max-width:601px) {
+    .hide-small {
+        display: none !important
+    }
+}
 .opacity, .hover-opacity:hover {
     opacity: 0.60
 }
