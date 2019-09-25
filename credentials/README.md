@@ -8,15 +8,33 @@
 # Below is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
 
 1. Server URL or IP
+<br>Website Url: www.sfsustore.ml
+<br>Server Url: http://ec2-18-189-150-121.us-east-2.compute.amazonaws.com/
+
 2. SSH username
+<br><strong>ec2-user@ec2-18-189-150-121.us-east-2.compute.amazonaws.com</strong>
+
 3. SSH password or key.
-    <br> If a ssh key is used please upload the key to the credentials folder.
+    <br> <strong>Key file is added to credentials folder</strong>
 4. Database URL or IP and port used.
     <br><strong> NOTE THIS DOES NOT MEAN YOUR DATABASE NEEDS A PUBLIC FACING PORT.</strong> But knowing the IP and port number will help with SSH tunneling into the database. The default port is more than sufficient for this class.
 5. Database username
 6. Database password
 7. Database name (basically the name that contains all your tables)
 8. Instructions on how to use the above information.
+<br>
+<strong>(Note that you need to launch these commands in the directory that contains your .pem key file)</strong>
+<br><strong>First make key file viewable by running this command </strong>
+
+```
+chmod 400 launchkey.pem
+```
+
+<br><strong>Then SSH into server:</strong>
+
+```
+ssh -i "launchkey.pem" ec2-user@ec2-18-189-150-121.us-east-2.compute.amazonaws.com
+```
 
 # Most important things to Remember
 ## These values need to kept update to date throughout the semester. <br>
