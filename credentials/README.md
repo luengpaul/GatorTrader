@@ -8,7 +8,7 @@
 # Below is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
 
 1. Server URL or IP
-Website Url: www.sfsustore.ml
+<br>Website Url: www.sfsustore.ml
 <br>Server Url: http://ec2-18-189-150-121.us-east-2.compute.amazonaws.com/
 
 2. SSH username
@@ -25,10 +25,13 @@ Website Url: www.sfsustore.ml
 <br>
 <strong>(Note that you need to launch these commands in the directory that contains your .pem key file)</strong>
 <br><strong>First make key file viewable by running this command </strong>
+
 ```
 chmod 400 launchkey.pem
 ```
+
 <br><strong>Then SSH into server:</strong>
+
 ```
 ssh -i "launchkey.pem" ec2-user@ec2-18-189-150-121.us-east-2.compute.amazonaws.com
 ```
