@@ -1,10 +1,33 @@
 const express = require('express')
 const app = express()
-const path= require('path')
-
+const path = require('path')
+const mysql = require('mysql')
 
 //allows server of static files (such as css files) to work with nodejs
 app.use(express.static(path.join(__dirname, 'public')));
+
+var db = mysql.createConnection({
+    host: 'gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com',
+    port: '3306',
+    user: 'admin',
+    password: 'csc648_team10',
+    //working database name, actual database is 'gatortrader'
+    database: 'gatortrader_test' 
+});
+
+db.connect(function (err) {
+    if (err) throw err;
+    console.log("Connected!");
+    //test
+    db.query("SELECT * FROM User", (err, result) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(result);
+        }
+    })
+    db.end()
+});
 
 //routes
 app.get("/", (req, res) => {
