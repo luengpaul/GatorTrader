@@ -4,14 +4,15 @@
   "description": "Server",
   "main": "index.js",
   "dependencies": {
+    "mysql": "^2.17.1",
     "nodemon": "^1.19.2"
   },
   "devDependencies": {
     "express": "^4.17.1"
   },
   "scripts": {
-    "start": "nodemon src/index",
-    "serve": "node src/index",
+    "start": "nodemon src/app",
+    "serve": "node src/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Team10 csc648",
