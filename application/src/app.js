@@ -8,6 +8,8 @@ const bodyParser = require('body-parser')
 app.use(express.static(path.join(__dirname, '/public')));
 //allows paring incoming request bodies in a middleware before handlers
 app.use(bodyParser.urlencoded({ extended: true })); 
+app.set('views', __dirname + '/views'); 
+app.set('view engine', 'ejs'); 
 
 var db = mysql.createConnection({
     host: 'gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com',
@@ -25,59 +27,56 @@ db.connect(function (err) {
 
 //routes
 app.get("/", (req, res) => {
-    res.sendFile(path.join(__dirname, '/views', 'prototypeHome.html'))
+    //res.sendFile(path.join(__dirname, '/views', 'prototypeHome.html'))
+    res.render('prototypeHome', { searchResult: ""})
 })
 
 app.get("/about", (req, res) => {
-    res.sendFile(path.join(__dirname, '/', '/about.html'))
+    res.sendFile(path.join(__dirname, 'views', '/about.html'))
 })
 
 app.get("/team/ibraheem", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/ibraheem.html'))
+    res.sendFile(path.join(__dirname, 'views/team', '/ibraheem.html'))
 })
 
 app.get("/team/tom", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/tom.html'))
+    res.sendFile(path.join(__dirname, 'views/team', '/tom.html'))
 })
 
 app.get("/team/alexander", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/alexander.html'))
+    res.sendFile(path.join(__dirname, 'views/team', '/alexander.html'))
 })
 
 app.get("/team/lance", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/lance.html'))
+    res.sendFile(path.join(__dirname, 'views/team', '/lance.html'))
 })
 
 app.get("/team/paul", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/paul.html'))
+   res.sendFile(path.join(__dirname, 'views/team', '/paul.html'))
 })
 
 app.get("/team/saleh", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/saleh.html'))
+    res.sendFile(path.join(__dirname, 'views/team', '/saleh.html'))
 })
 
 
 //used for test post that gets value from the protype homepage search bar
-app.post('/grabValTest', function (req, res) {
-    var queryResult = ''
-    console.log(req.body.foo)
+app.post('/grabValTest', function (req, res) { 
+    console.log(req.body.searchEntry)
     if (!db._connectCalled) {
         db.connect();
     }
-    db.query("SELECT * FROM item WHERE name=?", [req.body.foo], (err, result) => {
+    db.query("SELECT * FROM item WHERE name=?", [req.body.searchEntry], (err, result) => {
         if (err) {
             console.log(err);
         } else {
             console.log(result);
         }
-        queryResult = JSON.stringify(result);
+        res.render('prototypeHome', {
+            searchResult: result
+        })
     })
-  
-    db.end((err) => {
-        console.log("DB connection ended.")
-        if(err) console.log(err)
-    })
-    res.write(queryResult);
-});
+})
 
-app.listen(3000, () => console.log('Server running on port 3000'))
+const PORT = 3000
+app.listen(PORT, () => console.log('Server running on port ' + PORT))

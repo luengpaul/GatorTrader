@@ -12,8 +12,20 @@
         <h1>test function</h1>
         <form action="/grabValTest" method="post">
             <label for="foo">ENTER VALUE:</label>
-            <input type="text" id="foo" name="foo" placeholder="Enter a value" />
+            <input type="text" id="foo" name="searchEntry" placeholder="Enter a value" />
             <input type="submit" value="Send data" />
+			<br><h2><% if(searchResult[0]) { %>
+				<%=searchResult[0].name%>
+			<% } %></h2>
+			<h2><% if(searchResult[0]) { %>
+				<%=searchResult[0].price%>
+			<% } %></h2>
+			<h2><% if(searchResult[0]) { %>
+				<%=searchResult[0].description%>
+			<% } %></h2>
+			<h2><% if(searchResult[0]) { %>
+				<%=searchResult[0].picture%>
+			<% } %></h2>
         </form>
     </div>
 </body>
