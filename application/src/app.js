@@ -2,9 +2,14 @@ const express = require('express')
 const app = express()
 const path = require('path')
 const mysql = require('mysql')
+const bodyParser = require('body-parser')
 
 //allows server of static files (such as css files) to work with nodejs
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
+//allows paring incoming request bodies in a middleware before handlers
+app.use(bodyParser.urlencoded({ extended: true })); 
+app.set('views', __dirname + '/views'); 
+app.set('view engine', 'ejs'); 
 
 var db = mysql.createConnection({
     host: 'gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com',
@@ -18,47 +23,60 @@ var db = mysql.createConnection({
 db.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
-    //test
-    db.query("SELECT * FROM User", (err, result) => {
+});
+
+//routes
+app.get("/", (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views', 'prototypeHome.html'))
+    res.render('prototypeHome', { searchResult: ""})
+})
+
+app.get("/about", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', '/about.html'))
+})
+
+app.get("/team/ibraheem", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/ibraheem.html'))
+})
+
+app.get("/team/tom", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/tom.html'))
+})
+
+app.get("/team/alexander", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/alexander.html'))
+})
+
+app.get("/team/lance", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/lance.html'))
+})
+
+app.get("/team/paul", (req, res) => {
+   res.sendFile(path.join(__dirname, 'views/team', '/paul.html'))
+})
+
+app.get("/team/saleh", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/saleh.html'))
+})
+
+
+//used for test post that gets value from the protype homepage search bar
+app.post('/grabValTest', function (req, res) { 
+    console.log(req.body.searchEntry)
+    if (!db._connectCalled) {
+        db.connect();
+    }
+    db.query("SELECT * FROM item WHERE name=?", [req.body.searchEntry], (err, result) => {
         if (err) {
             console.log(err);
         } else {
             console.log(result);
         }
+        res.render('prototypeHome', {
+            searchResult: result
+        })
     })
-    db.end()
-});
-
-//routes
-app.get("/", (req, res) => {
-  // res.sendFile(path.join('../views/about.html'))
-    res.sendFile(path.join(__dirname, '/views', 'about.html'))
-
-
 })
 
-app.get("/team/ibraheem", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/ibraheem.html'))
-})
-
-app.get("/team/tom", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/tom.html'))
-})
-
-app.get("/team/alexander", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/alexander.html'))
-})
-
-app.get("/team/lance", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/lance.html'))
-})
-
-app.get("/team/paul", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/paul.html'))
-})
-
-app.get("/team/saleh", (req, res) => {
-  res.sendFile(path.join(__dirname, 'views/team', '/saleh.html'))
-})
-
-app.listen(3000, () => console.log('Server running on port 3000'))
+const PORT = 3000
+app.listen(PORT, () => console.log('Server running on port ' + PORT))
