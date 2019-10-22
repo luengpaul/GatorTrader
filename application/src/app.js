@@ -10,8 +10,8 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.set('views', __dirname + '/views'); 
 app.set('view engine', 'ejs'); 
-
-var db = mysql.createConnection({
+//changed to const 
+const db = mysql.createConnection({
     host: 'gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com',
     port: '3306',
     user: 'admin',
@@ -23,7 +23,11 @@ var db = mysql.createConnection({
 db.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
+    db.query('gatortrader_test');
 });
+if ($db->connect_error) {
+    die("Connection failed: " . $db->connect_error);
+} 
 
 //routes
 app.get("/", (req, res) => {
@@ -77,6 +81,113 @@ app.post('/grabValTest', function (req, res) {
         })
     })
 })
+
+function search (req, res, next){
+    //user search term 
+    var searchTerm = req.query.search;
+    //user setected category 
+    var category = req.query.category; 
+
+    let query = 'SELECT * FROM item';
+    if(searchTerm != ' ' && category != ' '){
+        query = `SELECT * FROM item WHERE Category = '` + category + '` AND (Name LIKE `%' + searchTerm + '%` OR Comment LIKE `%' + searchTerm +'%`)';
+
+    }
+    else if(searchTerm != ' ' && category != ' '){
+         query = 'SELECT * FROM item WHERE Name LIKE `%' + searchTerm + `%' OR CommentLIKE'%` + searchTerm+`%'`;
+    }
+    else if(searchTerm == ' ' && category == ' '){
+        query = `SELECT * FROM item WHERE Category = ' ` + category + `'`;
+    }
+    db.query(query, (err,result) => {
+        if(err){
+            req.searchResult = ""; 
+            req.searchTerm = ""; 
+            req.category= "";
+            next();
+        }
+        req.searchResult = result; 
+        req.searchTerm = searchTerm; 
+        req.category= "";
+        next();
+
+    });
+}
+
+.get('/example', search, (req,res) =>{
+    var searchResult = req.searchResult;
+    res.render('pages/example' ,{
+        results: searchResult.length,
+        searchTerm: req.searchTerm,
+        searchResult: searchResult, 
+        category : req.category
+    });
+}
+)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const PORT = 3000
 app.listen(PORT, () => console.log('Server running on port ' + PORT))
