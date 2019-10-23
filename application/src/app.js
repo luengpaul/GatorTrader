@@ -21,14 +21,50 @@ var db = mysql.createConnection({
 });
 
 db.connect(function (err) {
-    if (err) throw err;
-    console.log("Connected!");
-});
+    if (err) throw err
+    console.log("Connected!")
+})
+
+//get categories of items for use in render functions
+function fetchCategories(callback) {
+    db.query('SELECT * FROM category', (err, result) => {
+        if (err) {
+            callback(err, null)
+        } else
+            callback(result)
+    })
+}
+
+//temp solution since dynamically getting all categories from database doesn't rerender
+const types = ['Appliances/Electronics', 'Clothes', 'Furniture', 'Tutoring', 'Textbooks']
+/*
+ * //get categories of items for use in render functions
+function fetchCategories(callback) {
+    db.query('SELECT * FROM category', (err, result) => {
+        if (err) {
+            callback(err, null)
+        } else
+            callback(result)
+    })
+}
+fetchCategories((err, content) => {
+    if (err) {
+        console.log(err);
+    } else {
+        types = content;
+    }
+
+})
+*/
 
 //routes
 app.get("/", (req, res) => {
     //res.sendFile(path.join(__dirname, '/views', 'prototypeHome.html'))
-    res.render('prototypeHome', { searchResult: ""})
+    res.render('prototypeHome', {
+        searchResult: "",
+        categories: types
+    }) 
+    console.log(types)
 })
 
 app.get("/about", (req, res) => {
@@ -61,16 +97,18 @@ app.get("/team/saleh", (req, res) => {
 
 
 //used for test post that gets value from the protype homepage search bar
-app.post('/grabValTest', function (req, res) { 
-    var foo;
+app.post('/', function (req, res) { 
 
     console.log(req.body.searchEntry)
     if(!db._connectCalled) {
         db.connect();
     }
 
+    //deal with category result here later
+    console.log("if category selected from dropdown, selection should be here (" + req.body.searchEntry + ")")
+    
     //if user enters an empty search (therefore searchEntry is undefined) output all items
-    if(!req.body.searchEntry) {
+    if (!req.body.searchEntry) {
         db.query("SELECT * FROM item", (err, result) => {
             if(err) {
                 console.log(err)
@@ -78,7 +116,8 @@ app.post('/grabValTest', function (req, res) {
                 console.log(result)
             }
             res.render('prototypeHome', {
-                searchResult: result
+                searchResult: result,
+                categories: types
             })
         })  
     } else {
@@ -90,7 +129,8 @@ app.post('/grabValTest', function (req, res) {
                 console.log(result)
             }
             res.render('prototypeHome', {
-                searchResult: result
+                searchResult: result,
+                categories: types
             })
         })
     }
