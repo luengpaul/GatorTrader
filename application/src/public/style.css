@@ -10,8 +10,17 @@
     z-index: 1;
     overflow: auto
 }
-.main, #main {
-    transition: margin-left .4s
+
+.searchArea {
+    position: absolute;
+    top: 400px;
+    left: 600px;
+}
+
+.SearchArea input {
+    height: 30px;
+    width: 200px;
+
 }
 .bar-item {
     padding: 8px 16px;

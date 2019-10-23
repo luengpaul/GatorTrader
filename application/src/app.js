@@ -62,20 +62,38 @@ app.get("/team/saleh", (req, res) => {
 
 //used for test post that gets value from the protype homepage search bar
 app.post('/grabValTest', function (req, res) { 
+    var foo;
+
     console.log(req.body.searchEntry)
-    if (!db._connectCalled) {
+    if(!db._connectCalled) {
         db.connect();
     }
-    db.query("SELECT * FROM item WHERE name=?", [req.body.searchEntry], (err, result) => {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(result);
-        }
-        res.render('prototypeHome', {
-            searchResult: result
+
+    //if user enters an empty search (therefore searchEntry is undefined) output all items
+    if(!req.body.searchEntry) {
+        db.query("SELECT * FROM item", (err, result) => {
+            if(err) {
+                console.log(err)
+            } else {
+                console.log(result)
+            }
+            res.render('prototypeHome', {
+                searchResult: result
+            })
+        })  
+    } else {
+        //else only output the item that the user entered
+        db.query("SELECT * FROM item WHERE name=?", [req.body.searchEntry], (err, result) => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log(result)
+            }
+            res.render('prototypeHome', {
+                searchResult: result
+            })
         })
-    })
+    }
 })
 
 const PORT = 3000
