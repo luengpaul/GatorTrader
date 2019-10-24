@@ -19,12 +19,11 @@
 				<input type="submit" value="Search"><br><br>
 		</form>
 	</nav>
-	
 	<h3><a href="about">&nbsp;About us&nbsp;</a></h3>
 	<div class = "padding-large">
 		<% for(var i=0; searchResult[i]; i++) {%><br>
 			<h2><%=searchResult[i].name%></h2><br>
-			<%=searchResult[i].picture%>
+			<img id= <%="searchResult[i].name" %> src="/post_images/<%=searchResult[i].picture%>.jpg"/>
 			<h3><%=searchResult[i].price%><br></h4>
 			<h3><%=searchResult[i].description%></h4><br><br><br>
 		<% } %>
