@@ -134,7 +134,7 @@ app.post('/', function (req, res) {
         })
     } else {
         //else only output the item that the user entered
-        db.query("SELECT * FROM item WHERE name SOUNDS LIKE ?", [req.body.searchEntry], (err, result) => {
+        db.query("SELECT * FROM item WHERE name like '%" + req.body.searchEntry+ "%'", (err, result) => {
             if (err) {
                 console.log(err)
             } else {

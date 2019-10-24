@@ -13,8 +13,8 @@
     "mysql": "^2.17.1"
   },
   "scripts": {
-    "start": "nodemon src/index",
-    "serve": "node src/index",
+    "start": "nodemon src/app",
+    "serve": "node src/app",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Team10 csc648",
