@@ -8,22 +8,31 @@
 	<nav class="padding-large purple">
 		<h1 align="center">Software Engineering class SFSU Fall 2019 Section 2 Team 10</h1>
 		<div align="center">
-		<form action="/" name="searchEntry" method="post">
-			<select onchange="this.form.submit()">
-				<option value =""><%=categories[i] %>All categories</option>
-				<% for(var i=0; i < categories.length; i++) {%>
-				<option value ="<%=categories[i] %>"><%=categories[i] %></option>
-				<% } %>
-			</select>
-				<input type="text" name="searchEntry"  placeholder="Enter item by name."  size="40">
-				<input type="submit" value="Search"><br><br>
-		</form>
+		<div style="float:center;display: inline-block;">
+			<form action="/" method="post">
+				<select name="searchEntry" onchange="this.form.submit()">
+					<option value ="">All categories</option>
+					<% for(var i=0; i < categories.length; i++) {%>
+					<option value ="<%=categories[i]%>"><%=categories[i]%></option>
+					<% } %>
+				</select>
+			</form>
+		</div>
+		
+		<div style="float:center;display: inline-block;">
+			<form action="/" method="post">
+					<input type="text" name="searchEntry" placeholder="Enter item by name." size="40">
+					<input type="submit" value="Search">
+			</form>
+		</div>
+		</div>
 	</nav>
+
 	<h3><a href="about">&nbsp;About us&nbsp;</a></h3>
-	<div class = "padding-large">
-		<% for(var i=0; searchResult[i]; i++) {%><br>
-			<h2><%=searchResult[i].name%></h2><br>
-			<img id= <%="searchResult[i].name" %> src="/post_images/<%=searchResult[i].picture%>.jpg"/>
+	<div id="resultArea" class="padding-large">
+		<% for(var i=0; searchResult[i]; i++) { %><br>
+			<h2><%=searchResult[i].name %></h2>
+	    <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
 			<h3><%=searchResult[i].price%><br></h4>
 			<h3><%=searchResult[i].description%></h4><br><br><br>
 		<% } %>

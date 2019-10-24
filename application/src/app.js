@@ -25,6 +25,7 @@ db.connect(function (err) {
     console.log("Connected!")
 })
 
+/*
 //get categories of items for use in render functions
 function fetchCategories(callback) {
     db.query('SELECT * FROM category', (err, result) => {
@@ -34,9 +35,10 @@ function fetchCategories(callback) {
             callback(result)
     })
 }
+*/
 
 //temp solution since dynamically getting all categories from database doesn't rerender
-const types = ['Appliances/Electronics', 'Clothes', 'Furniture', 'Tutoring', 'Textbooks']
+const types = ['Appliances', 'Electronics', 'Clothes', 'Furniture', 'Tutoring', 'Textbooks']
 /*
  * //get categories of items for use in render functions
 function fetchCategories(callback) {
@@ -95,22 +97,34 @@ app.get("/team/saleh", (req, res) => {
     res.sendFile(path.join(__dirname, 'views/team', '/saleh.html'))
 })
 
-
 //used for test post that gets value from the protype homepage search bar
 app.post('/', function (req, res) { 
-
-    console.log(req.body.searchEntry)
     if(!db._connectCalled) {
         db.connect();
     }
 
     //deal with category result here later
-    console.log("if category selected from dropdown, selection should be here (" + req.body.searchEntry + ")")
-    
-    //if user enters an empty search (therefore searchEntry is undefined) output all items
-    if (!req.body.searchEntry) {
+    console.log("value returned from search entry is (" + req.body.searchEntry + ")")
+
+    //if category was selected output all items for that category
+    if(types.includes(req.body.searchEntry)) {
+            db.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
+            if (err) {
+                console.log(err)
+             } else {
+                //console.log(result)
+            }
+            res.render('prototypeHome', {
+                searchResult: result,
+                categories: types
+            })
+        })
+    } 
+
+
+    else if (!req.body.searchEntry) {
         db.query("SELECT * FROM item", (err, result) => {
-            if(err) {
+            if (err) {
                 console.log(err)
             } else {
                 console.log(result)
@@ -119,7 +133,7 @@ app.post('/', function (req, res) {
                 searchResult: result,
                 categories: types
             })
-        })  
+        })
     } else {
         //else only output the item that the user entered
         db.query("SELECT * FROM item WHERE name=?", [req.body.searchEntry], (err, result) => {
@@ -134,6 +148,11 @@ app.post('/', function (req, res) {
             })
         })
     }
+
+
+
+
+
 })
 
 const PORT = 3000
