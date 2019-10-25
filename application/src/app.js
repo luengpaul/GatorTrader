@@ -25,39 +25,8 @@ db.connect(function (err) {
     console.log("Connected!")
 })
 
-/*
-//get categories of items for use in render functions
-function fetchCategories(callback) {
-    db.query('SELECT * FROM category', (err, result) => {
-        if (err) {
-            callback(err, null)
-        } else
-            callback(result)
-    })
-}
-*/
-
 //temp solution since dynamically getting all categories from database doesn't rerender
 const types = ['Appliances', 'Electronics', 'Clothes', 'Furniture', 'Tutoring', 'Textbooks']
-/*
- * //get categories of items for use in render functions
-function fetchCategories(callback) {
-    db.query('SELECT * FROM category', (err, result) => {
-        if (err) {
-            callback(err, null)
-        } else
-            callback(result)
-    })
-}
-fetchCategories((err, content) => {
-    if (err) {
-        console.log(err);
-    } else {
-        types = content;
-    }
-
-})
-*/
 
 //routes
 app.get("/", (req, res) => {
@@ -102,7 +71,6 @@ app.post('/', function (req, res) {
     if(!db._connectCalled) {
         db.connect();
     }
-
     //deal with category result here later
     console.log("value returned from search entry is (" + req.body.searchEntry + ")")
 
