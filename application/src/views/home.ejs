@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<% include .\assets\php\head.ejs %>
+</head>
+<body>
+	<% include .\assets\php\navbar.ejs %>
+
+
+	<div id="resultArea" class="container center">
+		<% for(var i=0; searchResult[i]; i++) { %><br>
+			<h2 id="itemName"><%=searchResult[i].name %></h2><br>
+			<img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+			<br><br><h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+			<h3 id="itemDescription"><%=searchResult[i].description%></h4><br>
+			<hr>
+		<% } %>
+	</div> 
+
+
+
+	<!-- This code is intended to create rows of cards using for loops and bootstrap grid system. -->
+	<!-- <div class="container">
+			<div class="row-fluid">
+			my php code which uses x-path to get results from xml query.
+			<% for(var i=0; searchResult[i]; i++) { %><br>
+				<div class="col-sm-4 ">
+					<div class="card-columns-fluid">
+						<div class="card  bg-light" style = "width: 22rem; " >
+								<img class="card-img-top" id=<%="searchResult[i].name"%> alt="Card image cap" src="/post_images/<%=searchResult[i].picture%>"/>
+		
+							<div class="card-body">
+								<h5  id="itemName" class="card-title"><b><%=searchResult[i].name %></b></h5>
+								<h3 id="itemPrice" class="card-text"><b><%=searchResult[i].price%></b></h3>
+								<p id="itemDescription" class="card-text"><%=searchResult[i].description%></p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<% } %>
+				<script>console.log("code reached ehere")</script>
+			</div>
+		</div> -->
+</body>
+</html>

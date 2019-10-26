@@ -2,6 +2,45 @@
   css used from a open css source template 
   https://www.w3schools.com/w3css/4/w3.css
 */
+
+
+#resultArea{
+    max-width: 500px;
+    margin: auto;
+}
+
+#itemName{
+    font-family: 'Oswald', sans-serif;
+    font-size: 38p;
+    font-weight:bolder;
+    text-decoration: underline;
+}
+
+#itemPrice{
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px;
+    font-weight:bold;
+}
+
+#itemDescription{
+    font-family: 'Slabo 27px', serif;
+    font-size: 24px;
+}
+
+#navItem{
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 24px;
+    color: white;
+}
+
+
+#brandName{
+    font-family: 'Tenor Sans', sans-serif;
+    font-size: 48px;
+    color: gold;
+  }
+
+
 .sidebar {
     height: 100%;
     width: 200px;

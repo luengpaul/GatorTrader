@@ -6,6 +6,9 @@ const bodyParser = require('body-parser')
 
 //allows server of static files (such as css files) to work with nodejs
 app.use(express.static(path.join(__dirname, '/public')));
+
+app.use(express.static(path.join(__dirname, '/views')));
+
 //allows paring incoming request bodies in a middleware before handlers
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.set('views', __dirname + '/views'); 
@@ -30,8 +33,8 @@ const types = ['Appliances', 'Electronics', 'Clothes', 'Furniture', 'Tutoring', 
 
 //routes
 app.get("/", (req, res) => {
-    //res.sendFile(path.join(__dirname, '/views', 'prototypeHome.html'))
-    res.render('prototypeHome', {
+    //res.sendFile(path.join(__dirname, '/views', 'home.html'))
+    res.render('home', {
         searchResult: "",
         categories: types
     }) 
@@ -82,7 +85,7 @@ app.post('/', function (req, res) {
              } else {
                 //console.log(result)
             }
-            res.render('prototypeHome', {
+            res.render('home', {
                 searchResult: result,
                 categories: types
             })
@@ -95,7 +98,7 @@ app.post('/', function (req, res) {
             } else {
                 console.log(result)
             }
-            res.render('prototypeHome', {
+            res.render('home', {
                 searchResult: result,
                 categories: types
             })
@@ -108,7 +111,7 @@ app.post('/', function (req, res) {
             } else {
                 console.log(result)
             }
-            res.render('prototypeHome', {
+            res.render('home', {
                 searchResult: result,
                 categories: types
             })
