@@ -1,11 +1,51 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<% include .\assets\php\head.ejs %>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel='stylesheet', href='/css/bootstrap.min.css'>
+		<link href="https://fonts.googleapis.com/css?family=Tenor+Sans|Oswald|Raleway|Slabo+27px&display=swap" rel="stylesheet">
+		<script src="/js/jquery.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<!-- <% include .\assets\php\head.ejs %> -->
 </head>
 <body>
-	<% include .\assets\php\navbar.ejs %>
-
+	<!-- <% include .\assets\php\navbar.ejs %> -->
+	
+	<nav class="navbar navbar-expand-lg padding-large purple navbar-fixed-top " style="margin:24px 0;">
+			<a id="brandName" class="navbar-brand" href="/">Gator Trader</a>
+				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
+				  <span class="navbar-toggler-icon"></span>
+				</button>
+				<div  class="collapse navbar-collapse" id="navb">
+				  <ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+					  <a id="navItem" class="nav-link" href="/">Home</a>
+					</li>
+					<li class="nav-item">
+					  <a id="navItem" class="nav-link" href="about">About</a>
+					</li>
+					</ul>
+		
+					<div class="nav-item ml-auto">
+						<form class="form-inline" action="/" method="post">
+						  <select name="searchEntry" onchange="this.form.submit()">
+							<option value ="">Choose cateogry</option>
+							<% for(var i=0; i < categories.length; i++) {%>
+							<option value ="<%=categories[i]%>"><%=categories[i]%></option>
+							<% } %>
+						  </select>
+						</form>
+					</div>
+						
+						<div class="nav-item">
+						<form class="form-inline" action="/" method="post">
+						  <input type="text" name="searchEntry" placeholder="Enter item by name." size="40">
+						  <input class="btn btn-outline-warning" type="submit" value="Search">
+						</form>
+					  </div>
+				</div>
+			  </nav>
+			
 
 	<div id="resultArea" class="container center">
 		<% for(var i=0; searchResult[i]; i++) { %><br>
