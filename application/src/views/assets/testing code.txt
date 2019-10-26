@@ -1,4 +1,5 @@
-	<!-- <% include .\assets\php\head.ejs %> -->
+	<!-- <% include .\assets\php\navbar.ejs %> -->
+    <!-- <% include .\assets\php\head.ejs %> -->
 	<!-- This code is intended to create rows of cards using for loops and bootstrap grid system. -->
 	<!-- <div class="container">
 			<div class="row-fluid">
