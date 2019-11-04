@@ -4,56 +4,123 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel='stylesheet', href='/css/bootstrap.min.css'>
 		<link href="https://fonts.googleapis.com/css?family=Tenor+Sans|Oswald|Raleway|Slabo+27px&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
 		<script src="/js/jquery.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/style.css">
+
 </head>
 <body>
-	<nav class="navbar navbar-expand-lg padding-large purple navbar-fixed-top " style="margin:24px 0;">
+
+		<div class="row">
+				<div class= "col-sm-5">
+
+					</div>
+					<div class= "col-sm-2 center purple font">
+							CSC 648 Team 10
+							</div>
+							<div class= "col-sm-4">
+									</div>
+			</div>
+
+	<nav class="  purple ">
+		<div class="row">
+			<div class="col-md-3">
 			<a id="brandName" class="navbar-brand" href="/">Gator Trader</a>
-				<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navb">
-				  <span class="navbar-toggler-icon"></span>
-				</button>
-				<div  class="collapse navbar-collapse" id="navb">
-				  <ul class="navbar-nav mr-auto">
-					<li class="nav-item">
-					  <a id="navItem" class="nav-link" href="/">Home</a>
-					</li>
-					<li class="nav-item">
+			</div>
+
+
+				<div class="col-md-1 navbar-nav shift-down">
+					<li >
 					  <a id="navItem" class="nav-link" href="about">About</a>
 					</li>
-					</ul>
-		
-					<div class="nav-item ml-auto">
-						<form class="form-inline" action="/" method="post">
+				</div>
+
+				<div class="col-md-1 right shiftCategory">
+					
+						<form action="/" method="post">
 						  <select name="searchEntry" onchange="this.form.submit()">
-							<option value ="">Choose cateogry</option>
+							<option value ="">Categories</option>
 							<% for(var i=0; i < categories.length; i++) {%>
 							<option value ="<%=categories[i]%>"><%=categories[i]%></option>
 							<% } %>
 						  </select>
 						</form>
 					</div>
-						
-						<div class="nav-item">
-						<form class="form-inline" action="/" method="post">
-						  <input type="text" name="searchEntry" placeholder="Enter item by name." size="40">
+					<div class="col-md-5 shift-down">
+						<form action="/" method="post">
+						  <input type="text" name="searchEntry" placeholder="Search for Products..." size="50">
 						  <input class="btn btn-outline-warning" type="submit" value="Search">
 						</form>
 					  </div>
+
+					  <div class="col-md-2 shift-down">
+								<input class="btn btn-outline-warning" type="submit" value="Login /Sign Up">
+							  </form>
+							</div>				
 				</div>
-			  </nav>
-			
+			</nav>
 
-	<div id="resultArea" class="container center">
-		<% for(var i=0; searchResult[i]; i++) { %><br>
-			<h2 id="itemName"><%=searchResult[i].name %></h2><br>
-			<img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-			<br><br><h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-			<h3 id="itemDescription"><%=searchResult[i].description%></h4><br>
-			<hr>
-		<% } %>
-	</div> 
+			<div class="row">
+				<div class= "col-sm-12 padding-huge ">								
+					</div>											
+				</div>
+				
+			<div class="row">
+					<div class= "col-sm-3">
+						</div>
+						<div class= "col-sm-6 center font purple">
+								Gator Trader specializes in the distribution of products by SFSU students. We offer a wide range of services, from buying and selling items, to tutoring lessons based on subject.
+								</div>
+								<div class= "col-sm-3">
+									</div>
+								
+				</div>
 
+				<div class="row">
+						<div class="col-md-3">
+								<% for(var i=0; searchResult[i]; i=i+4) { %><br>
+									<img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+									<h2 id="itemName"><%=searchResult[i].name %></h2>
+									<h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+									<h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+									<hr>
+								<% } %>
+		
+							</div> 
+							
+				<div class="col-md-3">
+						<% for(var i=1; searchResult[i]; i=i+4) { %><br>
+							<img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+							<h2 id="itemName"><%=searchResult[i].name %></h2>
+							<h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+							<h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+							<hr>
+						<% } %>
+
+					</div> 
+
+					<div class="col-md-3">
+							<% for(var i=2; searchResult[i]; i=i+4) { %><br>
+								<img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+								<h2 id="itemName"><%=searchResult[i].name %></h2>
+								<h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+								<h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+								<hr>
+							<% } %>
+	
+						</div> 
+
+						<div class="col-md-3">
+								<% for(var i=3; searchResult[i]; i=i+4) { %><br>
+									<img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+									<h2 id="itemName"><%=searchResult[i].name %></h2>
+									<h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+									<h3 class= "itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+									<hr>
+								<% } %>
+		
+							</div> 
+					</div>
 
 </body>
 </html>

@@ -3,7 +3,6 @@
   https://www.w3schools.com/w3css/4/w3.css
 */
 
-
 #resultArea{
     max-width: 500px;
     margin: auto;
@@ -11,20 +10,20 @@
 
 #itemName{
     font-family: 'Oswald', sans-serif;
-    font-size: 38p;
+    font-size: 28px;
     font-weight:bolder;
     text-decoration: underline;
 }
 
 #itemPrice{
     font-family: 'Raleway', sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     font-weight:bold;
 }
 
 #itemDescription{
     font-family: 'Slabo 27px', serif;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 #navItem{
@@ -195,3 +194,44 @@ body, h1, h2, h3, h4, h5, h6 {
 .padding-large {
     padding: 12px 24px !important 
 }
+
+.padding-huge{
+    padding: 35px
+}
+
+.font{
+    font-family: 'Slabo 27px', serif;
+    font-size: 18px;
+    color: gold;
+}
+
+.right{
+    text-align:right
+}
+
+.shift-down{
+    padding-top: 20px;
+}
+
+.shiftCategory{
+    padding-top:30px;
+}
+
+.left{
+    text-align:left
+}
+
+.col-4-result {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    max-lines: 50;
+  }
+
+  .itemDes{
+      height:75px;
+      width:300px;
+  }
+
+  
