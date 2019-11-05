@@ -10,9 +10,9 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.use(express.static(path.join(__dirname, '/views')));
 
 //allows paring incoming request bodies in a middleware before handlers
-app.use(bodyParser.urlencoded({ extended: true })); 
-app.set('views', __dirname + '/views'); 
-app.set('view engine', 'ejs'); 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
 
 var db = mysql.createConnection({
     host: 'gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com',
@@ -20,7 +20,7 @@ var db = mysql.createConnection({
     user: 'admin',
     password: 'csc648_team10',
     //working database name, actual database is 'gatortrader'
-    database: 'gatortrader_test' 
+    database: 'gatortrader_test'
 });
 
 db.connect(function (err) {
@@ -37,9 +37,10 @@ app.get("/", (req, res) => {
     res.render('home', {
         searchResult: "",
         categories: types
-    }) 
+    })
     console.log(types)
 })
+
 
 app.get("/about", (req, res) => {
     res.sendFile(path.join(__dirname, 'views', '/about.html'))
@@ -70,7 +71,7 @@ app.get("/team/saleh", (req, res) => {
 })
 
 //used for test post that gets value from the protype homepage search bar
-app.post('/', function (req, res) { 
+app.post('/', function (req, res) {
     if(!db._connectCalled) {
         db.connect();
     }
@@ -90,7 +91,7 @@ app.post('/', function (req, res) {
                 categories: types
             })
         })
-    } 
+    }
     else if (!req.body.searchEntry) {
         db.query("SELECT * FROM item", (err, result) => {
             if (err) {
