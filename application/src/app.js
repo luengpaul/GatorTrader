@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const routes = require('./routes/routes')
 const aboutRoutes = require('./routes/aboutPgRoutes')
 const db = require('./database')
+
 try {
     var dbConnection = db.connection()
 } catch (err) {
