@@ -95,17 +95,16 @@
     </div>
 
 <div class="navbar-nav mx-auto">
-
-    <li class="nav-item dropdown">
-      <form class="dropDown" action="/" method="post">
-            <select class="btn btn-secondary dropDown" onchange="this.form.submit()">
-            <option value=""></option>
-            <% for(var i=0; i < categories.length; i++) {%>
-            <option value ="<%=categories[i]%>"><%=categories[i]%></option>
-            <% } %>
-            </select>
-          </form>
-    </li>
+  <div class="nav-item ml-auto btn btn-secondary">
+    <form class="form-inline" action="/" method="post">
+      <select name="searchEntry" onchange="this.form.submit()">
+      <option value =""></option>
+      <% for(var i=0; i < categories.length; i++) {%>
+      <option value ="<%=categories[i]%>"><%=categories[i]%></option>
+      <% } %>
+      </select>
+    </form>
+  </div>
 
     <form class= "form-inline Searchwindow" action="/" method="post">
       <input class="form-group col-lg-8" type="text" placeholder="Search for products..." name="searchEntry">
