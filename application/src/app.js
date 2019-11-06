@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname, 'public')));
 
 //create connection to application database con
 var db = mysql.createConnection({
