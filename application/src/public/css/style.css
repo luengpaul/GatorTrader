@@ -1,8 +1,227 @@
-/*
-  css used from a open css source template 
-  https://www.w3schools.com/w3css/4/w3.css
-*/
+body {
+  margin-top: 20px;
+  background-color: #eeeeee;
+}
 
+.Banner {
+  position: -webkit-fixed;
+  position:fixed;
+  top: 0;
+  margin: 0;
+  border-bottom: 2px dotted red;
+  width: 100%;
+  height: 200px;
+  z-index: 9999;
+}
+
+.LoginButton{
+  position:fixed;
+  top: 10px;
+  right:15px;
+  z-index: 9999;
+}
+
+.card-group{
+  display: flex;
+}
+
+.itemListing{
+  margin: 100px auto;
+  left: 10px;
+  width: 500px;
+  height: 500px;
+  position:relative;
+  border: 1px solid;
+}
+.navbar{
+  position: -webkit-fixed;
+  position: fixed;
+  top: 0;
+  margin:0;
+  width: 100%;
+  height:200px;
+  background-color: #3a4750;
+  z-index: 9999;
+}
+
+
+
+.itemContainer{
+  top:230px;
+  position:relative;
+
+}
+
+
+
+.Introduction {
+  position: relative;
+  top: 230px;
+  margin: auto 2.5%;
+  font-family: sans-serif;
+}
+
+.classSectionHeader {
+  margin:0;
+  position: fixed;
+  top:10px;
+  right:50%;
+  text-align: center;
+  color: black;
+  z-index: 9999;
+
+}
+
+h1 {
+  margin: 0;
+  position: absolute;
+  display: inline-block;
+  font-size: 50px;
+  bottom: 1px;
+  left: 0;
+}
+
+.GatorTrader {
+  font-family: 'Lobster', cursive;
+  color: #ea9215;
+  font-size: 40px;
+}
+
+.LogoPlusSearch {
+  top: 20px;
+  margin: 0;
+  width: 100%;
+  height: 25%;
+  position: relative;
+}
+
+.SearchBar {
+  margin: auto;
+  position: relative;
+  bottom: 41px;
+  width: 656px;
+  height: 41px;
+  background-color: #3a4750;
+}
+
+.dropdownMenu {
+  margin: 0;
+  left: 0;
+  bottom: 43px;
+  position: relative;
+  display: inline-block;
+}
+
+.dropDown {
+  margin: 0;
+  background-color: #757575;
+  width: 55px;
+  height: 40px;
+  left: 0;
+  position: relative;
+  display: inline-block;
+  border: none;
+}
+
+.Searchwindow {
+  margin: 0;
+  position: relative;
+  height: 39px;
+  display: inline-block;
+  width: 465px;
+  border: none;
+}
+
+.searchButton {
+  position: relative;
+  display: inline-block;
+  height: 35px;
+  width: 150px;
+  margin: 0;
+  font-size: 20px;
+  background-color: #ea9215;
+}
+
+
+input[type=text] {
+  width: 400px;
+  height: 40px;
+  box-sizing: border-box;
+  font-size: 20px;
+  color: black;
+}
+
+input[type=submit] {
+  width: 150px;
+  height: 40px;
+  background-color: #ea9215;
+  box-sizing: border-box;
+  border: none;
+  color: black;
+}
+
+
+
+.GatorTraderBannerLogo{
+  margin:0;
+  height:80px;
+  width:80px;
+  border: 2px solid purple;
+  border-radius: 25px;
+}
+
+.GatorTraderLogo {
+  font-family: 'Lobster', cursive;
+  color: #FAF5FF;
+  font-size: 50px;
+
+}
+
+.SellButton {
+  color: #2B8C25;
+  font-size: 35px;
+}
+
+.aboutButton {
+  margin: 0;
+  font-size: 30px;
+  color: #2B8C25;
+}
+
+.contentOnPage{
+  top: 230px;
+}
+
+h2 {
+  margin: 0;
+}
+
+.CarouselContainer {
+  margin: auto;
+  background-color: grey;
+  position: relative;
+  top: 270px;
+  width: 100%;
+  height: 600px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+
+.resultsContainer{
+  position:relative;
+  margin:auto;
+  top: 25%;
+  width:300px;
+  height:200px;
+  border: 1px solid black;
+}
+
+
+
+/*
+* STYLE SHEET FROM OTHER PAGE ON BOTTOM 
+*/
 
 #resultArea{
     max-width: 500px;
@@ -11,20 +230,20 @@
 
 #itemName{
     font-family: 'Oswald', sans-serif;
-    font-size: 38p;
+    font-size: 28px;
     font-weight:bolder;
     text-decoration: underline;
 }
 
 #itemPrice{
     font-family: 'Raleway', sans-serif;
-    font-size: 24px;
+    font-size: 18px;
     font-weight:bold;
 }
 
 #itemDescription{
     font-family: 'Slabo 27px', serif;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 #navItem{
@@ -85,7 +304,7 @@
 .btn, .button {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-  
+
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none
@@ -193,5 +412,55 @@ body, h1, h2, h3, h4, h5, h6 {
     font-size: 18px !important
 }
 .padding-large {
-    padding: 12px 24px !important 
+    padding: 12px 24px !important
 }
+
+.padding-huge{
+    padding: 35px
+}
+
+.font{
+    font-family: 'Slabo 27px', serif;
+    font-size: 18px;
+    color: gold;
+}
+
+.right{
+    text-align:right
+}
+
+.shift-down{
+    padding-top: 20px;
+}
+
+.shiftCategory{
+    padding-top:30px;
+}
+
+.left{
+    text-align:left
+}
+
+.col-4-result {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+    max-lines: 50;
+  }
+
+  .itemDes{
+      height:75px;
+      width:300px;
+  }
+
+  .loginProperties{
+    background-color:black;
+    color:white;
+}
+ 
+.modal-container{
+    width:500px;
+    height:850px;
+}
+

@@ -9,12 +9,12 @@ const aboutRoutes = require('./routes/aboutPgRoutes')
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-//add middleware layers required for application (static file serving, etc)
-app.use(bodyParser.urlencoded({ extended: true })); 
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/views')));
-app.use('/', routes)
-app.use('/', aboutRoutes)
+
+//allows paring incoming request bodies in a middleware before handlers
+app.use(bodyParser.urlencoded({ extended: true }));
+app.set('views', __dirname + '/views');
+app.set('view engine', 'ejs');
+
 
 //create connection to application database con
 var db = mysql.createConnection({
@@ -23,15 +23,45 @@ var db = mysql.createConnection({
     user: 'admin',
     password: 'csc648_team10',
     //working database name, actual database is 'gatortrader'
-    database: 'gatortrader_test' 
-})
+
+    database: 'gatortrader_test'
+});
+
 db.connect(function (err) {
     if (err) throw err
     console.log("Connected!")
 })
 
-//get categories fetched from db in routes.js
-var types = []
+//temp solution since dynamically getting all categories from database doesn't rerender
+const types = ['Appliances', 'Electronics', 'Clothes', 'Furniture', 'Tutoring', 'Textbooks']
+
+//routes
+app.get("/", (req, res) => {
+    //res.sendFile(path.join(__dirname, '/views', 'home.html'))
+    res.render('home', {
+        searchResult: "",
+        categories: types
+    })
+    console.log(types)
+})
+
+
+app.get("/about", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views', '/about.html'))
+})
+
+app.get("/team/ibraheem", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/ibraheem.html'))
+})
+
+app.get("/team/tom", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/tom.html'))
+})
+
+app.get("/team/alexander", (req, res) => {
+    res.sendFile(path.join(__dirname, 'views/team', '/alexander.html'))
+})
+
 
 db.query("SELECT * FROM category", (err, result) => {
     if (err) {
@@ -45,8 +75,9 @@ db.query("SELECT * FROM category", (err, result) => {
     }
 })
 
-//gets value from the protype homepage search bar or category pulldown and searches for appropriate items in database
-app.post('/', function (req, res) { 
+//used for test post that gets value from the protype homepage search bar
+app.post('/', function (req, res) {
+
     if(!db._connectCalled) {
         db.connect()
     }
@@ -66,7 +97,7 @@ app.post('/', function (req, res) {
                 categories: types
             })
         })
-    } 
+    }
     else if (!req.body.searchEntry) {
         db.query("SELECT * FROM item", (err, result) => {
             if (err) {
@@ -96,6 +127,6 @@ app.post('/', function (req, res) {
 })
 
 const PORT = 3000
-app.listen(PORT, (req, res) => {
-    console.log('Server running on port ' + PORT)
-})
+
+app.listen(PORT, () => console.log('Server running on port ' + PORT))
+
