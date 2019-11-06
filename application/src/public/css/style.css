@@ -128,7 +128,7 @@ h1 {
   position: relative;
   height: 39px;
   display: inline-block;
-  width: 465px; !important;
+  width: 465px;
   border: none;
 }
 
@@ -144,7 +144,7 @@ h1 {
 
 
 input[type=text] {
-  width: 500px;
+  width: 400px;
   height: 40px;
   box-sizing: border-box;
   font-size: 20px;
@@ -165,7 +165,7 @@ input[type=submit] {
 .GatorTraderBannerLogo{
   margin:0;
   height:80px;
-  width:80px
+  width:80px;
   border: 2px solid purple;
   border-radius: 25px;
 }
@@ -453,3 +453,14 @@ body, h1, h2, h3, h4, h5, h6 {
       height:75px;
       width:300px;
   }
+
+  .loginProperties{
+    background-color:black;
+    color:white;
+}
+ 
+.modal-container{
+    width:500px;
+    height:850px;
+}
+
