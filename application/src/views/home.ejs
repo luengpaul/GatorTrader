@@ -51,7 +51,7 @@
                     <div class="modal-body">
                             First Name
                                 <form action="/" method="post"> 
-                                    <input type="text" name="searchEntry" placeholder="" size="10">
+                                    <input type="text" name="searchEntry" placeholder="" size="0">
                                   </form>
                                   Last Name
                                   <form action="/" method="post">
@@ -127,79 +127,67 @@
 </nav>
 </section>
 
-<!--Container of result listings -->
-<div class="itemContainer container-fluid">
-
-<div class="card-deck" style="width: 400px;">
-
-<div class="row">
-
-
-    <div class="card1 text-center">
-      <% for(var i=0; searchResult[i]; i=i+4) { %><br>
-      <h2 class="card-header" id="itemName"><%=searchResult[i].name %></h2>
-      <img class="card-img-top" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-        <div class="card-body">
-          <h3 class="card-title" id="itemPrice"><strong>$ <%=searchResult[i].price%></strong><br></h4>
-          <p class="card-text itemDes" id="itemDescription"><%=searchResult[i].description%></p><br>
-            <a href="#" class="btn btn-warning">Contact Seller</a>
-          <hr>
-          <% } %>
-        </div>
-    </div>
-
-  <div class="card2">
-    <% for(var i=1; searchResult[i]; i=i+4) { %><br>
-    <h2 class="card-header" id="itemName"><%=searchResult[i].name %></h2>
-    <img class="card-img-top" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-      <div class="card-body">
-        <h3 class="card-title" id="itemPrice"><strong>$ <%=searchResult[i].price%></strong><br></h4>
-        <p class="card-text itemDes" id="itemDescription"><%=searchResult[i].description%></p><br>
-          <a href="#" class="btn btn-warning">Contact Seller</a>
-        <hr>
-        <% } %>
-      </div>
-  </div>
-
-
-  <div class="card3">
-    <% for(var i=2; searchResult[i]; i=i+4) { %><br>
-    <h2 class="card-header" id="itemName"><%=searchResult[i].name %></h2>
-    <img class="card-img-top" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-    <div class="card-body">
-      <h3 class="card-title" id="itemPrice"><strong>$ <%=searchResult[i].price%></strong><br></h4>
-      <p class="card-text itemDes" id="itemDescription"><%=searchResult[i].description%></p><br>
-      <a href="#" class="btn btn-warning">Contact Seller</a>
-      <hr>
-      <% } %>
-    </div>
-  </div>
-
-
-  <div class="card4">
-    <% for(var i=3; searchResult[i]; i=i+4) { %><br>
-    <h2 class="card-header" id="itemName"><%=searchResult[i].name %></h2>
-    <img class="card-img-top" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-      <div class="card-body">
-        <h3 class="card-title" id="itemPrice"><strong>$ <%=searchResult[i].price%></strong><br></h4>
-        <p class= "card-text itemDes" id="itemDescription"><%=searchResult[i].description%></p><br>
-          <a href="#" class="btn btn-warning">Contact Seller</a>
-        <hr>
-        <% } %>
-      </div>
-  </div>
-
-</div>
-</div>
-
-</div>
-
-
 <div class="contentOnPage">
   <h3 class="Introduction"><span class="GatorTrader">Gator Trader</span>
     specializes in the distribution of products by SFSU students, for SFSU students.
     We offer a wide range of services, from buying and selling items, to tutoring lessons based on subject.
   </h3>
+
+<!--Container of result listings -->
+<div class="itemContainer container-fluid">
+
+
+  <div class="row">
+    <div class="col-md-3">
+            <% for(var i=0; searchResult[i]; i=i+4) { %><br>
+                <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+                <h2 id="itemName"><%=searchResult[i].name %></h2>
+                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+                  <a href="#" class="btn btn-warning">Contact Seller</a>
+                <hr>
+            <% } %>
+
+        </div> 
+        
+<div class="col-md-3">
+    <% for(var i=1; searchResult[i]; i=i+4) { %><br>
+        <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+        <h2 id="itemName"><%=searchResult[i].name %></h2>
+        <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+        <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+          <a href="#" class="btn btn-warning">Contact Seller</a>
+        <hr>
+    <% } %>
+
+</div> 
+
+<div class="col-md-3">
+        <% for(var i=2; searchResult[i]; i=i+4) { %><br>
+            <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+            <h2 id="itemName"><%=searchResult[i].name %></h2>
+            <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+            <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+              <a href="#" class="btn btn-warning">Contact Seller</a>
+            <hr>
+        <% } %>
+
+    </div> 
+
+    <div class="col-md-3">
+            <% for(var i=3; searchResult[i]; i=i+4) { %><br>
+                <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+                <h2 id="itemName"><%=searchResult[i].name %></h2>
+                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                <h3 class= "itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
+                  <a href="#" class="btn btn-warning">Contact Seller</a>
+                <hr>
+            <% } %>
+
+        </div> 
+</div>
+
+
 
 
 
