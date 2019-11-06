@@ -19,7 +19,6 @@ app.set('view engine', 'ejs');
 //add middleware layers required for application (static file serving, etc)
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/views')));
 app.use('/', routes)
 app.use('/', aboutRoutes)
 
