@@ -13,4 +13,16 @@ router.get("/", (req, res) => {
     })
 })
 
+router.get("/postingForm", (req, res) => {
+    //timeout necessary to get categories to appear before page is refreshed
+    res.setTimeout(200, () => {
+        res.render('postingForm', {
+            searchResult: "",
+            categories: types
+        })
+    })
+})
+
+
+
 module.exports = router
