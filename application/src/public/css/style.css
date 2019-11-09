@@ -1,6 +1,23 @@
+
 body {
   margin-top: 20px;
   background-color: #eeeeee;
+}
+
+/* #resizing_select {
+  width: 80px;
+ } 
+
+#resizing_select:focus {
+  min-width: 80px;
+  width: auto;
+}   */
+
+
+/*This css fixes the horizontal scrolling into white space bug on posting form page*/
+#postingFormPage {
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 .Banner {
@@ -14,6 +31,8 @@ body {
   z-index: 9999;
 }
 
+
+
 .LoginButton{
   position:fixed;
   top: 10px;
@@ -23,6 +42,84 @@ body {
 
 .card-group{
   display: flex;
+}
+
+.PostingFormContainer{
+  position: relative;
+  margin-left:0px;
+  margin-right: 20px;
+  border: 2px solid;
+  height: 100%;
+  top: 160px;
+  width:80%;
+  background-color: #d3d3d3;
+}
+
+.DisclaimerContainer{
+  width:20%;
+  height: 100%;
+  position: fixed;
+  right: 0;
+  background-color: grey;
+  top:200px;
+}
+
+.disclaimerText{
+  width: 100%;
+  margin: 5px;
+  height: 200px;
+  position: relative;
+  background-color: inherit;
+  top: 20px;
+}
+
+
+
+.postingFormTitle h2{
+  position: relative;
+  text-align: 50%;
+  margin-bottom: 50px;
+  margin-top:50px;
+  left: 40%;
+  top:10px
+}
+
+.PostingForm{
+  position: relative;
+  z-index: 9999;
+  left:10px;
+}
+
+.postingLabel{
+  margin-right: 50px;
+  font-family: 'Tenor Sans', sans-serif;
+}
+
+.CancelandSubmitContainer{
+  position: relative;
+  left: 400px;
+  margin-right: 20px;
+  bottom: 40px;
+  width: 355px;
+  height: 60px;
+  background-color: inherit;
+  z-index: 9999;
+}
+
+.postingCancelButton{
+  color:black;
+  width: 150px;
+}
+
+.postingSubmitButton{
+  width: 200px;
+  color: black;
+}
+
+.fieldRequiredText{
+  position:relative;
+  bottom:100;
+  z-index: 9999;
 }
 
 .itemListing{
@@ -35,7 +132,7 @@ body {
 }
 .navbar{
   position: -webkit-fixed;
-  position: fixed;
+  /* position: fixed; */
   top: 0;
   margin:0;
   width: 100%;
@@ -139,7 +236,6 @@ h1 {
   width: 150px;
   margin: 0;
   font-size: 20px;
-  background-color: #ea9215;
 }
 
 
@@ -154,8 +250,6 @@ input[type=text] {
 input[type=submit] {
   width: 150px;
   height: 40px;
-  background-color: #ea9215;
-  box-sizing: border-box;
   border: none;
   color: black;
 }
@@ -220,7 +314,7 @@ h2 {
 
 
 /*
-* STYLE SHEET FROM OTHER PAGE ON BOTTOM 
+* STYLE SHEET FROM OTHER PAGE ON BOTTOM
 */
 
 #resultArea{
@@ -249,7 +343,12 @@ h2 {
 #navItem{
     font-family: 'Tenor Sans', sans-serif;
     font-size: 24px;
-    color: white;
+    color: #eeeeee;
+}
+
+#submitItem{
+  font-family: 'Tenor Sans', sans-serif;
+  font-size: 25px;
 }
 
 
@@ -458,9 +557,110 @@ body, h1, h2, h3, h4, h5, h6 {
     background-color:black;
     color:white;
 }
- 
+
 .modal-container{
     width:500px;
     height:850px;
 }
 
+/*Added for User Dash*/
+
+.dash{
+  width:70%;
+  height:450px;
+  background-color:lightgray;
+  position:absolute;
+  left:410px;
+  bottom:150px;
+}
+
+
+.dashText{
+  position:relative;
+  color:black;
+}
+
+.messageHeader{
+  color:black;
+  text-align:center;
+}
+
+.messageFriends{
+  text-align:left;
+  width:200px;
+  height:300px;
+  
+}
+  .buttonSpacing{
+    top: 350px;
+  left: 15px;
+  }
+
+  .buttonSpacing2{
+  top:150px;
+  left: 200px;
+  }
+
+.btn-group1 .button {
+  background-color:lightgray; /* Green */
+  border: 1px solid black;
+  color: black;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  width:150px;
+  cursor: pointer;
+  display:block;
+}
+
+.btn-group1 .button:not(:last-child) {
+  border-bottom: none; /* Prevent double borders */
+}
+
+.btn-group1 .button:hover {
+  background-color: #3e8e41;
+}
+
+.messageBox{
+  width:100%;
+  height:24%;
+  border:1px solid black;
+  color:black;
+}
+
+.messageUser{
+  width:100%;
+  height:12%;
+  border:1px solid black;
+  color:black;
+  padding: 15px 32px;
+}
+
+.messageFriend{
+  width:100%;
+  height:10%;
+  border:1px solid black;
+  padding: 15px 32px;
+  text-align:right;
+}
+
+.messageEmpty{
+top:700px;
+width:70%;
+height:12%;
+background-color:white;
+position:absolute;
+left:27%;
+}
+
+.cancelForm{
+bottom:50px;
+padding-right: 50px;
+}
+
+.welcomeText{
+color:white;
+}
+
+/*end for user dash*/

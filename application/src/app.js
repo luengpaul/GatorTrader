@@ -5,6 +5,7 @@ const bodyParser = require('body-parser')
 const routes = require('./routes/routes')
 const aboutRoutes = require('./routes/aboutPgRoutes')
 const db = require('./database')
+
 try {
     var dbConnection = db.connection()
 } catch (err) {
@@ -18,11 +19,10 @@ app.set('view engine', 'ejs');
 //add middleware layers required for application (static file serving, etc)
 app.use(bodyParser.urlencoded({ extended: true })); 
 app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/views')));
 app.use('/', routes)
 app.use('/', aboutRoutes)
 
-var types = db.initCategories()
+var categories = db.initCategories()
 
 //used for test post that gets value from the protype homepage search bar
 app.post('/', function (req, res) {
@@ -30,15 +30,15 @@ app.post('/', function (req, res) {
     console.log("value returned from search entry is (" + req.body.searchEntry + ")")
 
     //if category was selected output all items for that category
-    if(types.includes(req.body.searchEntry)) {
+    if(categories.includes(req.body.searchEntry)) {
             dbConnection.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
             if (err) {
                 console.log(err)
             } 
-
             res.render('home', {
                 searchResult: result,
-                categories: types
+                categories: categories,
+                isLogin:true
             })
         })
     }
@@ -51,7 +51,8 @@ app.post('/', function (req, res) {
             }
             res.render('home', {
                 searchResult: result,
-                categories: types
+                categories: categories,
+                isLogin:true
             })
         })
     } else {
@@ -64,7 +65,8 @@ app.post('/', function (req, res) {
             }
             res.render('home', {
                 searchResult: result,
-                categories: types
+                categories: categories,
+                isLogin:true
             })
         })
     }
