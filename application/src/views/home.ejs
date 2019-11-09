@@ -6,74 +6,74 @@
 
 <body>
 
-<!--Imports navbar from assets -->
-<% include assets/navbar %>
+    <!--Imports navbar from assets -->
+    <% include assets/navbar %>
 
-<div class="contentOnPage">
-  <h3 class="Introduction"><span class="GatorTrader">Gator Trader</span>
-    specializes in the distribution of products by SFSU students, for SFSU students.
-    We offer a wide range of services, from buying and selling items, to tutoring lessons based on subject.
-  </h3>
+    <div class="contentOnPage">
+        <h3 class="Introduction"><span class="GatorTrader">Gator Trader</span>
+        specializes in the distribution of products by SFSU students, for SFSU students.
+        We offer a wide range of services, from buying and selling items, to tutoring lessons based on subject.</h3><br>
 
-<!--Container of result listings -->
-<div class="itemContainer container-fluid">
+        <!--Container of result listings -->
+        <div class="itemContainer container-fluid">
 
-
-  <div class="row">
-    <div class="col-md-3">
-            <% for(var i=0; searchResult[i]; i=i+4) { %><br>
-                <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-                <h2 id="itemName"><%=searchResult[i].name %></h2>
-                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-                <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
+        <div class="row">
+            <div class="col-md-3">
+                <%if(isRecent) { %><h3><b><i>&nbsp&nbsp&nbsp&nbspRecent Posts on Gator Trader</b></i></h3><% } %>
+                <% for(var i=0; searchResult[i]; i=i+4) { %><br>
+                    <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>" height = "150"/>
+                    <h2 id="itemName"><%=searchResult[i].name %></h2>
+                    <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                    <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description.substring(0,78)%>
+                    <% if(searchResult[i].description.length > 77) { %>...<% } %></h4>
+                <a href="#" class="btn btn-warning">Contact Seller</a>
                 <hr>
-            <% } %>
-
-        </div> 
+                <% } %>
+            </div> 
         
-<div class="col-md-3">
-    <% for(var i=1; searchResult[i]; i=i+4) { %><br>
-        <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-        <h2 id="itemName"><%=searchResult[i].name %></h2>
-        <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-        <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-          <a href="#" class="btn btn-warning">Contact Seller</a>
-        <hr>
-    <% } %>
-
-</div> 
-
-<div class="col-md-3">
-        <% for(var i=2; searchResult[i]; i=i+4) { %><br>
-            <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-            <h2 id="itemName"><%=searchResult[i].name %></h2>
-            <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-            <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-              <a href="#" class="btn btn-warning">Contact Seller</a>
-            <hr>
-        <% } %>
-
-    </div> 
-
-    <div class="col-md-3">
-            <% for(var i=3; searchResult[i]; i=i+4) { %><br>
-                <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-                <h2 id="itemName"><%=searchResult[i].name %></h2>
-                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-                <h3 class= "itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
+            <div class="col-md-3">
+                <%if(isRecent) { %><br><br><% } %>
+                <% for(var i=1; searchResult[i]; i=i+4) { %><br>
+                    <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>" height = "150"/>
+                    <h2 id="itemName"><%=searchResult[i].name %></h2>
+                    <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                    <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description.substring(0,78)%>
+                    <% if(searchResult[i].description.length > 77) { %>...<% } %></h4>
+                <a href="#" class="btn btn-warning">Contact Seller</a>
                 <hr>
-            <% } %>
+                <% } %>
+            </div> 
 
-        </div> 
-</div>
+            <div class="col-md-3">
+                <%if(isRecent) { %><br><br><% } %>
+                <% for(var i=2; searchResult[i]; i=i+4) { %><br>
+                    <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>" height = "150"/>
+                    <h2 id="itemName"><%=searchResult[i].name %></h2>
+                    <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                    <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description.substring(0,78)%>
+                    <% if(searchResult[i].description.length > 77) { %>...<% } %></h4>
+                <a href="#" class="btn btn-warning">Contact Seller</a>
+                <hr>
+                <% } %>
+            </div> 
 
-<!--Carousel  of Recent Items -->
+            <div class="col-md-3">
+                <%if(isRecent) { %><br><br><% } %>
+                <% for(var i=3; searchResult[i]; i=i+4) { %><br>
+                    <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>" height = "150"/>
+                    <h2 id="itemName"><%=searchResult[i].name %></h2>
+                    <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                    <h3 class= "itemDes" id="itemDescription"><%=searchResult[i].description.substring(0,78)%>
+                    <% if(searchResult[i].description.length > 77) { %>...<% } %></h4>
+                <a href="#" class="btn btn-warning">Contact Seller</a>
+                <hr>
+                <% } %>
+            </div> 
+    </div>
 
-  <div class="CarouselContainer">
-  </div>
-</div>
+    <!--Carousel  of Recent Items -->
+    <div class="CarouselContainer"></div>
+    </div>
 
 </body>
 
