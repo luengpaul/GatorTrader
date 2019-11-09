@@ -3,7 +3,7 @@
 
 </div>
 
-<div class="modal fade " id="demoModal">
+<div class="modal fade " id="loginModal">
   <div class="modal-dialog ">
     <div class="modal-content modal-container">
       <div class="modal-header loginProperties">
@@ -61,9 +61,11 @@
 </div>
 
 
+
+
 <!-- NavBar using bootstrap -->
 <section id="Navbar">
-  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="container-fluid navbar navbar-expand-lg navbar-dark fixed-top">
     <a class="navbar-brand" href="/"><span class="GatorTraderLogo">Gator Trader</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -71,20 +73,62 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <div class="LoginButton">
+      
+        <!-- Conditionally display Sign In or Sign Out -->
+        <% if(isLogin){ %>
+          <div class="LoginButton"> 
+             <div class="dropdown">
+               <button class="btn btn-outline-warning dropdown-toggle" type="button" data-toggle="dropdown">User</button> 
+               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                 <a class="dropdown-item" href="/user">Dashboard</a>
+                 <a class="dropdown-item btn btn-default btn-sm" onclick="isLogin=false">Log out</a>
+               </div>
+             </div>
+           </div>
+        <% } else { %>
+          <div class="LoginButton">
+            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#loginModal">Login/ Register</button>
+          </div>
+        <% } %>
 
-        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#demoModal">Login/ Register</button>
-      </div>
-
-      <div class="navbar-nav mx-auto">
+        <div class="navbar-nav mx-auto">
         <form class="form-inline" action="/" method="post">
-          <select class="col-sm-4 ml-auto no-gutters btn btn-dark btn-outline-success  dropDown" name="searchEntry" onchange="this.form.submit()">
-            <option value=""></option>
+          <select id="resizing_select" class="ml-auto no-gutters btn btn-dark btn-outline-secondary" name="searchEntry" onchange="this.form.submit()">
+            <option value="" selected>All</option>
             <% for(var i=0; i < categories.length; i++) {%>
             <option value="<%=categories[i]%>"><%=categories[i]%></option>
             <% } %>
           </select>
+          <!-- <select id="width_tmp_select">
+            <option id="width_tmp_option"></option>
+           </select> -->
         </form>
+        
+
+        <script>
+        const mySel = document.getElementById("resizing_select");
+        mySel.addEventListener("change",function() {
+        sessionStorage.setItem("selValue",this.value); // save it
+        });
+        
+        let val = sessionStorage.getItem("selValue");
+        
+        if (val) mySel.value=val; // set the dropdown
+        
+        // trigger the change in case there are other events on the select
+        // mySel.onchange(); 
+        </script>
+
+         <!-- This script allows the cateogry box to resize based on input
+       <script>
+        $(document).ready(function() {
+          $('#resizing_select').change(function(){
+             $("#width_tmp_option").html($('#resizing_select option:selected').text());
+             $(this).width($("#width_tmp_select").width());  
+          });
+         });
+         </script>  
+   -->
 
         <form class="form-inline Searchwindow" action="/" method="post">
           <input class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">
@@ -99,7 +143,6 @@
         <li class="nav-item">
           <a id="navItem" class="nav-link btn-outline-success btn-lg aboutButton" href="about">ABOUT</a>
         </li>
-
       </ul>
 
     </div>

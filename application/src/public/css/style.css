@@ -4,7 +4,14 @@ body {
   background-color: #eeeeee;
 }
 
+/* #resizing_select {
+  width: 80px;
+ } 
 
+#resizing_select:focus {
+  min-width: 80px;
+  width: auto;
+}   */
 
 .Banner {
   position: -webkit-fixed;

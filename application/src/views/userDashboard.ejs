@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<!--Imports header from assets -->
+<% include assets/head %>
+
+<body>
+
+<!--Imports navbar from assets -->
+<% include assets/navbar %>
+
+<div class="col-md-2 buttonSpacing btn-group1">
+        <button class="button">My Sales Items</button>
+        <button class="button">My Messages</button>
+</div>
+
+        
+    <div class="col-md-2 buttonSpacing2 btn-group1">
+            <button class="button">Lionel</button>
+            <button class="button">Johnny</button>
+            <button class="button">Paul</button>
+            <button class="button">David</button>
+            <button class="button">John</button>
+      </div>
+      <div class=" dash col-lg-8"> 
+          <h6 class= "messageHeader"><u>Messages</u></h6>
+          <div class="messageBox">
+              <h5>To: Jackdaniels@mail.sfsu.edu</h5>
+              <h6>From: TomSikder@mail.sfsu.edu</h6>
+              <h6>Item ID: 12345</h6>
+              <h6>Name: Slightly Used Couch</h6>
+          </div>
+          <h6 class= "messageHeader"><u>10/13/2019</u></h6>
+          <div class="messageUser">
+              <h6>Hi, I'm interested in your couch post. Which meet up spot would you like to meet up at?</h6>              
+          </div>
+          <div class="messageFriend">
+              <h6>Hi, I'm down to meet to meet up right next to Cesar Chavez center if that's ok with you.</h6>              
+          </div>
+      </div>
+
+      <div class=" messageEmpty "> 
+        <textarea id="FormDescription" class=" border-dark col-lg-8" name="text" rows="5"></textarea>
+        <a class="btn btn-success btn-lg  col-lg-1 cancelForm "href="#">Cancel<span class="sr-only">(current)</span></a>
+        <a class="btn btn-outline-warning btn-lg  col-lg-1 cancelForm "href="#">Send<span class="sr-only">(current)</span></a>
+      </div>
+
+</body>
+</html>
