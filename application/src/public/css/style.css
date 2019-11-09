@@ -13,6 +13,13 @@ body {
   width: auto;
 }   */
 
+
+/*This css fixes the horizontal scrolling into white space bug on posting form page*/
+#postingFormPage {
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 .Banner {
   position: -webkit-fixed;
   position:fixed;
