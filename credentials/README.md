@@ -17,10 +17,13 @@
 3. SSH password or key.
     <br> <strong>Key file is added to credentials folder</strong>
 4. Database URL or IP and port used.
-    <br><strong> NOTE THIS DOES NOT MEAN YOUR DATABASE NEEDS A PUBLIC FACING PORT.</strong> But knowing the IP and port number will help with SSH tunneling into the database. The default port is more than sufficient for this class.
+<br><strong> gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com</strong>
 5. Database username
+<br><strong> admin</strong>
 6. Database password
+<br><strong> csc648_team10</strong>
 7. Database name (basically the name that contains all your tables)
+<br><strong>gatortrader</strong>
 8. Instructions on how to use the above information.
 <br>
 <strong>(Note that you need to launch these commands in the directory that contains your .pem key file)</strong>
