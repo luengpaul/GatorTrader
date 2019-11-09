@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Gator Trader</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+
+  <div class="classSectionHeader">
+    <p>CSC 648 Team 10</p>
+
+  </div>
+
+  <div class="modal fade " id="demoModal">
+    <div class="modal-dialog ">
+        <div class="modal-content modal-container">
+            <div class="modal-header loginProperties">
+                <b>LOG IN</b>
+                <button type="button"class="close white" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body loginProperties">
+                Email
+                    <form action="/" method="post"> 
+                        <input type="text" name="searchEntry" placeholder="" size="40">
+                      </form>
+                      Password
+                      <form action="/" method="post">
+                          <input type="text" name="searchEntry" placeholder="" size="40">
+                        </form>
+                    <u>Forgot Password / Email</u>
+                      
+            </div>
+            <div class="modal-footer loginProperties">
+                <button type="button " class="btn btn-light" data-dismiss="modal">Login</button>
+                </div>
+                <div class="modal-header">
+                        <b>REGISTER</b>
+                    </div>
+                    <div class="modal-body">
+                            First Name
+                                <form action="/" method="post"> 
+                                    <input type="text" name="searchEntry" placeholder="" size="0">
+                                  </form>
+                                  Last Name
+                                  <form action="/" method="post">
+                                      <input type="text" name="searchEntry" placeholder="" size="40">
+                                    </form>
+                                    SFSU Email
+                                    <form action="/" method="post">
+                                        <input type="text" name="searchEntry" placeholder="" size="40">
+                                      </form>
+                                      Password
+                                      <form action="/" method="post">
+                                          <input type="text" name="searchEntry" placeholder="" size="40">
+                                        </form>
+                                        Confirm Password
+                                        <form action="/" method="post">
+                                            <input type="text" name="searchEntry" placeholder="" size="40">
+                                          </form>
+                                I agree to the <u>Terms and Conditions</u>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button " class="btn btn-dark" data-dismiss="modal">Register</button>
+                        </div>
+            </div>
+        </div>
+    </div>
+
+
+<!-- NavBar using bootstrap -->
+<section id="Navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+  <a class="navbar-brand" href="/"><span class="GatorTraderLogo">Gator Trader</span></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+    <div class="LoginButton"> 
+     <p1 class="welcomeText"><u> Welcome David!</u></p1>
+      <div class="dropdown">
+        <button class="btn btn-outline-warning dropdown-toggle" type="button" data-toggle="dropdown">My Dash
+        <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+        </ul>
+      </div>
+    </div>
+
+<div class="navbar-nav mx-auto">
+  <div class="nav-item ml-auto btn btn-secondary">
+    <form class="form-inline" action="/" method="post">
+      <select name="searchEntry" onchange="this.form.submit()">
+      <option value =""></option>
+      <% for(var i=0; i < categories.length; i++) {%>
+      <option value ="<%=categories[i]%>"><%=categories[i]%></option>
+      <% } %>
+      </select>
+    </form>
+  </div>
+
+    <form class= "form-inline Searchwindow" action="/" method="post">
+      <input class="form-group col-lg-8" type="text" placeholder="Search for products..." name="searchEntry">
+      <input class="btn searchButton" type="submit" value="Search">
+    </form>
+  </div>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item active">
+        <a class="btn btn-outline-warning btn-lg SellButton"  href="#">SELL<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a id="navItem" class="nav-link btn-outline-success btn-lg aboutButton" href="about">ABOUT</a>
+      </li>
+
+    </ul>
+
+  </div>
+</nav>
+</section>
+
+
+    <div class="col-md-2 buttonSpacing btn-group1">
+        <button class="button">My Sales Items</button>
+        <button class="button">My Messages</button>
+  </div>
+
+        
+    <div class="col-md-2 buttonSpacing2 btn-group1">
+            <button class="button">Lionel</button>
+            <button class="button">Johnny</button>
+            <button class="button">Paul</button>
+            <button class="button">David</button>
+            <button class="button">John</button>
+      </div>
+      <div class=" dash col-lg-8"> 
+          <h6 class= "messageHeader"><u>Messages</u></h6>
+          <div class="messageBox">
+              <h5>To: Jackdaniels@mail.sfsu.edu</h5>
+              <h6>From: TomSikder@mail.sfsu.edu</h6>
+              <h6>Item ID: 12345</h6>
+              <h6>Name: Slightly Used Couch</h6>
+          </div>
+          <h6 class= "messageHeader"><u>10/13/2019</u></h6>
+          <div class="messageUser">
+              <h6>Hi, I'm interested in your couch post. Which meet up spot would you like to meet up at?</h6>              
+          </div>
+          <div class="messageFriend">
+              <h6>Hi, I'm down to meet to meet up right next to Cesar Chavez center if that's ok with you.</h6>              
+          </div>
+      </div>
+
+      <div class=" messageEmpty "> 
+        <textarea id="FormDescription" class=" border-dark col-lg-8" name="text" rows="5"></textarea>
+        <a class="btn btn-success btn-lg  col-lg-1 cancelForm "href="#">Cancel<span class="sr-only">(current)</span></a>
+        <a class="btn btn-outline-warning btn-lg  col-lg-1 cancelForm "href="#">Send<span class="sr-only">(current)</span></a>
+      </div>
+
+</body>
+</html>
