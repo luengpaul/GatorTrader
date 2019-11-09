@@ -8,64 +8,87 @@
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
   
-  <!--POSTING FORM-->
-  <div class="PostingFormContainer">
-      <form class="PostingForm">
-        <div class="postingFormTitle">
-          <h2><strong><u>Posting Form</u></strong></h2>
-        </div>
+ <!--POSTING FORM-->
+    <div class="PostingFormContainer">
+        <form action="/postingform" method="post" class="PostingForm" role="form" data-toggle="validator">
+            <div class="postingFormTitle">
+                <h2><strong><u>Posting Form</u></strong></h2>
+            </div>
         <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
-          <div class="row-lg-12">
-            <input id="ForName" type="text" class="border-dark form-control">
-          </div>
-        </div>
-
-        <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormCategory">Category *</label>
-          <div class="row-lg-12">
-            <select id="FormCategory" class="border-dark form-control" name="searchEntry" onchange="this.form.submit()">
-              <option value=""></option>
-              <% for(var i=0; i < categories.length; i++) {%>
-              <option value="<%=categories[i]%>"><%=categories[i]%></option>
-              <% } %>
-            </select>
-          </div>
+            <label for="postName" class="postingLabel col-sm-2">Item Name *</label>
+            <div class="row-lg-12">
+                <input type="text" id="postName" class="border-dark form-control" pattern="[ A-Za-z0-9]+" maxlength="20"
+                       placeholder="Alphanumeric characters only." required>
+            </div>
         </div>
 
         <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormDescription">Description</label>
-          <div class="row-lg-12">
-            <textarea id="FormDescription" class="form-control border-dark col-lg-12" name="text" rows="5"></textarea>
-          </div>
+            <label for="postCateogry" class="postingLabel col-sm-2 col-form-label-lg">Category *</label>
+            <div class="row-lg-12">
+                <select id="postCategory" class="border-dark form-control" name="category">
+                    <option value="">Choose category</option>
+                    <% for(var i=0; i < categories.length; i++) {%>
+                    <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                    <% } %>
+                </select>
+            </div>
         </div>
 
         <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormPrice">Price *</label>
-          <div class="row-lg-12">
+            <label for="postDescription" class="postingLabel col-sm-2 col-form-label-lg">Description</label>
+            <div class="row-lg-12">
+                <textarea id="postDescription" class="form-control border-dark col-lg-12" name="description" 
+                          rows="5" maxlength="150" required></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label for="postPrice" class="postingLabel col-sm-2 col-form-label-lg">Price *</label>
+            <div class="row-lg-12">
             <div class="input-group-prepend">
-              <span class="input-group-text border-dark">$</span>
-              <input id="FormPrice" class="form-control col-sm-3 border-dark" type="text">
+                <span class="input-group-text border-dark">$</span>
+                <input type="text" id="postPrice" class="form-control col-sm-4 border-dark" maxlength="7" 
+                       pattern="^[0-9]+(\.[0-9]{1,2})?$" placeholder="dollars.cents"required>
             </div>
           </div>
         </div>
 
+        <!--
         <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormImage">Image *</label>
-          <div class="row-lg-12">
-            <div id="FormImage" class="custom-file">
-              <label class="custom-file-label col-sm-3" for="customFile"></label>
-              <input class="custom-file-input" type="file" id="customFile"></input>
+            <label class="postingLabel col-sm-2 col-form-label-lg" for="postImage">Image *</label>
+            <div class="row-lg-12">
+                <div id="postImage" class="custom-file">
+                    <label class="custom-file-label col-sm-3" for="customFile"></label>
+                    <input class="custom-file-input" type="file" id="customFile"></input>
+                </div>
             </div>
-          </div>
         </div>
+        -->
+
+        <div class="form-group row">
+            <label class="postingLabel col-sm-2 col-form-label-lg"></label>
+            <input type="checkbox" id="terms" data-error="Required to post" required>
+            &nbspBy checking this box I agree to the&nbsp<u>Terms and Conditions</u>
+            </label>
+        <div class="help-block with-errors"></div>
+        </div>
+
+
+
+
+
+
 
         <div class="form-group row">
           <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
           <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
               <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
-              <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button>
+              <%if(isLogin) { %>
+                <button class="postingSubmitButton  btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="entry">Submit</button>
+              <%} else { %>
+                  <button class="postingPromptLoginBtn btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="entry">Submit (Login)</button>
+              <% } %>
             </div>
           </div>
         </div>

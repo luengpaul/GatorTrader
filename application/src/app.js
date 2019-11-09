@@ -26,7 +26,7 @@ var categories = db.initCategories();
 var showRecentPosts = true;
 
 //used for test post that gets value from the protype homepage search bar
-app.post('/', function (req, res) {
+app.post('/', (req, res) => {
     console.log("value returned from search entry is (" + req.body.searchEntry + ")");
 
     //if category was selected output all items for that category
@@ -38,7 +38,7 @@ app.post('/', function (req, res) {
             res.render('home', {
                 searchResult: result,
                 categories: categories,
-                isLogin: false,
+                isLogin: true,
                 isRecent: false
             })
         })
@@ -54,7 +54,7 @@ app.post('/', function (req, res) {
             res.render('home', {
                 searchResult: result,
                 categories: categories,
-                isLogin: false,
+                isLogin: true,
                 isRecent: true
             })
         })
@@ -69,11 +69,26 @@ app.post('/', function (req, res) {
             res.render('home', {
                 searchResult: result,
                 categories: categories,
-                isLogin: false,
+                isLogin: true,
                 isRecent:false
             })
         })
     }
+})
+
+app.post('/postingform', (req, res) => {
+    console.log("posting form successfully submitted")
+    //TODO take results from successful post and create db record
+    //temporarily rerender page
+    res.render('postingForm', {
+        itemName: "",
+        description: "",
+        price: 0.00,
+        image: "",
+        categories: categories,
+        category: "",
+        isLogin: false
+    })
 })
 
 const PORT = 3000

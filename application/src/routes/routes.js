@@ -9,7 +9,7 @@ try {
 var types = db.initCategories()
 
 //temporary set for testing
-var isLogin= false
+var isLogin= true
 
 //Route for Home Page
 router.get("/", (req, res) => {
@@ -34,9 +34,13 @@ router.get("/", (req, res) => {
 router.get("/postingForm", (req, res) => {
     res.setTimeout(200, () => {
         res.render('postingForm', {
-            searchResult: "",
+            itemName: "",
+            description: "",
+            price: 0.0,
+            image: "",
             categories: types,
-            isLogin: isLogin
+            category: "",
+            isLogin: false
         })
     })
 })
