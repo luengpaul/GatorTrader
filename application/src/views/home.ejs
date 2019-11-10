@@ -20,6 +20,8 @@
         <div class="row">
             <div class="col-md-3">
                 <%if(isRecent) { %><h3><b><i>&nbsp&nbsp&nbsp&nbspRecent Posts on Gator Trader</b></i></h3><% } %>
+                <%if(feedbackMessage) { %><h3><b><i><%=feedbackMessage%></b></i></h3><% } %>
+              
                 <% for(var i=0; searchResult[i]; i=i+4) { %><br>
                     <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>" height = "150"/>
                     <h2 id="itemName"><%=searchResult[i].name %></h2>

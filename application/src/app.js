@@ -39,7 +39,8 @@ app.post('/', (req, res) => {
                 searchResult: result,
                 categories: categories,
                 isLogin: true,
-                isRecent: false
+                isRecent: false,
+                feedbackMessage: ""
             })
         })
     }
@@ -55,7 +56,8 @@ app.post('/', (req, res) => {
                 searchResult: result,
                 categories: categories,
                 isLogin: true,
-                isRecent: true
+                isRecent: true,
+                feedbackMessage: ""
             })
         })
     } else {
@@ -70,25 +72,37 @@ app.post('/', (req, res) => {
                 searchResult: result,
                 categories: categories,
                 isLogin: true,
-                isRecent:false
+                isRecent: false,
+                feedbackMessage: ""
             })
         })
     }
 })
 
 app.post('/postingform', (req, res) => {
-    console.log("posting form successfully submitted")
-    //TODO take results from successful post and create db record
-    //temporarily rerender page
-    res.render('postingForm', {
-        itemName: "",
-        description: "",
-        price: 0.00,
-        image: "",
-        categories: categories,
-        category: "",
-        isLogin: false
+    console.log("--- Post Entry --- ");
+    console.log("itemName: " + req.body.itemName);
+    console.log("description: " + req.body.description);
+    console.log("price: " + req.body.price);
+    console.log("category: " + req.body.category);
+    //console.log("meeting_location: " + req.body.meeting_location);
+    //console.log("picture: " + req.body.picture); //filename
+    console.log("------------------");
+
+    //TODO: include imagePath attribute and meeting location, prevent duplicate posts       
+    dbConnection.query("INSERT INTO item (name, description, price, category) VALUES (?,?,?,?)",
+    [req.body.itemName, req.body.description, req.body.price, req.body.category], (err, rows, result) => {
+       if (err) console.log(err);
+          console.log(result)
     })
+
+    res.render('home', {
+        searchResult: "",
+        categories: categories,
+        isLogin: true,
+        isRecent: false,
+        feedbackMessage: "Post successfully submitted! Item will appear on site pending administrator approval."
+    })        
 })
 
 const PORT = 3000

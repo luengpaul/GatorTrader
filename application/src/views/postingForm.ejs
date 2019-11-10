@@ -15,17 +15,17 @@
                 <h2><strong><u>Posting Form</u></strong></h2>
             </div>
         <div class="form-group row">
-            <label for="postName" class="postingLabel col-sm-2">Item Name *</label>
+            <label class="postingLabel col-sm-2">Item Name *</label>
             <div class="row-lg-12">
-                <input type="text" id="postName" class="border-dark form-control" pattern="[ A-Za-z0-9]+" maxlength="20"
+                <input type="text" name="itemName" class="border-dark form-control" pattern="[ A-Za-z0-9]+" maxlength="20"
                        placeholder="Alphanumeric characters only." required>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="postCateogry" class="postingLabel col-sm-2 col-form-label-lg">Category *</label>
+            <label class="postingLabel col-sm-2 col-form-label-lg">Category *</label>
             <div class="row-lg-12">
-                <select id="postCategory" class="border-dark form-control" name="category">
+                <select name="category" class="border-dark form-control">
                     <option value="">Choose category</option>
                     <% for(var i=0; i < categories.length; i++) {%>
                     <option value="<%=categories[i]%>"><%=categories[i]%></option>
@@ -35,20 +35,20 @@
         </div>
 
         <div class="form-group row">
-            <label for="postDescription" class="postingLabel col-sm-2 col-form-label-lg">Description</label>
+            <label class="postingLabel col-sm-2 col-form-label-lg">Description *</label>
             <div class="row-lg-12">
-                <textarea id="postDescription" class="form-control border-dark col-lg-12" name="description" 
+                <textarea name="description" class="form-control border-dark col-lg-12" 
                           rows="5" maxlength="150" required></textarea>
             </div>
         </div>
 
         <div class="form-group row">
-            <label for="postPrice" class="postingLabel col-sm-2 col-form-label-lg">Price *</label>
+            <label class="postingLabel col-sm-2 col-form-label-lg">Price *</label>
             <div class="row-lg-12">
             <div class="input-group-prepend">
                 <span class="input-group-text border-dark">$</span>
-                <input type="text" id="postPrice" class="form-control col-sm-4 border-dark" maxlength="7" 
-                       pattern="^[0-9]+(\.[0-9]{1,2})?$" placeholder="dollars.cents"required>
+                <input type="text" name="price" class="form-control col-sm-4 border-dark" maxlength="7" 
+                       pattern="^[0-9]+(\.[0-9]{1,2})?$" placeholder="dollars.cents" required>
             </div>
           </div>
         </div>
@@ -73,37 +73,28 @@
         <div class="help-block with-errors"></div>
         </div>
 
-
-
-
-
-
-
         <div class="form-group row">
-          <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
-          <div class="row-lg-12">
-            <div class="CancelandSubmitContainer">
-              <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
-              <%if(isLogin) { %>
-                <button class="postingSubmitButton  btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="entry">Submit</button>
-              <%} else { %>
-                  <button class="postingPromptLoginBtn btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="entry">Submit (Login)</button>
-              <% } %>
+            <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
+            <div class="row-lg-12">
+                <div class="CancelandSubmitContainer">
+                    <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
+                        <%if(isLogin) { %>
+                        <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry">Submit</button>
+                        <%} else { %>
+                        <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Login/ Register</button>
+                        <% } %> 
+                </div>
             </div>
-          </div>
         </div>
-    </form>
-  </div>
+        </form>
+    </div>
 
-<div class="DisclaimerContainer bg-light">
-  <div class="disclaimerText">
-    <h3><strong><u>Disclaimer</u>:</strong></h3>
-    <h4>All Postings are subject to approval by admin.</h4>
-  </div>
-
-</div>
-
-
+    <div class="DisclaimerContainer bg-light">
+        <div class="disclaimerText">
+            <h3><strong><u>Disclaimer</u>:</strong></h3>
+            <h4>All Postings are subject to approval by admin.</h4>
+        </div>
+    </div>
 
 </body>
 </html>

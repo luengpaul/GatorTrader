@@ -24,7 +24,8 @@ router.get("/", (req, res) => {
                 searchResult: result,
                 categories: types,
                 isLogin: isLogin,
-                isRecent: true
+                isRecent: true,
+                feedbackMessage: ""
             })
         })
     })
@@ -40,7 +41,7 @@ router.get("/postingForm", (req, res) => {
             image: "",
             categories: types,
             category: "",
-            isLogin: false
+            isLogin: true
         })
     })
 })
