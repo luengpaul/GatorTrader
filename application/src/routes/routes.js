@@ -10,7 +10,10 @@ var types = db.initCategories()
 
 //temporary set for testing
 var isLogin= true
-
+router.get("/img", (req, res) => {
+    res.render('img', {
+    })
+});
 //Route for Home Page
 router.get("/", (req, res) => {
     //timeout necessary to get categories to appear before page is refreshed
@@ -24,8 +27,7 @@ router.get("/", (req, res) => {
                 searchResult: result,
                 categories: types,
                 isLogin: isLogin,
-                isRecent: true,
-                feedbackMessage: ""
+                feedbackMessage: "Recent Posts on Gatortrader"
             })
         })
     })

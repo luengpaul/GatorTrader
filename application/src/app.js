@@ -1,10 +1,32 @@
-const express = require('express'), app = express()
-const path = require('path')
-const mysql = require('mysql')
-const bodyParser = require('body-parser')
-const routes = require('./routes/routes')
-const aboutRoutes = require('./routes/aboutPgRoutes')
-const db = require('./database')
+const express = require('express'), app = express();
+const path = require('path');
+const mysql = require('mysql');
+const bodyParser = require('body-parser');
+const routes = require('./routes/routes');
+const aboutRoutes = require('./routes/aboutPgRoutes');
+const db = require('./database');
+
+//image handling: adds user post images to "public/post_images" if they are a valid data type
+const multer = require("multer");
+var storage = multer.diskStorage({
+    destination: (req, file, cb) => { cb(null, "public/post_images"); },
+    filename: (req, file, cb) => {
+        //checks for valid file types
+        if (file.mimetype === 'image/jpeg') {
+            cb(null, file.fieldname + '-' + Date.now() + ".jpg");
+        }
+        else if (file.mimetype === 'image/jpg') {
+            cb(null, file.fieldname + '-' + Date.now() + ".jpeg");
+        }
+        else if (file.mimetype === 'image/png') {
+            cb(null, file.fieldname + '-' + Date.now() + ".png");
+        }
+        else if (file.mimetype !== 'image/jpeg' || file.mimetype !== 'image/jpg' || file.mimetype !== 'image/png') {
+            return false;
+        }
+    }
+});
+const upload = multer({storage: storage});
 
 try {
     var dbConnection = db.connection();
@@ -39,7 +61,6 @@ app.post('/', (req, res) => {
                 searchResult: result,
                 categories: categories,
                 isLogin: true,
-                isRecent: false,
                 feedbackMessage: ""
             })
         })
@@ -56,8 +77,7 @@ app.post('/', (req, res) => {
                 searchResult: result,
                 categories: categories,
                 isLogin: true,
-                isRecent: true,
-                feedbackMessage: ""
+                feedbackMessage: "Recent Posts on Gatortrader"
             })
         })
     } else {
@@ -72,37 +92,44 @@ app.post('/', (req, res) => {
                 searchResult: result,
                 categories: categories,
                 isLogin: true,
-                isRecent: false,
                 feedbackMessage: ""
             })
         })
     }
 })
 
-app.post('/postingform', (req, res) => {
+app.post('/postingform', upload.single('img'), (req, res) => {
     console.log("--- Post Entry --- ");
     console.log("itemName: " + req.body.itemName);
     console.log("description: " + req.body.description);
     console.log("price: " + req.body.price);
     console.log("category: " + req.body.category);
+    console.log("picture: " + req.body.picture); //filename 
     //console.log("meeting_location: " + req.body.meeting_location);
-    //console.log("picture: " + req.body.picture); //filename
     console.log("------------------");
+    
+    //testing image upload
+    if(!req.file) {
+        console.log("No image received");
+    } else {
+        console.log('Image recieved');
+    }
+    console.log("image filename: " + req.file.filename)
+    //--------------
 
-    //TODO: include imagePath attribute and meeting location, prevent duplicate posts       
-    dbConnection.query("INSERT INTO item (name, description, price, category) VALUES (?,?,?,?)",
-    [req.body.itemName, req.body.description, req.body.price, req.body.category], (err, rows, result) => {
+    //TODO: include imagePath attribute and meeting location, prevent duplicate posts and handle wrong filetypes      
+    dbConnection.query("INSERT INTO item (name, description, price, category, picture) VALUES (?,?,?,?,?)",
+    [req.body.itemName, req.body.description, req.body.price, req.body.category, req.file.filename], (err, rows, result) => {
        if (err) console.log(err);
-          console.log(result)
-    })
 
+    })
+ 
     res.render('home', {
         searchResult: "",
         categories: categories,
         isLogin: true,
-        isRecent: false,
         feedbackMessage: "Post successfully submitted! Item will appear on site pending administrator approval."
-    })        
+    })     
 })
 
 const PORT = 3000
