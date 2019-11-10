@@ -18,7 +18,7 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 //add middleware layers required for application (static file serving, etc)
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', routes)
 app.use('/', aboutRoutes)
@@ -26,7 +26,7 @@ app.use('/', aboutRoutes)
 var categories = db.initCategories()
 
 //used for test post that gets value from the protype homepage search bar
-app.post('/', function (req, res) {
+app.post('/results', function (req, res) {
     //deal with category result here later
     console.log("value returned from search entry is (" + req.body.searchEntry + ")")
 
@@ -35,8 +35,8 @@ app.post('/', function (req, res) {
             dbConnection.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
             if (err) {
                 console.log(err)
-            } 
-            res.render('home', {
+            }
+            res.render('results', {
                 searchResult: result,
                 categories: categories,
                 isLogin:true
@@ -50,7 +50,7 @@ app.post('/', function (req, res) {
             } else {
                 console.log(result)
             }
-            res.render('home', {
+            res.render('results', {
                 searchResult: result,
                 categories: categories,
                 isLogin:true
@@ -64,7 +64,7 @@ app.post('/', function (req, res) {
             } else {
                 console.log(result)
             }
-            res.render('home', {
+            res.render('results', {
                 searchResult: result,
                 categories: categories,
                 isLogin:true
@@ -76,4 +76,3 @@ app.post('/', function (req, res) {
 const PORT = 3000
 
 app.listen(PORT, () => console.log('Server running on port ' + PORT))
-

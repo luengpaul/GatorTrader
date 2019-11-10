@@ -42,6 +42,19 @@ router.get("/user", (req, res) => {
     })
 })
 
+//Route for results page
+router.get("/results", (req, res) => {
+    //timeout necessary to get categories to appear before page is refreshed
+    res.setTimeout(200, () => {
+        res.render('results', {
+            searchResult: "",
+            categories: types,
+            isLogin: isLogin
+        })
+    })
+})
+
+
 
 
 module.exports = router
