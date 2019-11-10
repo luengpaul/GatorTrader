@@ -19,7 +19,7 @@ var connection = () => {
         user: 'root',
         password: 'aprilhaj27',
         //working database name, actual database is 'gatortrader'
-        database: 'gatortrader_test'
+        database: 'gatortrader'
     });
 
     db.connect(function (err) {

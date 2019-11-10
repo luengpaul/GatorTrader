@@ -15,59 +15,6 @@
     We offer a wide range of services, from buying and selling items, to tutoring lessons based on subject.
   </h3>
 
-<!--Container of result listings -->
-<div class="itemContainer container-fluid">
-
-
-  <div class="row">
-    <div class="col-md-3">
-            <% for(var i=0; searchResult[i]; i=i+4) { %><br>
-                <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-                <h2 id="itemName"><%=searchResult[i].name %></h2>
-                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-                <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
-                <hr>
-            <% } %>
-
-        </div> 
-        
-<div class="col-md-3">
-    <% for(var i=1; searchResult[i]; i=i+4) { %><br>
-        <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-        <h2 id="itemName"><%=searchResult[i].name %></h2>
-        <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-        <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-          <a href="#" class="btn btn-warning">Contact Seller</a>
-        <hr>
-    <% } %>
-
-</div> 
-
-<div class="col-md-3">
-        <% for(var i=2; searchResult[i]; i=i+4) { %><br>
-            <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-            <h2 id="itemName"><%=searchResult[i].name %></h2>
-            <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-            <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-              <a href="#" class="btn btn-warning">Contact Seller</a>
-            <hr>
-        <% } %>
-
-    </div> 
-
-    <div class="col-md-3">
-            <% for(var i=3; searchResult[i]; i=i+4) { %><br>
-                <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
-                <h2 id="itemName"><%=searchResult[i].name %></h2>
-                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-                <h3 class= "itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
-                <hr>
-            <% } %>
-
-        </div> 
-</div>
 
 <!--Carousel  of Recent Items -->
 
@@ -78,4 +25,3 @@
 </body>
 
 </html>
-
