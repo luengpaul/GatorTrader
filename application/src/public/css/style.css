@@ -664,3 +664,21 @@ color:white;
 }
 
 /*end for user dash*/
+
+/*Begin for Contact Seller*/
+
+.contactSeller{
+  top:230px;
+  background-color:lightgray;
+  height:435px;
+  padding-right:100px;
+}
+
+.contactSellerTitle{
+  top:220px;
+  color:black;
+  text-align:center;
+}
+
+/*End for Contact Seller*/
+
