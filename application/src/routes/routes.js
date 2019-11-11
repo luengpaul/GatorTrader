@@ -69,4 +69,27 @@ router.get("/results", (req, res) => {
     })
 })
 
+// //Route for posting form page
+router.get("/user", (req, res) => {
+    //timeout necessary to get categories to appear before page is refreshed
+    res.setTimeout(200, () => {
+        res.render('userDashboard', {
+            searchResult: "",
+            categories: types,
+            isLogin: isLogin
+        })
+    })
+})
+
+//Route for dashboard page
+router.get('/userDashboard', (req, res) => {
+    res.setTimeout(200, () => {
+        res.render('userDashboard', {
+            searchResult: "",
+            categories: types,
+            isLogin: isLogin
+        })
+    })
+})
+
 module.exports = router

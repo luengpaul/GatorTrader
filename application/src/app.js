@@ -2,9 +2,11 @@ const express = require('express'), app = express();
 const path = require('path');
 const mysql = require('mysql');
 const bodyParser = require('body-parser');
+const db = require('./database');
 const routes = require('./routes/routes');
 const aboutRoutes = require('./routes/aboutPgRoutes');
-const db = require('./database');
+const users = require('./routes/users');
+
 
 //image handling: adds user post images to "public/post_images" if they are a valid data type
 const multer = require("multer");
@@ -38,8 +40,6 @@ try {
 var isLogin=false
 exports.isLogin=isLogin
 
-
-
 //configures ejs as templating language
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -49,6 +49,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', routes);
 app.use('/', aboutRoutes);
+app.use('/users', require('./routes/users'));
 
 var categories = db.initCategories();
 var showRecentPosts = true;
