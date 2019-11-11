@@ -1,4 +1,5 @@
-const express = require('express'), router = express.Router()
+const express = require('express')
+const router = express.Router()
 const db = require('../database')
 
 var types = db.initCategories()
@@ -30,7 +31,7 @@ router.get("/postingForm", (req, res) => {
     })
 })
 
-//Route for posting form page
+// //Route for posting form page
 router.get("/user", (req, res) => {
     //timeout necessary to get categories to appear before page is refreshed
     res.setTimeout(200, () => {
@@ -54,6 +55,24 @@ router.get("/results", (req, res) => {
     })
 })
 
+//Route for dashboard page
+router.get('/userDashboard', (req, res) => {
+    res.setTimeout(200, () => {
+        res.render('userDashboard', {
+            searchResult: "",
+            categories: types,
+            isLogin: isLogin
+        })
+    })
+})
+
+
+
+
+
+exports.index = function(req, res){
+    var message = '';
+    res.render('index',{message: message})};
 
 
 

@@ -4,7 +4,11 @@
   "description": "Server",
   "main": "index.js",
   "dependencies": {
-    "nodemon": "^1.19.2"
+    "connect-flash": "^0.1.1",
+    "expess": "0.0.1-security",
+    "express-session": "^1.17.0",
+    "nodemon": "^1.19.2",
+    "passport": "^0.4.0"
   },
   "devDependencies": {
     "body-parser": "^1.19.0",

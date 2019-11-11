@@ -3,7 +3,7 @@
 
 </div>
 
-<div class="modal fade " id="loginModal">
+<div class="modal fade " id="demoModal">
   <div class="modal-dialog ">
     <div class="modal-content modal-container">
       <div class="modal-header loginProperties">
@@ -13,59 +13,107 @@
         </button>
       </div>
       <div class="modal-body loginProperties">
-        Email
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        Password
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
+        <form action="/users/login" method="POST">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Enter Email"
+            />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Enter Password"
+            />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
         </form>
         <u>Forgot Password / Email</u>
 
       </div>
-      <div class="modal-footer loginProperties">
-        <button type="button " class="btn btn-light" data-dismiss="modal">Login</button>
-      </div>
+
       <div class="modal-header">
         <b>REGISTER</b>
       </div>
-      <div class="modal-body">
-        First Name
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="0">
-        </form>
-        Last Name
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        SFSU Email
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        Password
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        Confirm Password
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        I agree to the <u>Terms and Conditions</u>
-      </div>
-      <div class="modal-footer">
-        <button type="button " class="btn btn-dark" data-dismiss="modal">Register</button>
-      </div>
+      <form action="/users/register" method="POST">
+        <div class="form-group">
+          <label for="username">First name</label>
+          <input
+                  type="firstname"
+                  id="firstname"
+                  name="firstname"
+                  class="form-control"
+                  placeholder="Enter Name"
+                  value="<%= typeof firstname != 'undefined' ? firstname : '' %>"
+          />
+        </div>
+        <div class="form-group">
+          <label for="lastname">Last name</label>
+          <input
+                  type="lastname"
+                  id="lastname"
+                  name="lastname"
+                  class="form-control"
+                  placeholder="Enter Name"
+                  value="<%= typeof lastname != 'undefined' ? lastname : '' %>"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="form-control"
+                  placeholder="Enter Email"
+                  value="<%= typeof email != 'undefined' ? email : '' %>"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  class="form-control"
+                  placeholder="Create Password"
+                  value="<%= typeof password != 'undefined' ? password : '' %>"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password2">Confirm Password</label>
+          <input
+                  type="password"
+                  id="password2"
+                  name="password2"
+                  class="form-control"
+                  placeholder="Confirm Password"
+                  value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+          />
+        </div>
+        <<button type="submit" class="btn btn-primary btn-block">
+          Register
+        </button>
+      </form>
+      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
     </div>
   </div>
 </div>
 
 
-
-
 <!-- NavBar using bootstrap -->
 <section id="Navbar">
-  <nav class="container-fluid navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
     <a class="navbar-brand" href="/"><span class="GatorTraderLogo">Gator Trader</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -73,64 +121,22 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
+      <div class="LoginButton">
 
-        <!-- Conditionally display Sign In or Sign Out -->
-        <% if(isLogin){ %>
-          <div class="LoginButton">
-             <div class="dropdown">
-               <button class="btn btn-outline-warning dropdown-toggle" type="button" data-toggle="dropdown">User</button>
-               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                 <a class="dropdown-item" href="/user">Dashboard</a>
-                 <a class="dropdown-item btn btn-default btn-sm" onclick="isLogin=false">Log out</a>
-               </div>
-             </div>
-           </div>
-        <% } else { %>
-          <div class="LoginButton">
-            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#loginModal">Login/ Register</button>
-          </div>
-        <% } %>
+        <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#demoModal">Login/ Register</button>
+      </div>
 
-        <div class="navbar-nav mx-auto">
-        <form class="form-inline" action="/results" method="post">
-          <select id="resizing_select" class="ml-auto no-gutters btn btn-dark btn-outline-secondary" name="searchEntry" onchange="this.form.submit()">
-            <option value="" selected>All</option>
+      <div class="navbar-nav mx-auto">
+        <form class="form-inline" action="/" method="post">
+          <select class="col-sm-4 ml-auto no-gutters btn btn-dark btn-outline-success  dropDown" name="searchEntry" onchange="this.form.submit()">
+            <option value=""></option>
             <% for(var i=0; i < categories.length; i++) {%>
             <option value="<%=categories[i]%>"><%=categories[i]%></option>
             <% } %>
           </select>
-          <!-- <select id="width_tmp_select">
-            <option id="width_tmp_option"></option>
-           </select> -->
         </form>
 
-
-        <script>
-        const mySel = document.getElementById("resizing_select");
-        mySel.addEventListener("change",function() {
-        sessionStorage.setItem("selValue",this.value); // save it
-        });
-
-        let val = sessionStorage.getItem("selValue");
-
-        if (val) mySel.value=val; // set the dropdown
-
-        // trigger the change in case there are other events on the select
-        // mySel.onchange();
-        </script>
-
-         <!-- This script allows the cateogry box to resize based on input
-       <script>
-        $(document).ready(function() {
-          $('#resizing_select').change(function(){
-             $("#width_tmp_option").html($('#resizing_select option:selected').text());
-             $(this).width($("#width_tmp_select").width());
-          });
-         });
-         </script>
-   -->
-
-        <form class="form-inline Searchwindow" action="/results" method="post">
+        <form class="form-inline Searchwindow" action="/" method="post">
           <input class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">
           <input class="btn btn-warning btn-outline-warning searchButton" type="submit" value="Search">
         </form>
@@ -143,6 +149,7 @@
         <li class="nav-item">
           <a id="navItem" class="nav-link btn-outline-success btn-lg aboutButton" href="about">ABOUT</a>
         </li>
+
       </ul>
 
     </div>
