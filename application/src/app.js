@@ -34,12 +34,18 @@ try {
     console.log(err);
 }
 
+//This variable temporarily init to true is passed to pages so navbar can be dynamically updated
+var isLogin=false
+exports.isLogin=isLogin
+
+
+
 //configures ejs as templating language
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 //add middleware layers required for application (static file serving, etc)
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', routes);
 app.use('/', aboutRoutes);
@@ -47,21 +53,23 @@ app.use('/', aboutRoutes);
 var categories = db.initCategories();
 var showRecentPosts = true;
 
-//used for test post that gets value from the protype homepage search bar
-app.post('/', (req, res) => {
-    console.log("value returned from search entry is (" + req.body.searchEntry + ")");
+
+//Search function that renders results to posts page
+app.post('/results', function (req, res) {
+    //deal with category result here later
+    console.log("value returned from search entry is (" + req.body.searchEntry + ")")
 
     //if category was selected output all items for that category
     if(categories.includes(req.body.searchEntry)) {
             dbConnection.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
             if (err) {
                 console.log(err)
-            } 
-            res.render('home', {
+            }
+            res.render('results', {
                 searchResult: result,
                 categories: categories,
-                isLogin: true,
-                feedbackMessage: ""
+                feedbackMessage: "",
+                isLogin:isLogin
             })
         })
     }
@@ -73,11 +81,11 @@ app.post('/', (req, res) => {
             } else {
                 console.log(result)
             }
-            res.render('home', {
+            res.render('results', {
                 searchResult: result,
                 categories: categories,
-                isLogin: true,
-                feedbackMessage: "Recent Posts on Gatortrader"
+                feedbackMessage: "Recent Posts on Gatortrader",
+                isLogin:isLogin
             })
         })
     } else {
@@ -88,11 +96,11 @@ app.post('/', (req, res) => {
             } else {
                 console.log(result)
             }
-            res.render('home', {
+            res.render('results', {
                 searchResult: result,
                 categories: categories,
-                isLogin: true,
-                feedbackMessage: ""
+                feedbackMessage: "",
+                isLogin:isLogin
             })
         })
     }

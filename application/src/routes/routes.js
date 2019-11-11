@@ -1,19 +1,15 @@
 const express = require('express'), router = express.Router()
 const db = require('../database')
-
+const app=require('../app')
 try {
     var dbConnection = db.connection();
 } catch (err) {
     console.log(err);
 }
-var types = db.initCategories()
 
-//temporary set for testing
-var isLogin= true
-router.get("/img", (req, res) => {
-    res.render('img', {
-    })
-});
+var types = db.initCategories()
+var isLogin=app.isLogin
+
 //Route for Home Page
 router.get("/", (req, res) => {
     //timeout necessary to get categories to appear before page is refreshed
@@ -27,7 +23,7 @@ router.get("/", (req, res) => {
                 searchResult: result,
                 categories: types,
                 isLogin: isLogin,
-                feedbackMessage: "Recent Posts on Gatortrader"
+                feedbackMessage: "Recent posts on Gator Trader"
             })
         })
     })
@@ -43,7 +39,7 @@ router.get("/postingForm", (req, res) => {
             image: "",
             categories: types,
             category: "",
-            isLogin: true
+            isLogin: isLogin
         })
     })
 })
@@ -54,11 +50,23 @@ router.get("/user", (req, res) => {
         res.render('userDashboard', {
             searchResult: "",
             categories: types,
+            feedbackMessage: "",
             isLogin: isLogin
         })
     })
 })
 
-
+//Route for results page
+router.get("/results", (req, res) => {
+    //timeout necessary to get categories to appear before page is refreshed
+    res.setTimeout(200, () => {
+        res.render('results', {
+            searchResult: "",
+            categories: types,
+            feedbackMessage: "",
+            isLogin: isLogin
+        })
+    })
+})
 
 module.exports = router

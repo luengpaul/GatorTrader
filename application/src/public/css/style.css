@@ -1,8 +1,26 @@
-
 body {
   margin-top: 20px;
   background-color: #eeeeee;
 }
+
+
+
+/*Temporary sizing images to the same size by stretching*/
+img {
+  width: 250px; /* You can set the dimensions to whatever you want */
+  height: 250px;
+  object-fit: stretch;
+}
+
+/*This is styling for the header for item description modal*/
+#itemHeader{
+  font-family: 'Oswald', sans-serif;
+  font-size: 48px;
+  font-weight:bolder;
+  text-align: center;
+
+}
+
 
 /* #resizing_select {
   width: 80px;
@@ -30,8 +48,6 @@ body {
   height: 200px;
   z-index: 9999;
 }
-
-
 
 .LoginButton{
   position:fixed;
@@ -86,7 +102,6 @@ body {
 
 .PostingForm{
   position: relative;
-  z-index: 9999;
   left:10px;
 }
 
@@ -103,7 +118,6 @@ body {
   width: 355px;
   height: 60px;
   background-color: inherit;
-  z-index: 9999;
 }
 
 .postingCancelButton{
@@ -119,7 +133,6 @@ body {
 .fieldRequiredText{
   position:relative;
   bottom:100;
-  z-index: 9999;
 }
 
 .itemListing{
@@ -131,14 +144,11 @@ body {
   border: 1px solid;
 }
 .navbar{
-  position: -webkit-fixed;
-  /* position: fixed; */
   top: 0;
   margin:0;
   width: 100%;
   height:200px;
   background-color: #3a4750;
-  z-index: 9999;
 }
 
 
@@ -160,7 +170,7 @@ body {
 
 .classSectionHeader {
   margin:0;
-  position: fixed;
+  position: absolute;
   top:10px;
   right:50%;
   text-align: center;
@@ -324,14 +334,15 @@ h2 {
 
 #itemName{
     font-family: 'Oswald', sans-serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight:bolder;
+    text-align: left;
     text-decoration: underline;
 }
 
 #itemPrice{
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+    font-size: 24px;
     font-weight:bold;
 }
 
@@ -558,7 +569,13 @@ body, h1, h2, h3, h4, h5, h6 {
     color:white;
 }
 
-.modal-container{
+.itemModalContainer{
+  width:600px;
+  max-height: fit-content;
+
+}
+
+.login-modal-container{
     width:500px;
     height:850px;
 }
@@ -664,3 +681,21 @@ color:white;
 }
 
 /*end for user dash*/
+
+/*Begin for Contact Seller*/
+
+.contactSeller{
+  top:230px;
+  background-color:lightgray;
+  height:435px;
+  padding-right:100px;
+}
+
+.contactSellerTitle{
+  top:220px;
+  color:black;
+  text-align:center;
+}
+
+/*End for Contact Seller*/
+

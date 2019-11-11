@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <!--Imports header from assets -->
-<% include assets/head %>
+<% include assets/head.html %>
 
 <body id="postingFormPage">
 <!--Imports navbar from assets -->
@@ -75,11 +75,11 @@
         <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
         <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
-                <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
+                <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
                 <%if(isLogin) { %>
                     <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry">Submit</button>
                 <%} else { %>
-                    <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Login/ Register</button>
+                    <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Submit (Login)</button>
                 <% } %> 
             </div>
         </div>

@@ -6,7 +6,6 @@ var connection = () => {
         port: '3306',
         user: 'admin',
         password: 'csc648_team10',
-        //working database name, actual database is 'gatortrader'
         database: 'gatortrader_test'
     });
     db.connect(function (err) {
