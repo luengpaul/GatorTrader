@@ -45,7 +45,6 @@ app.post('/results', function (req, res) {
                 searchResult: result,
                 categories: categories,
                 isLogin:isLogin,
-                resultSize: result.length
             })
         })
     }
@@ -60,7 +59,6 @@ app.post('/results', function (req, res) {
                 searchResult: result,
                 categories: categories,
                 isLogin:isLogin,
-                resultSize: result.length
             })
         })
     } else {
@@ -75,11 +73,11 @@ app.post('/results', function (req, res) {
                 searchResult: result,
                 categories: categories,
                 isLogin:isLogin,
-                resultSize: result.length
             })
         })
     }
 })
+
 
 const PORT = 3000
 
