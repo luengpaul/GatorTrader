@@ -1,71 +1,12 @@
-<div class="classSectionHeader">
-  <p>CSC 648 Team 10</p>
-
-</div>
-
-<div class="modal fade " id="loginModal">
-  <div class="modal-dialog ">
-    <div class="modal-content modal-container">
-      <div class="modal-header loginProperties">
-        <b>LOG IN</b>
-        <button type="button" class="close white" data-dismiss="modal">
-          <span>&times;</span>
-        </button>
-      </div>
-      <div class="modal-body loginProperties">
-        Email
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        Password
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        <u>Forgot Password / Email</u>
-
-      </div>
-      <div class="modal-footer loginProperties">
-        <button type="button " class="btn btn-light" data-dismiss="modal">Login</button>
-      </div>
-      <div class="modal-header">
-        <b>REGISTER</b>
-      </div>
-      <div class="modal-body">
-        First Name
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="0">
-        </form>
-        Last Name
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        SFSU Email
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        Password
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        Confirm Password
-        <form action="/" method="post">
-          <input type="text" name="searchEntry" placeholder="" size="40">
-        </form>
-        I agree to the <u>Terms and Conditions</u>
-      </div>
-      <div class="modal-footer">
-        <button type="button " class="btn btn-dark" data-dismiss="modal">Register</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
+<% include loginModal.html %>
 
 <!-- NavBar using bootstrap -->
 <section id="Navbar">
-  <nav class="container-fluid navbar navbar-expand-lg navbar-dark fixed-top">
+  <nav class="container-fluid navbar navbar-expand-lg navbar-dark fixed-top ">
+      <div class="classSectionHeader">
+          <p>CSC 648 Team 10</p>
+        </div>
+        
     <a class="navbar-brand" href="/"><span class="GatorTraderLogo">Gator Trader</span></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -99,9 +40,6 @@
             <option value="<%=categories[i]%>"><%=categories[i]%></option>
             <% } %>
           </select>
-          <!-- <select id="width_tmp_select">
-            <option id="width_tmp_option"></option>
-           </select> -->
         </form>
 
 
@@ -119,16 +57,7 @@
         // mySel.onchange();
         </script>
 
-         <!-- This script allows the cateogry box to resize based on input
-       <script>
-        $(document).ready(function() {
-          $('#resizing_select').change(function(){
-             $("#width_tmp_option").html($('#resizing_select option:selected').text());
-             $(this).width($("#width_tmp_select").width());
-          });
-         });
-         </script>
-   -->
+         
 
         <form class="form-inline Searchwindow" action="/results" method="post">
           <input class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">

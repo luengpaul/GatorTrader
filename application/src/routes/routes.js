@@ -1,10 +1,10 @@
 const express = require('express'), router = express.Router()
 const db = require('../database')
+const app=require('../app')
 
 var types = db.initCategories()
 
-//This variable temporarily init to true is passed to pages so navbar can be dynamically updated
-var isLogin= true
+var isLogin=app.isLogin
 
 //Route for Home Page
 router.get("/", (req, res) => {
@@ -53,8 +53,5 @@ router.get("/results", (req, res) => {
         })
     })
 })
-
-
-
 
 module.exports = router

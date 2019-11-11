@@ -2,7 +2,11 @@
 <html lang="en" dir="ltr">
 
 <!--Imports header from assets -->
-<% include assets/head %>
+<% include assets/head.html %>
+
+<!--Imports modal for items details-->
+<% include assets/itemDetailsModal.html %>
+
 
 <body>
 
@@ -20,8 +24,7 @@
                 <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
                 <h2 id="itemName"><%=searchResult[i].name %></h2>
                 <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-                <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
+                  <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
                 <hr>
             <% } %>
 
@@ -32,8 +35,7 @@
         <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
         <h2 id="itemName"><%=searchResult[i].name %></h2>
         <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-        <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-          <a href="#" class="btn btn-warning">Contact Seller</a>
+          <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
         <hr>
     <% } %>
 
@@ -41,11 +43,10 @@
 
 <div class="col-md-3">
         <% for(var i=2; searchResult[i]; i=i+4) { %><br>
-            <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+            <div class="wrapper"><img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/></div>
             <h2 id="itemName"><%=searchResult[i].name %></h2>
             <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-            <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-              <a href="#" class="btn btn-warning">Contact Seller</a>
+              <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
             <hr>
         <% } %>
 
@@ -56,8 +57,7 @@
                 <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
                 <h2 id="itemName"><%=searchResult[i].name %></h2>
                 <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
-                <h3 class= "itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
+                  <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
                 <hr>
             <% } %>
 
@@ -65,7 +65,36 @@
 </div>
 
 </div>
+<script>
+//This function send the image source to item display modal
+$(document).on("click", ".openModal", function () {
+  var itemImageSrc ="/post_images/"+ $(this).data('img');
+  console.log(itemImageSrc);
+  $(".modal-body #modalImage").attr("src", itemImageSrc);
+});
 
+// data-* attributes to scan when populating modal values
+var ATTRIBUTES = ['name', 'price','description' ];
+
+$('[data-toggle="modal"]').on('click', function (e) {
+  // convert target (e.g. the button) to jquery object
+  var $target = $(e.target);
+  // modal targeted by the button
+  var modalSelector = $target.data('target');
+  
+  // iterate over each possible data-* attribute
+  ATTRIBUTES.forEach(function (attributeName) {
+    // retrieve the dom element corresponding to current attribute
+    var $modalAttribute = $(modalSelector + ' #modal-' + attributeName);
+    console.log($modalAttribute)
+    var dataValue = $target.data(attributeName);
+    console.log(dataValue)
+    
+    // if the attribute value is empty, $target.data() will return undefined.
+    $modalAttribute.text(dataValue || '');
+  });
+});
+</script>
 </body>
 
 </html>
