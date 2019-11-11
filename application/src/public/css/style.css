@@ -1,8 +1,26 @@
-
 body {
   margin-top: 20px;
   background-color: #eeeeee;
 }
+
+
+
+/*Temporary sizing images to the same size by stretching*/
+img {
+  width: 250px; /* You can set the dimensions to whatever you want */
+  height: 250px;
+  object-fit: stretch;
+}
+
+/*This is styling for the header for item description modal*/
+#itemHeader{
+  font-family: 'Oswald', sans-serif;
+  font-size: 48px;
+  font-weight:bolder;
+  text-align: center;
+
+}
+
 
 /* #resizing_select {
   width: 80px;
@@ -30,8 +48,6 @@ body {
   height: 200px;
   z-index: 9999;
 }
-
-
 
 .LoginButton{
   position:fixed;
@@ -160,7 +176,7 @@ body {
 
 .classSectionHeader {
   margin:0;
-  position: fixed;
+  position: absolute;
   top:10px;
   right:50%;
   text-align: center;
@@ -324,14 +340,15 @@ h2 {
 
 #itemName{
     font-family: 'Oswald', sans-serif;
-    font-size: 28px;
+    font-size: 30px;
     font-weight:bolder;
+    text-align: left;
     text-decoration: underline;
 }
 
 #itemPrice{
     font-family: 'Raleway', sans-serif;
-    font-size: 18px;
+    font-size: 24px;
     font-weight:bold;
 }
 
@@ -558,7 +575,13 @@ body, h1, h2, h3, h4, h5, h6 {
     color:white;
 }
 
-.modal-container{
+.itemModalContainer{
+  width:600px;
+  max-height: fit-content;
+
+}
+
+.login-modal-container{
     width:500px;
     height:850px;
 }

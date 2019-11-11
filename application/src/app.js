@@ -13,6 +13,11 @@ try {
 }
 
 
+//This variable temporarily init to true is passed to pages so navbar can be dynamically updated
+var isLogin=false
+exports.isLogin=isLogin
+
+
 //configures ejs as templating language
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -25,7 +30,7 @@ app.use('/', aboutRoutes)
 
 var categories = db.initCategories()
 
-//used for test post that gets value from the protype homepage search bar
+//Search function that renders results to posts page
 app.post('/results', function (req, res) {
     //deal with category result here later
     console.log("value returned from search entry is (" + req.body.searchEntry + ")")
@@ -39,7 +44,8 @@ app.post('/results', function (req, res) {
             res.render('results', {
                 searchResult: result,
                 categories: categories,
-                isLogin:true
+                isLogin:isLogin,
+                resultSize: result.length
             })
         })
     }
@@ -53,7 +59,8 @@ app.post('/results', function (req, res) {
             res.render('results', {
                 searchResult: result,
                 categories: categories,
-                isLogin:true
+                isLogin:isLogin,
+                resultSize: result.length
             })
         })
     } else {
@@ -67,7 +74,8 @@ app.post('/results', function (req, res) {
             res.render('results', {
                 searchResult: result,
                 categories: categories,
-                isLogin:true
+                isLogin:isLogin,
+                resultSize: result.length
             })
         })
     }

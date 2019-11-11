@@ -4,6 +4,7 @@
 <!--Imports header from assets -->
 <% include assets/head %>
 
+
 <body>
 
 <!--Imports navbar from assets -->
@@ -16,12 +17,15 @@
 
   <div class="row">
     <div class="col-md-3">
+      <% var count= 0 %> 
             <% for(var i=0; searchResult[i]; i=i+4) { %><br>
+              
                 <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
                 <h2 id="itemName"><%=searchResult[i].name %></h2>
                 <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
                 <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
+                <a data-target="#itemDetails" href="#itemDetails"  data-toggle="modal" class="btn btn-warning">Details</a>
+                <% include assets/itemDetailsModal %>
                 <hr>
             <% } %>
 
@@ -33,7 +37,7 @@
         <h2 id="itemName"><%=searchResult[i].name %></h2>
         <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
         <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-          <a href="#" class="btn btn-warning">Contact Seller</a>
+        <a data-target="#itemDetails" href="#itemDetails"  data-toggle="modal" class="btn btn-warning">Details</a>
         <hr>
     <% } %>
 
@@ -41,11 +45,11 @@
 
 <div class="col-md-3">
         <% for(var i=2; searchResult[i]; i=i+4) { %><br>
-            <img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+            <div class="wrapper"><img id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/></div>
             <h2 id="itemName"><%=searchResult[i].name %></h2>
             <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
             <h3 class="itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-              <a href="#" class="btn btn-warning">Contact Seller</a>
+            <a data-target="#itemDetails" href="#itemDetails"  data-toggle="modal" class="btn btn-warning">Details</a>
             <hr>
         <% } %>
 
@@ -57,7 +61,7 @@
                 <h2 id="itemName"><%=searchResult[i].name %></h2>
                 <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
                 <h3 class= "itemDes" id="itemDescription"><%=searchResult[i].description%></h4><br>
-                  <a href="#" class="btn btn-warning">Contact Seller</a>
+                <a data-target="#itemDetails" href="#itemDetails"  data-toggle="modal" class="btn btn-warning">Details</a>
                 <hr>
             <% } %>
 
@@ -65,7 +69,30 @@
 </div>
 
 </div>
+<script>
+// data-* attributes to scan when populating modal values
+var ATTRIBUTES = ['index', 'myvar'];
 
+$('[data-toggle="modal"]').on('click', function (e) {
+  // convert target (e.g. the button) to jquery object
+  var $target = $(e.target);
+  // modal targeted by the button
+  var modalSelector = $target.data('target');
+  
+  // iterate over each possible data-* attribute
+  ATTRIBUTES.forEach(function (attributeName) {
+    // retrieve the dom element corresponding to current attribute
+    var $modalAttribute = $(modalSelector + ' #modal-' + attributeName);
+    var dataValue = $target.data(attributeName);
+    
+    // if the attribute value is empty, $target.data() will return undefined.
+    // In JS boolean expressions return operands and are not coerced into
+    // booleans. That way is dataValue is undefined, the left part of the following
+    // Boolean expression evaluate to false and the empty string will be returned
+    $modalAttribute.text(dataValue || '');
+  });
+});
+</script>
 </body>
 
 </html>
