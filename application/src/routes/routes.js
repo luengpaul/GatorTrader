@@ -54,4 +54,17 @@ router.get("/results", (req, res) => {
     })
 })
 
+//Route for contact seller page
+router.get("/contactSeller", (req, res) => {
+    //timeout necessary to get categories to appear before page is refreshed
+    res.setTimeout(200, () => {
+        res.render('contactSeller', {
+            searchResult: "",
+            categories: types,
+            isLogin: isLogin
+        })
+    })
+})
+
+
 module.exports = router
