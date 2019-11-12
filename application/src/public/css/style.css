@@ -21,6 +21,27 @@ img {
 
 }
 
+/*This is styling for the header for succsful post modal*/
+#succesful-post-modal-header{
+  font-family: 'Oswald', sans-serif;
+  font-size: 40px;
+  font-weight:bolder;
+  text-align: center;
+
+}
+
+/*This is styling for the body for succesful modal*/
+#succesful-post-modal-body{
+  font-family: 'Slabo 27px', serif;
+    font-size: 24px;
+  font-weight:bolder;
+}
+
+#GatorTraderLogoSmall {
+  font-family: 'Lobster', cursive;
+  color:black;
+  font-size: 40px;
+}
 
 /* #resizing_select {
   width: 80px;
@@ -172,9 +193,9 @@ img {
   margin:0;
   position: absolute;
   top:10px;
-  right:50%;
+  right:32%;
   text-align: center;
-  color: black;
+  color:white;
   z-index: 9999;
 
 }
@@ -280,6 +301,8 @@ input[type=submit] {
   font-size: 50px;
 
 }
+
+
 
 .SellButton {
   color: #2B8C25;
