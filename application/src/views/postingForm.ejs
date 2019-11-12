@@ -4,6 +4,9 @@
 <!--Imports header from assets -->
 <% include assets/head.html %>
 
+<!--Import modal for succesful post of item-->
+<% include assets/successfulPostModal.html %>
+
 <body id="postingFormPage">
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
@@ -65,7 +68,10 @@
           <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
               <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
-              <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button>
+              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button"  href="">Submit</a>
+             
+             <!--Button previously being used replaced with the <a> tag above to target modal. Change as needed.-->
+              <!-- <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button> -->
             </div>
           </div>
         </div>
