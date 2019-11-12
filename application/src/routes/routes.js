@@ -25,12 +25,12 @@ router.get("/postingForm", (req, res) => {
         res.render('postingForm', {
             searchResult: "",
             categories: types,
-            isLogin: isLogin
+            isLogin: true
         })
     })
 })
 
-//Route for posting form page
+//Route for user dashboard page
 router.get("/user", (req, res) => {
     //timeout necessary to get categories to appear before page is refreshed
     res.setTimeout(200, () => {
