@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<!--Imports header from assets -->
+<% include assets/head.html %>
+
+<!--Import modal for succesful post of item-->
+<% include assets/successfulPostModal.html %>
+
+<body id="postingFormPage">
+<!--Imports navbar from assets -->
+<% include assets/navbar %>
+  
+  <!--POSTING FORM-->
+  <div class="PostingFormContainer">
+      <form class="PostingForm">
+        <div class="postingFormTitle">
+          <h2><strong><u>Posting Form</u></strong></h2>
+        </div>
+        <div class="form-group row">
+          <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
+          <div class="row-lg-12">
+            <input id="ForName" type="text" class="border-dark form-control">
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormCategory">Category *</label>
+          <div class="row-lg-12">
+            <select id="FormCategory" class="border-dark form-control" name="searchEntry" onchange="this.form.submit()">
+              <option value=""></option>
+              <% for(var i=0; i < categories.length; i++) {%>
+              <option value="<%=categories[i]%>"><%=categories[i]%></option>
+              <% } %>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormDescription">Description</label>
+          <div class="row-lg-12">
+            <textarea id="FormDescription" class="form-control border-dark col-lg-12" name="text" rows="5"></textarea>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormPrice">Price *</label>
+          <div class="row-lg-12">
+            <div class="input-group-prepend">
+              <span class="input-group-text border-dark">$</span>
+              <input id="FormPrice" class="form-control col-sm-3 border-dark" type="text">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormImage">Image *</label>
+          <div class="row-lg-12">
+            <div id="FormImage" class="custom-file">
+              <label class="custom-file-label col-sm-3" for="customFile"></label>
+              <input class="custom-file-input" type="file" id="customFile"></input>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
+          <div class="row-lg-12">
+            <div class="CancelandSubmitContainer">
+              <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
+              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button"  href="">Submit</a>
+             
+             <!--Button previously being used replaced with the <a> tag above to target modal. Change as needed.-->
+              <!-- <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button> -->
+            </div>
+          </div>
+        </div>
+    </form>
+  </div>
+
+<div class="DisclaimerContainer bg-light">
+  <div class="disclaimerText">
+    <h3><strong><u>Disclaimer</u>:</strong></h3>
+    <h4>All Postings are subject to approval by admin.</h4>
+  </div>
+
+</div>
+
+
+
+</body>
+</html>

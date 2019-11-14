@@ -1,0 +1,79 @@
+<% include loginModal.html %>
+
+<!-- NavBar using bootstrap -->
+<section id="Navbar">
+  <nav class="container-fluid navbar navbar-expand-lg navbar-dark fixed-top ">
+      <div class="classSectionHeader">
+          <p>SFSU Software Engineering Project CSC 648-848, Fall 2019.  For Demonstration Only</p>
+        </div>
+        
+    <a class="navbar-brand" href="/"><span class="GatorTraderLogo">Gator Trader</span></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
+        <!-- Conditionally display Sign In or Sign Out -->
+        <% if(isLogin){ %>
+          <div class="LoginButton">
+             <div class="dropdown">
+               <button class="btn btn-outline-warning dropdown-toggle" type="button" data-toggle="dropdown">User</button>
+               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                 <a class="dropdown-item" href="/user">Dashboard</a>
+                 <a class="dropdown-item btn btn-default btn-sm" onclick="isLogin=false">Log out</a>
+               </div>
+             </div>
+           </div>
+        <% } else { %>
+          <div class="LoginButton">
+            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#loginModal">Login/ Register</button>
+          </div>
+        <% } %>
+
+        <div class="navbar-nav mx-auto">
+        <form class="form-inline" action="/results" method="post">
+          <select id="resizing_select" class="ml-auto no-gutters btn btn-dark btn-outline-secondary" name="searchEntry" onchange="this.form.submit()">
+            <option value="" selected>All</option>
+            <% for(var i=0; i < categories.length; i++) {%>
+            <option value="<%=categories[i]%>"><%=categories[i]%></option>
+            <% } %>
+          </select>
+        </form>
+
+
+        <script>
+        const mySel = document.getElementById("resizing_select");
+        mySel.addEventListener("change",function() {
+        sessionStorage.setItem("selValue",this.value); // save it
+        });
+
+        let val = sessionStorage.getItem("selValue");
+
+        if (val) mySel.value=val; // set the dropdown
+
+        // trigger the change in case there are other events on the select
+        // mySel.onchange();
+        </script>
+
+         
+
+        <form class="form-inline Searchwindow" action="/results" method="post">
+          <input class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">
+          <input class="btn btn-warning btn-outline-warning searchButton" type="submit" value="Search">
+        </form>
+      </div>
+
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="btn btn-outline-warning btn-lg SellButton" href="/postingForm" *>SELL<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a id="navItem" class="nav-link btn-outline-success btn-lg aboutButton" href="about">ABOUT</a>
+        </li>
+      </ul>
+
+    </div>
+  </nav>
+</section>
