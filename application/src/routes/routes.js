@@ -43,7 +43,6 @@ router.get("/user", (req, res) => {
         res.render('userDashboard', {
             searchResult: "",
             categories: categories,
-            name: req.session.email,
             isLogin: req.session.loggedin
         })
 }
