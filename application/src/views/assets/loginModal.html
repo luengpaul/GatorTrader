@@ -9,15 +9,14 @@
               </button>
             </div>
             <div class="modal-body loginProperties">
-              Email
-              <form action="/" method="post">
-                <input type="text" name="searchEntry" placeholder="" size="40">
+              <form action="auth" method="POST">
+              Email <br>
+              <input type="text" name="email" placeholder="Email" required>
+              Password <br>
+              <input type="password" name="password" placeholder="Password" required>
+              <input type="submit">
               </form>
-              Password
-              <form action="/" method="post">
-                <input type="text" name="searchEntry" placeholder="" size="40">
-              </form>
-              <u>Forgot Password / Email</u>
+              <a href="#">Forgot Password / Email</a>
       
             </div>
             <div class="modal-footer loginProperties">
