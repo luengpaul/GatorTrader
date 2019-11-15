@@ -1,38 +1,32 @@
+/**
+ * Main file for backend tht manages dependencies, middlware routing, and server functionatlities.
+ *
+ * All the main dependencies used in the project are imported in this file and declared as application functions. 
+ * Middleware routes and services are managed by this file.
+ * Manages sessions for login authentication
+ *
+ * @author Alexander Beers.
+ */
+
 const express = require('express'), app = express()
 const path = require('path')
-const mysql = require('mysql')
 const bodyParser = require('body-parser')
 const session= require('express-session')
-const randomstring = require("randomstring")
-var cookieSession = require('cookie-session')
 const routes = require('./routes/routes')
 const loginAuth=require('./routes/loginAuthentication')
 const search= require('./routes/searchFunction')
 const aboutRoutes = require('./routes/aboutPgRoutes')
-const db = require('./database')
-
 
 //configures ejs as templating language
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-
+//configure express-session for login authentication needs
 app.use(session({
 	secret: 'secret',
 	resave: true,
 	saveUninitialized: true
 }));
-
-//Using cookie-sessions
-// app.set('trust proxy', 1);
-// app.use(cookieSession({
-//                     name: 'session'
-//                     , secret: randomstring.generate()
-//                     , httpOnly: true
-//                     , maxAge: 30 * 60 * 1000
-//                     , secure: false
-//                     , overwrite: false
-//               }));
 
 //add middleware layers required for application (static file serving, etc)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -42,7 +36,7 @@ app.use('/', routes)
 app.use('/', loginAuth)
 app.use('/', search)
 app.use('/', aboutRoutes)
-// app.use('/session', session);
+
 
 const PORT = 3000
 

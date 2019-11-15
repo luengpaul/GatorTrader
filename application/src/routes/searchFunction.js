@@ -1,13 +1,16 @@
+/**
+ * Search function used to query pool for items.
+ *
+ * 
+ * @author Alexander Beers.
+ */
+
 const express = require('express'), router = express.Router()
-const db = require('../database')
+const pool = require('../database/database')
+const initCategories = require('../database/initCategories')
 
-try {
-    var dbConnection = db.connection()
-} catch (err) {
-    console.log(err)
-}
-
-var categories = db.initCategories()
+//Initialize categories of items from database.
+var categories = initCategories.init()
 
 
 //Search function that renders results to posts page
@@ -17,7 +20,7 @@ router.post('/results', function (req, res,next) {
 
     //if category was selected output all items for that category
     if(categories.includes(req.body.searchEntry)) {
-            dbConnection.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
+            pool.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
             if (err) {
                 console.log(err)
             }
@@ -29,7 +32,7 @@ router.post('/results', function (req, res,next) {
         })
     }
     else if (!req.body.searchEntry) {
-        dbConnection.query("SELECT * FROM item", (err, result) => {
+        pool.query("SELECT * FROM item", (err, result) => {
             if (err) {
                 console.log(err)
             } else {
@@ -43,7 +46,7 @@ router.post('/results', function (req, res,next) {
         })
     } else {
         //else only output the item that the user entered
-        dbConnection.query("SELECT * FROM item WHERE name like '%" + req.body.searchEntry+ "%'", (err, result) => {
+        pool.query("SELECT * FROM item WHERE name like '%" + req.body.searchEntry+ "%'", (err, result) => {
             if (err) {
                 console.log(err)
             } else {

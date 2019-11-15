@@ -1,8 +1,17 @@
+/**
+ * This module contains all the routes for the application
+ *
+ * Handles the routing and rendering of webpages.
+ *
+ * @author Alexander Beers.
+ */
+
+
 const express = require('express'), router = express.Router()
-const db = require('../database')
+const initCategories = require('../database/initCategories')
 
-
-var categories = db.initCategories()
+//Initializes categories of items for database
+var categories = initCategories.init()
 
 //Route for Home Page
 router.get("/", (req, res) => {

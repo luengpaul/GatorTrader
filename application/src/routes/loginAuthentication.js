@@ -1,18 +1,21 @@
-const express = require('express'), router = express.Router()
-const db = require('../database')
+/**
+ * Handles user authentication using express-session module.
+ *
+ *Handles login and logout requests from clients.1
+ *
+ * @author Ibraheem Chaudry.
+ */
 
-try {
-    var dbConnection = db.connection()
-} catch (err) {
-    console.log(err)
-}
+const express = require('express'), router = express.Router()
+const pool = require('../database/database')
+
 
 //User authentication function handles login requests for clients
 router.post('/auth', function(request, response) {
 	var email = request.body.email;
 	var password = request.body.password;
 	if (email && password) {
-		dbConnection.query('SELECT * FROM accounts WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
+		pool.query('SELECT * FROM accounts WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
@@ -28,6 +31,7 @@ router.post('/auth', function(request, response) {
 	}
 });
 
+//Debug code
 // router.get('/user', function(request, response) {
 // 	if (request.session.loggedin) {
 // 		response.send('Welcome back, ' + request.session.firstname + '!');
