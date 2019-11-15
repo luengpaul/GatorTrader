@@ -15,7 +15,7 @@ router.post('/auth', function(request, response) {
 	var email = request.body.email;
 	var password = request.body.password;
 	if (email && password) {
-		pool.query('SELECT * FROM accounts WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
+		pool.query('SELECT * FROM User WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
