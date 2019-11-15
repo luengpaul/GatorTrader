@@ -1,10 +1,17 @@
+/**
+ * This module contains all the routes for the application
+ *
+ * Handles the routing and rendering of webpages.
+ *
+ * @author Alexander Beers.
+ */
+
+
 const express = require('express'), router = express.Router()
-const db = require('../database')
-const app=require('../app')
+const initCategories = require('../database/initCategories')
 
-var types = db.initCategories()
-
-var isLogin=app.isLogin
+//Initializes categories of items for database
+var categories = initCategories.init()
 
 //Route for Home Page
 router.get("/", (req, res) => {
@@ -12,8 +19,8 @@ router.get("/", (req, res) => {
     res.setTimeout(200, () => {
         res.render('home', {
             searchResult: "",
-            categories: types,
-            isLogin: isLogin
+            categories: categories,
+            isLogin: req.session.loggedin
         })
     })
 })
@@ -24,34 +31,26 @@ router.get("/postingForm", (req, res) => {
     res.setTimeout(200, () => {
         res.render('postingForm', {
             searchResult: "",
-            categories: types,
-            isLogin: true
+            categories: categories,
+            isLogin: req.session.loggedin
         })
     })
 })
 
 //Route for user dashboard page
 router.get("/user", (req, res) => {
-    //timeout necessary to get categories to appear before page is refreshed
-    res.setTimeout(200, () => {
+    if (req.session.loggedin) {
         res.render('userDashboard', {
             searchResult: "",
-            categories: types,
-            isLogin: isLogin
+            categories: categories,
+            name: req.session.email,
+            isLogin: req.session.loggedin
         })
-    })
-})
-
-//Route for results page
-router.get("/results", (req, res) => {
-    //timeout necessary to get categories to appear before page is refreshed
-    res.setTimeout(200, () => {
-        res.render('results', {
-            searchResult: "",
-            categories: types,
-            isLogin: isLogin
-        })
-    })
+}
+else{
+    res.send('You dont have access to this website');
+}
+res.end();
 })
 
 //Route for contact seller page
@@ -60,8 +59,8 @@ router.get("/contactSeller", (req, res) => {
     res.setTimeout(200, () => {
         res.render('contactSeller', {
             searchResult: "",
-            categories: types,
-            isLogin: isLogin
+            categories: categories,
+            isLogin: req.session.loggedin
         })
     })
 })
