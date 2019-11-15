@@ -2,83 +2,49 @@ const express = require('express'), app = express()
 const path = require('path')
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
+const session= require('express-session')
+const randomstring = require("randomstring")
+var cookieSession = require('cookie-session')
 const routes = require('./routes/routes')
+const loginAuth=require('./routes/loginAuthentication')
+const search= require('./routes/searchFunction')
 const aboutRoutes = require('./routes/aboutPgRoutes')
 const db = require('./database')
-
-try {
-    var dbConnection = db.connection()
-} catch (err) {
-    console.log(err)
-}
-
-
-//This variable temporarily init to true is passed to pages so navbar can be dynamically updated
-var isLogin=false
-exports.isLogin=isLogin
 
 
 //configures ejs as templating language
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
+
+//Using cookie-sessions
+// app.set('trust proxy', 1);
+// app.use(cookieSession({
+//                     name: 'session'
+//                     , secret: randomstring.generate()
+//                     , httpOnly: true
+//                     , maxAge: 30 * 60 * 1000
+//                     , secure: false
+//                     , overwrite: false
+//               }));
+
 //add middleware layers required for application (static file serving, etc)
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));
 app.use('/', routes)
+app.use('/', loginAuth)
+app.use('/', search)
 app.use('/', aboutRoutes)
-
-var categories = db.initCategories()
-
-//Search function that renders results to posts page
-app.post('/results', function (req, res) {
-    //deal with category result here later
-    console.log("value returned from search entry is (" + req.body.searchEntry + ")")
-
-    //if category was selected output all items for that category
-    if(categories.includes(req.body.searchEntry)) {
-            dbConnection.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
-            if (err) {
-                console.log(err)
-            }
-            res.render('results', {
-                searchResult: result,
-                categories: categories,
-                isLogin:isLogin,
-            })
-        })
-    }
-    else if (!req.body.searchEntry) {
-        dbConnection.query("SELECT * FROM item", (err, result) => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(result)
-            }
-            res.render('results', {
-                searchResult: result,
-                categories: categories,
-                isLogin:isLogin,
-            })
-        })
-    } else {
-        //else only output the item that the user entered
-        dbConnection.query("SELECT * FROM item WHERE name like '%" + req.body.searchEntry+ "%'", (err, result) => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(result)
-            }
-            res.render('results', {
-                searchResult: result,
-                categories: categories,
-                isLogin:isLogin,
-            })
-        })
-    }
-})
-
+// app.use('/session', session);
 
 const PORT = 3000
 
 app.listen(PORT, () => console.log('Server running on port ' + PORT))
+

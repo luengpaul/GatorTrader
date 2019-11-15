@@ -4,8 +4,9 @@
   "description": "Server",
   "main": "index.js",
   "dependencies": {
+    "cookie-session": "^1.3.3",
+    "randomstring": "^1.1.5"
   },
-  
   "devDependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^2.7.1",
