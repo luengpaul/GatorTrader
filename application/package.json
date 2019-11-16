@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "Server",
   "main": "index.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "body-parser": "^1.19.0",
     "ejs": "^2.7.1",

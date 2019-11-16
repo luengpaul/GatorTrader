@@ -10,13 +10,13 @@
 <body id="postingFormPage">
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
-  
+
   <!--POSTING FORM-->
   <div class="PostingFormContainer">
+    <div class="postingFormTitle">
+      <h2><strong><u>Posting Form</u></strong></h2>
+    </div>
       <form class="PostingForm">
-        <div class="postingFormTitle">
-          <h2><strong><u>Posting Form</u></strong></h2>
-        </div>
         <div class="form-group row">
           <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
           <div class="row-lg-12">
@@ -64,27 +64,23 @@
         </div>
 
         <div class="form-group row">
-          <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
+          <label class="postingLabel col-sm-3 col-form-label-md" for="mandatoryField">(*) Mandatory Fields</label>
+
           <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
               <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
-              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button"  href="">Submit</a>
-             
+              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" role="button"  href="">Submit</a>
+
              <!--Button previously being used replaced with the <a> tag above to target modal. Change as needed.-->
               <!-- <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button> -->
             </div>
           </div>
+
         </div>
     </form>
   </div>
 
-<div class="DisclaimerContainer bg-light">
-  <div class="disclaimerText">
-    <h3><strong><u>Disclaimer</u>:</strong></h3>
-    <h4>All Postings are subject to approval by admin.</h4>
-  </div>
 
-</div>
 
 
 

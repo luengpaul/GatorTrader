@@ -45,7 +45,7 @@ img {
 
 /* #resizing_select {
   width: 80px;
- } 
+ }
 
 #resizing_select:focus {
   min-width: 80px;
@@ -83,47 +83,25 @@ img {
 
 .PostingFormContainer{
   position: relative;
-  margin-left:0px;
-  margin-right: 20px;
+  margin-left:200px;
   border: 2px solid;
   height: 100%;
   top: 160px;
-  width:80%;
+  width:75%;
   background-color: #d3d3d3;
 }
 
-.DisclaimerContainer{
-  width:20%;
-  height: 100%;
-  position: fixed;
-  right: 0;
-  background-color: grey;
-  top:200px;
-}
-
-.disclaimerText{
-  width: 100%;
-  margin: 5px;
-  height: 200px;
-  position: relative;
-  background-color: inherit;
-  top: 20px;
-}
-
-
-
 .postingFormTitle h2{
   position: relative;
-  text-align: 50%;
+  left: 430px;
   margin-bottom: 50px;
   margin-top:50px;
-  left: 40%;
   top:10px
 }
 
 .PostingForm{
   position: relative;
-  left:10px;
+  left:20%;
 }
 
 .postingLabel{
@@ -133,12 +111,12 @@ img {
 
 .CancelandSubmitContainer{
   position: relative;
-  left: 400px;
-  margin-right: 20px;
   bottom: 40px;
   width: 355px;
   height: 60px;
   background-color: inherit;
+  top: 1px;
+  right: 90px;
 }
 
 .postingCancelButton{
@@ -147,7 +125,7 @@ img {
 }
 
 .postingSubmitButton{
-  width: 200px;
+  width: 150px;
   color: black;
 }
 
@@ -359,7 +337,6 @@ h2 {
     font-family: 'Oswald', sans-serif;
     font-size: 30px;
     font-weight:bolder;
-    text-align: left;
     text-decoration: underline;
 }
 
@@ -376,8 +353,6 @@ h2 {
 
 #navItem{
     font-family: 'Tenor Sans', sans-serif;
-    font-size: 24px;
-    color: #eeeeee;
 }
 
 #submitItem{
@@ -629,7 +604,7 @@ body, h1, h2, h3, h4, h5, h6 {
   text-align:left;
   width:200px;
   height:300px;
-  
+
 }
   .buttonSpacing{
     top: 350px;
@@ -721,4 +696,3 @@ color:white;
 }
 
 /*End for Contact Seller*/
-
