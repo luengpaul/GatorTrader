@@ -596,7 +596,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .messageHeader{
   color:black;
-  text-align:center;
+  height:20%;
 }
 
 .messageFriends{
@@ -660,12 +660,11 @@ body, h1, h2, h3, h4, h5, h6 {
 }
 
 .messageEmpty{
-top:700px;
-width:70%;
-height:12%;
+top:260px;
+width:90%;
+height:20%;
 background-color:white;
 position:absolute;
-left:27%;
 }
 
 .cancelForm{
@@ -682,7 +681,7 @@ color:white;
 /*Begin for Contact Seller*/
 
 .contactSeller{
-  top:230px;
+  top:265px;
   background-color:lightgray;
   height:435px;
   padding-right:100px;
@@ -694,4 +693,9 @@ color:white;
   text-align:center;
 }
 
+
 /*End for Contact Seller*/
+
+.outline{
+  outline: 2px solid black;
+}
