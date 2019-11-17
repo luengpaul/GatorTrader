@@ -11,6 +11,8 @@
 const express = require('express'), app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
+const flash = require('express-flash-notification');
+//const cookieParser = require('cookie-parser');
 const session= require('express-session')
 const routes = require('./routes/routes')
 const loginAuth=require('./routes/loginAuthentication')
@@ -21,6 +23,8 @@ const aboutRoutes = require('./routes/aboutPgRoutes')
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
+//app.use(cookieParser());
 //configure express-session for login authentication needs
 app.use(session({
 	secret: 'secret',
@@ -32,6 +36,14 @@ app.use(session({
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '/public')));
+//app.use(flash(app));
+
+// app.use(function(req, res, next) {
+// 	res.locals.success_msg = req.flash('success_msg');
+// 	res.locals.error_msg = req.flash('error_msg');
+// 	res.locals.error = req.flash('error');
+// 	next();
+// });
 app.use('/', routes)
 app.use('/', loginAuth)
 app.use('/', search)

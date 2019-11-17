@@ -9,8 +9,6 @@
 const express = require('express'), router = express.Router()
 const pool = require('../database/database')
 
-
-//User authentication function handles login requests for clients
 router.post('/auth', function(request, response) {
 	var email = request.body.email;
 	var password = request.body.password;
@@ -19,41 +17,55 @@ router.post('/auth', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true;
 				request.session.email = email;
+			 	//request.flash('success_msg', 'You are logged in');
 				response.redirect('/user');
 			} else {
-				response.send('Incorrect Username and/or Password!');
-			}			
+				//request.flash('error_msg', 'Incorrect Username and/or Password!')
+				response.redirect('back');
+			}
+			//request.flash('error_msg', 'Incorrect Username and/or Password!')
 			response.end();
 		});
 	} else {
-		response.send('Please enter Username and Password!');
+		//request.flash('error_msg', 'Incorrect Username and/or Password!')
 		response.end();
 	}
 });
 
-//Debug code
-// router.get('/user', function(request, response) {
-// 	if (request.session.loggedin) {
-// 		response.send('Welcome back, ' + request.session.firstname + '!');
-// 	} else {
-// 		response.send('Please login to view this page!');
-// 	}
-// 	response.end();
-// });
 
+router.post('/regis', function (request, response) {
+	const {firstname, lastname, email, password, password2} = request.body;
+		//TODO:check if email exists before 
+		var createUser = {
+			firstname: request.body.firstname,
+			lastname: request.body.lastname,
+			email: request.body.email,
+			password: request.body.password,
+			//password2: request.body.password2
+		}
+		// now the createStudent is an object you can use in your database insert logic.
+		pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
+			if (err) throw err;			
+		})
+		request.session.loggedin = true;
+		request.session.email = email;	
+		return response.redirect('/user');
+		})
 
-//Route for logging out
 router.get('/logout', function(req, res, next) {
-    if (req.session) {
-      // delete session object
-      req.session.destroy(function(err) {
-        if(err) {
-          return next(err);
-        } else {
-          return res.redirect('/');
-        }
-      });
-    }
-  });
+	if (req.session) {
+	 // delete session object
+		//req.flash('success_msg', 'You are logged out')
+		req.session.destroy(function(err) {
+		if(err) {
+		//	req.flash('error_msg', 'You are not logged out')
+			return next(err);
+		} else {
+			  return res.redirect('/');
+			}
+	    });
+	}
+});
+		
 
-module.exports = router;
+module.exports = router
