@@ -9,67 +9,46 @@
                 </button>
             </div>
             <div class="modal-body loginProperties">
-                <form action="/users/login" method="POST">
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email"
-                               id="email"
-                               name="email"
-                               class="form-control"
-                               placeholder="Enter Email" />
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password"
-                               id="password"
-                               name="password"
-                               class="form-control"
-                               placeholder="Enter Password" />
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <form action="auth" method="POST">
+                    Email <br>
+                    <input type="text" name="email" placeholder="Email" required>
+                    Password <br>
+                    <input type="password" name="password" placeholder="Password" required>
+                    <input type="submit">
                 </form>
-                <u>Forgot Password / Email</u>
+                <a href="#">Forgot Password / Email</a>
 
             </div>
 
             <div class="modal-header">
                 <b>REGISTER</b>
             </div>
-            <form action="/users/register" class="PostingForm" method="POST" role="form" data-toggle="validator">
-                <div class="form-group">
-                    <label for="firstname">First name</label>
-                    <input type="text" name="firstname" class="border-dark form-control"
-                           placeholder="Enter first name" pattern="[ A-Za-z0-9]+" maxlength="20" required>
-                </div>
-                <div class="form-group">
-                    <label for="lastname">Last name</label>
-                    <input type="text" name="lastname" class="border-dark form-control"
-                           placeholder="Enter last name" pattern="[ A-Za-z0-9]+" maxlength="20" required>
-                </div>
-           
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" name="email" class="border-dark form-control"
-                           placeholder="Enter email" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$" maxlength="30" required>
-                </div>
-             
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" class="col-sm-7 border-dark form-control" placeholder="Min. length of 8"
-                           pattern=".{8,}" maxlength="20" required>
-                </div>
-                <!-- implement confirm password field later
-                <div class="form-group">
-                    <label for="password2">Confirm Password</label>
-                    <input type="password" name="password2" class="border-dark form-control" placeholder="Min. length of 8 required"
-                           pattern=".{8,}" maxlength="20" required>
-                </div>
-                -->
-                <button type="submit" class="border-darkbtn col-sm-3 btn-primary btn-block">
-                    Register
-                </button><br>
-            </form>
-     
+            <div class="modal-body">
+                First Name
+                <form action="/" method="post">
+                    <input type="text" name="searchEntry" placeholder="" size="0">
+                </form>
+                Last Name
+                <form action="/" method="post">
+                    <input type="text" name="searchEntry" placeholder="" size="40">
+                </form>
+                SFSU Email
+                <form action="/" method="post">
+                    <input type="text" name="searchEntry" placeholder="" size="40">
+                </form>
+                Password
+                <form action="/" method="post">
+                    <input type="text" name="searchEntry" placeholder="" size="40">
+                </form>
+                Confirm Password
+                <form action="/" method="post">
+                    <input type="text" name="searchEntry" placeholder="" size="40">
+                </form>
+                I agree to the <u>Terms and Conditions</u>
+            </div>
+            <div class="modal-footer">
+                <button type="button " class="btn btn-dark" data-dismiss="modal">Register</button>
+            </div>
         </div>
     </div>
 </div>
