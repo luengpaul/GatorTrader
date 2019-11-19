@@ -1,7 +1,7 @@
 /**
  * Main file for backend tht manages dependencies, middlware routing, and server functionatlities.
  *
- * All the main dependencies used in the project are imported in this file and declared as application functions.
+ * All the main dependencies used in the project are imported in this file and declared as application functions. 
  * Middleware routes and services are managed by this file.
  * Manages sessions for login authentication
  *
@@ -28,6 +28,13 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+
+//configure express-session for login authentication needs
+app.use(session({
+	secret: 'secret',
+	resave: true,
+	saveUninitialized: true
+}));
 
 //add middleware layers required for application (static file serving, etc)
 app.use(bodyParser.urlencoded({ extended: true }));

@@ -31,6 +31,7 @@ router.post('/results', function (req, res, next) {
         })
     }
     else if (!req.body.searchEntry) {
+
         pool.query("SELECT * FROM item ORDER BY date_upload DESC LIMIT 0, 8", (err, result) => {
             if (err) {
                 console.log(err)

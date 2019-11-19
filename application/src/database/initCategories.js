@@ -5,7 +5,6 @@
  *
  * @author Ibraheem Chaudry.
  */
-
 var pool = require('./database')
 
 var categories = []
@@ -15,8 +14,7 @@ const init = () => {
     pool.query("SELECT * FROM category", (err, result) => {
         if (err) {
             console.log(err)
-        }
-        else {
+        } else {
             if (categories.length == 0) {
                 for (let i = 0; i < result.length; i++) {
                     categories.push(result[i].type)
