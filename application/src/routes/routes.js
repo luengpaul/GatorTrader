@@ -18,7 +18,7 @@ router.get("/", (req, res) => {
     //timeout necessary to get categories to appear before page is refreshed
     res.setTimeout(200, () => {
         //initialize homepage to show 8 most recent results
-        pool.query("SELECT * FROM item ORDER BY date_upload DESC LIMIT 0, 8", (err, result) => {
+        pool.query("SELECT * FROM item WHERE approved = 1 ORDER BY date_upload DESC LIMIT 0, 8", (err, result) => {
             if (err) {
                 console.log(err)
             }
