@@ -9,12 +9,13 @@ const express = require('express'), router = express.Router()
 const initCategories = require('../database/initCategories')
 const pool = require('../database/database')
 const multer = require('multer')
+const path = require('path')
 
 var categories = initCategories.init()
 
 //image handling: adds user post images to "public/post_images" if they are a valid data type
 var storage = multer.diskStorage({
-    destination: (req, file, cb) => { cb(null, "./public/post_images"); },
+    destination: (req, file, cb) => { cb(null, path.join(__dirname, "../public/post_images")) },
     filename: (req, file, cb) => {
         //checks for valid file types
         if (file.mimetype === 'image/jpeg') {
