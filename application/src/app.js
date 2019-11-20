@@ -11,15 +11,23 @@
 const express = require('express'), app = express()
 const path = require('path')
 const bodyParser = require('body-parser')
-const session= require('express-session')
+const session = require('express-session')
 const routes = require('./routes/routes')
-const loginAuth=require('./routes/loginAuthentication')
-const search= require('./routes/searchFunction')
+const loginAuth = require('./routes/loginAuthentication')
+const search = require('./routes/searchFunction')
 const aboutRoutes = require('./routes/aboutPgRoutes')
+const postFormRoutes = require('./routes/postFormRoutes')
 
 //configures ejs as templating language
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs')
+
+//configure express-session for login authentication needs
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}))
 
 //configure express-session for login authentication needs
 app.use(session({
@@ -36,9 +44,8 @@ app.use('/', routes)
 app.use('/', loginAuth)
 app.use('/', search)
 app.use('/', aboutRoutes)
-
+app.use('/', postFormRoutes)
 
 const PORT = 3000
 
 app.listen(PORT, () => console.log('Server running on port ' + PORT))
-

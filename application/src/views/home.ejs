@@ -10,16 +10,62 @@
 <% include assets/navbar %>
 
 <div class="contentOnPage">
-  <h3 class="Introduction"><span class="GatorTrader text-warning">Gator Trader</span>
-    specializes in the distribution of products by SFSU students, for SFSU students.
-    We offer a wide range of services, from buying and selling items, to tutoring lessons based on subject.
+  <h3 class="Introduction">
+     Recently posted on <span class="GatorTrader text-warning">Gator Trader</span>
   </h3>
 
+  <!--Container of result listings -->
+<div class="itemContainer container-fluid">
 
-<!--Carousel  of Recent Items -->
 
-  <div class="CarouselContainer">
-  </div>
+  <div class="row">
+    <div class="col-md-3 text-center">
+            <% for(var i=0; searchResult[i]; i=i+4) { %><br>
+                <img class="border border-dark"id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+                <h2 id="itemName"><%=searchResult[i].name %></h2>
+                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                  <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
+                <hr>
+            <% } %>
+
+        </div>
+
+<div class="col-md-3 text-center">
+    <% for(var i=1; searchResult[i]; i=i+4) { %><br>
+        <img class="border border-dark" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+        <h2 id="itemName"><%=searchResult[i].name %></h2>
+        <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+          <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
+        <hr>
+    <% } %>
+
+</div>
+
+<div class="col-md-3 text-center">
+        <% for(var i=2; searchResult[i]; i=i+4) { %><br>
+            <div class="wrapper"><img class="border border-dark" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/></div>
+            <h2 id="itemName"><%=searchResult[i].name %></h2>
+            <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+              <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
+            <hr>
+        <% } %>
+
+    </div>
+
+    <div class="col-md-3 text-center">
+            <% for(var i=3; searchResult[i]; i=i+4) { %><br>
+                <img class="border border-dark" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
+                <h2 id="itemName"><%=searchResult[i].name %></h2>
+                <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h4>
+                  <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>">Details</a>
+                <hr>
+            <% } %>
+
+        </div>
+</div>
+
+
+
 </div>
 
 </body>

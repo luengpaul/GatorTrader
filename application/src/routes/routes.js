@@ -6,9 +6,9 @@
  * @author Alexander Beers.
  */
 
-
 const express = require('express'), router = express.Router()
 const initCategories = require('../database/initCategories')
+const pool = require('../database/database')
 
 //Initializes categories of items for database
 var categories = initCategories.init()
@@ -17,10 +17,19 @@ var categories = initCategories.init()
 router.get("/", (req, res) => {
     //timeout necessary to get categories to appear before page is refreshed
     res.setTimeout(200, () => {
-        res.render('home', {
-            searchResult: "",
-            categories: categories,
-            isLogin: req.session.loggedin
+        //initialize homepage to show 8 most recent results
+        pool.query("SELECT * FROM item ORDER BY date_upload DESC LIMIT 0, 8", (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            //console.log(result)
+
+            res.render('home', {
+                searchResult: result,
+                categories: categories,
+                isLogin: req.session.loggedin,
+                feedbackMessage: "Recent posts on Gator Trader"
+            })
         })
     })
 })
@@ -30,8 +39,12 @@ router.get("/postingForm", (req, res) => {
     //timeout necessary to get categories to appear before page is refreshed
     res.setTimeout(200, () => {
         res.render('postingForm', {
-            searchResult: "",
+            itemName: "",
+            description: "",
+            price: 0.0,
+            image: "",
             categories: categories,
+            category: "",
             isLogin: req.session.loggedin
         })
     })
@@ -45,11 +58,11 @@ router.get("/user", (req, res) => {
             categories: categories,
             isLogin: req.session.loggedin
         })
-}
-else{
-    res.send('You dont have access to this website');
-}
-res.end();
+    }
+    else {
+        res.send('You dont have access to this website');
+    }
+    res.end();
 })
 
 //Route for contact seller page
@@ -63,6 +76,5 @@ router.get("/contactSeller", (req, res) => {
         })
     })
 })
-
 
 module.exports = router

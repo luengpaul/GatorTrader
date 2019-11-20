@@ -1,72 +1,92 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
- 
+
 <!--Imports header from assets -->
 <% include assets/head.html %>
- 
-<!--Import modal for succesful post of item-->
-<% include assets/successfulPostModal.html %>
- 
+
 <body id="postingFormPage">
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
  
-  <!--POSTING FORM-->
-  <div class="PostingFormContainer">
-    <div class="postingFormTitle">
-      <h2><strong><u>Posting Form</u></strong></h2>
+ <!--POSTING FORM-->
+ <div class="PostingFormContainer">
+    <form action="/postingform" method="post" class="PostingForm" enctype="multipart/form-data" role="form" data-toggle="validator">
+        <div class="postingFormTitle">
+                <h2><strong><u>Posting Form</u></strong></h2>
+        </div>
+
+    <div class="form-group row">
+        <label class="postingLabel col-sm-2">Item Name *</label>
+        <div class="row-lg-12">
+            <input type="text" name="itemName" class="border-dark form-control" pattern="[ A-Za-z0-9]+" maxlength="20"
+                    placeholder="Alphanumeric characters only." required>
+        </div>
     </div>
-      <form class="PostingForm">
-        <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
-          <div class="row-lg-12">
-            <input id="ForName" type="text" class="border-dark form-control">
-          </div>
-        </div>
- 
-        <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormCategory">Category *</label>
-          <div class="row-lg-12">
-            <select id="FormCategory" class="border-dark form-control" name="searchEntry" onchange="this.form.submit()">
-              <option value=""></option>
-              <% for(var i=0; i < categories.length; i++) {%>
-              <option value="<%=categories[i]%>"><%=categories[i]%></option>
-              <% } %>
+
+    <div class="form-group row">
+        <label class="postingLabel col-sm-2 col-form-label-lg">Category *</label>
+        <div class="row-lg-12">
+            <select name="category" class="border-dark form-control">
+                <option value="">Choose category</option>
+                <% for(var i=0; i < categories.length; i++) {%>
+                <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                <% } %>
             </select>
-          </div>
         </div>
- 
-        <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormDescription">Description</label>
-          <div class="row-lg-12">
-            <textarea id="FormDescription" class="form-control border-dark col-lg-12" name="text" rows="5"></textarea>
-          </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="postingLabel col-sm-2 col-form-label-lg">Description *</label>
+        <div class="row-lg-12">
+            <textarea name="description" class="form-control border-dark col-lg-12" 
+                        rows="5" maxlength="150" required></textarea>
         </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="postingLabel col-sm-2 col-form-label-lg">Price *</label>
+        <div class="row-lg-12">
+        <div class="input-group-prepend">
+            <span class="input-group-text border-dark">$</span>
+            <input type="text" name="price" class="form-control col-sm-4 border-dark" maxlength="7" 
+                    pattern="^[0-9]+(\.[0-9]{1,2})?$" placeholder="dollars.cents" required>
+        </div>
+        </div>
+    </div>
+       
+     
+    <div class="form-group row">
+        <label class="postingLabel col-sm-2 col-form-label-lg" for="postImage">Image *</label>
+        <div class="row-lg-12">
+            <input type="file" name="img" />
+        </div>
+    </div>
+        
+     
+    <div class="form-group row">
+        <label class="postingLabel col-sm-2 col-form-label-lg"></label>
+        <input type="checkbox" id="terms" data-error="Required to post" required>
+        &nbspBy checking this box I agree to the&nbsp<u>Terms and Conditions</u>
+        </label>
+    <div class="help-block with-errors"></div>
+    </div>
  
-        <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormPrice">Price *</label>
-          <div class="row-lg-12">
-            <div class="input-group-prepend">
-              <span class="input-group-text border-dark">$</span>
-              <input id="FormPrice" class="form-control col-sm-3 border-dark" type="text">
+    <div class="form-group row">
+        <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
+        <div class="row-lg-12">
+            <div class="CancelandSubmitContainer">
+                <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
+                <%if(isLogin) { %>
+                    <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry">Submit</button>
+                <%} else { %>
+                    <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Submit (Login)</button>
+                <% } %> 
             </div>
-          </div>
         </div>
- 
-        <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg" for="FormImage">Image *</label>
-          <div class="row-lg-12">
-            <div id="FormImage" class="custom-file">
-              <label class="custom-file-label col-sm-3" for="customFile"></label>
-              <input class="custom-file-input" type="file" id="customFile"></input>
-            </div>
-          </div>
-        </div>
- 
-        <div class="form-group row">
-          <label class="postingLabel col-sm-3 col-form-label-md" for="mandatoryField">(*) Mandatory Fields</label>
- 
-          <div class="row-lg-12">
+    </div>
+
+    <!--TODO: include modal's display into lazy registration submit button above
+      <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
               <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
               <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" role="button"  href="">Submit</a>
@@ -75,6 +95,7 @@
               <!-- <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button> -->
             </div>
           </div>
+<<<<<<< HEAD
  
         </div>
     </form>
@@ -86,3 +107,8 @@
  
 </body>
 </html>
+=======
+    -->
+</form>
+</div>
+>>>>>>> 48976c3b9573418fe3ad1449d78bc82a4fe863ba
