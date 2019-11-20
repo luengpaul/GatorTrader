@@ -50,10 +50,23 @@ router.get("/postingForm", (req, res) => {
     })
 })
 
-//Route for user dashboard page
+//Route for user dashboard pages
 router.get("/user", (req, res) => {
     if (req.session.loggedin) {
-        res.render('userDashboard', {
+        res.render('userDashboardMessageTab', {
+            searchResult: "",
+            categories: categories,
+            isLogin: req.session.loggedin
+        })
+    }
+    else {
+        res.send('You dont have access to this website');
+    }
+    res.end();
+})
+router.get("/usersales", (req, res) => {
+    if (req.session.loggedin) {
+        res.render('userDashboardSalesItemTab', {
             searchResult: "",
             categories: categories,
             isLogin: req.session.loggedin

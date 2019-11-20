@@ -55,7 +55,7 @@ router.post('/postingform', upload.single('img'), (req, res) => {
     })
 
     //temporary renders dashboard after successful post, change to displaying successful post modal later
-    res.render('userDashboard', {
+    res.render('userDashboardMessageTab', {
         searchResult: "",
         categories: categories,
         isLogin: req.session.loggedin
