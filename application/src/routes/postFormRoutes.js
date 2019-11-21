@@ -18,10 +18,10 @@ var storage = multer.diskStorage({
     destination: (req, file, cb) => { cb(null, path.join(__dirname, "../public/post_images")) },
     filename: (req, file, cb) => {
         //checks for valid file types
-        if (file.mimetype === 'image/jpeg') {
+        if (file.mimetype === 'image/jpg') {
             cb(null, file.fieldname + '-' + Date.now() + ".jpg")
         }
-        else if (file.mimetype === 'image/jpg') {
+        else if (file.mimetype === 'image/jpeg') {
             cb(null, file.fieldname + '-' + Date.now() + ".jpeg")
         }
         else if (file.mimetype === 'image/png') {
