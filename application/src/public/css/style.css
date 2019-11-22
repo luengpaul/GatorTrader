@@ -91,7 +91,7 @@ img {
 
 .postingFormTitle h2 {
     position: relative;
-    left: 430px;
+    left: 223px;
     margin-bottom: 50px;
     margin-top: 50px;
     top: 10px
@@ -146,7 +146,7 @@ img {
     margin: 0;
     width: 100%;
     height: 200px;
-    background-color: #3a4750;
+    background-color: #330033;
 }
 
 
@@ -210,15 +210,14 @@ h1 {
     margin: 0;
     left: 0;
     bottom: 43px;
+    height: 60px;
     position: relative;
     display: inline-block;
 }
 
 .dropDown {
     margin: 0;
-    background-color: #757575;
-    width: 55px;
-    height: 40px;
+    height: 39px;
     left: 0;
     position: relative;
     display: inline-block;
@@ -326,6 +325,10 @@ h2 {
     border: 1px solid black;
 }
 
+.sortDropDown{
+    position: relative;
+    left: 93%;
+}
 
 
 /*

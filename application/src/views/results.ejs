@@ -17,8 +17,18 @@
 <!--Container of result listings -->
 <div class="itemContainer container-fluid">
 
-
-  <div class="row">
+<!--Sort Dropdown-->
+<div class="sortDropDown">
+  <button data-type="panel" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Sort By</button>
+    <div data-type="content" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#" data-path="default">Sort By</a>
+      <a class="dropdown-item" href="#" data-path=".itemPrice" data-order="asc" data-type="number">Price Lowest-Highest</a>
+      <a class="dropdown-item" href="#" data-path=".itemPrice" data-order="desc"data-type="number">Price Highest-Lowest</a>
+    </div>
+</div>
+ 
+ <!--Loop to show results-->
+<div class="row">
     <div class="col-md-3 text-center">
             <% for(var i=0; searchResult[i]; i=i+4) { %><br>
               <div class="card border-dark">
@@ -67,6 +77,7 @@
 
         </div>
 </div>
+
 
 </div>
 </body>

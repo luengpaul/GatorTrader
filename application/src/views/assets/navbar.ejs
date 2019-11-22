@@ -34,14 +34,17 @@
         <% } %>
 
         <div class="navbar-nav mx-auto">
-        <form class="form-inline" action="/results" method="post">
-          <select id="resizing_select" class="ml-auto no-gutters btn btn-dark btn-outline-secondary" name="searchEntry" onchange="this.form.submit()">
-            <option value="" selected>All</option>
-            <% for(var i=0; i < categories.length; i++) {%>
-            <option value="<%=categories[i]%>"><%=categories[i]%></option>
-            <% } %>
-          </select>
-        </form>
+          <div class="dropDown bg-dark">
+              <form class="form-inline" action="/results" method="post">
+                <select id="resizing_select" class="ml-auto btn btn-dark btn-outline-secondary btn-lg dropDown" name="searchEntry" onchange="this.form.submit()">
+                  <option value="" selected>All</option>
+                  <% for(var i=0; i < categories.length; i++) {%>
+                  <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                  <% } %>
+                </select>
+              </form>
+          </div>
+        
 
 
         <script>
