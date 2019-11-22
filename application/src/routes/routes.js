@@ -15,6 +15,8 @@ var categories = initCategories.init()
 
 //Route for Home Page
 router.get("/", (req, res) => {
+  
+
     //timeout necessary to get categories to appear before page is refreshed
     res.setTimeout(200, () => {
         //initialize homepage to show 8 most recent results
@@ -22,8 +24,7 @@ router.get("/", (req, res) => {
             if (err) {
                 console.log(err)
             }
-            //console.log(result)
-
+            console.log(result)
             res.render('home', {
                 searchResult: result,
                 categories: categories,

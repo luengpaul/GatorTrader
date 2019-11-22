@@ -40,28 +40,39 @@ router.post('/postingform', upload.single('img'), (req, res) => {
     console.log("description: " + req.body.description);
     console.log("price: " + req.body.price);
     console.log("category: " + req.body.category);
-    console.log("picture: " + req.body.picture); //filename 
+    //console.log("picture: " + req.body.picture); //filename 
     console.log("image filename: " + req.file.filename)
     //console.log("meeting_location: " + req.body.meeting_location);
     console.log("------------------");
-
+ 
     if (req.fileValidationError) {
         return res.end(req.fileValidationError);
     }
-  
-    //TODO: associate user to the post and include userID in query below using req.session.email 
-    pool.query("INSERT INTO item (name, description, price, category, picture) VALUES (?,?,?,?,?)",
-        [req.body.itemName, req.body.description, req.body.price, req.body.category, req.file.filename], (err, rows, result) => {
-        if (err) console.log(err)
-    })
 
-    //temporary renders dashboard after successful post, change to displaying successful post modal later
-    res.render('userDashboardMessageTab', {
-        searchResult: "",
-        categories: categories,
-        isLogin: req.session.loggedin
-        //feedbackMessage: "Post successfully submitted! Item will appear on site pending administrator approval."
-    })
+    //synchronously gets userID of user that posted and then creates a database record from all the postform values
+    postUpload(req.session.email, req.body.name, req.body.description, req.body.price, req.body.category, req.file.filename)
 })
 
+function getUserID(email) {
+    return new Promise(resolve => {
+        pool.query("SELECT userID FROM User WHERE email = ?", [email], (err, rows, result) => {
+            var userID = 0
+            if (rows[0]) {
+                var userID = rows[0].userID
+                resolve(userID)
+            }        
+        })
+    })     
+}
+
+async function postUpload(email, name, description, price, category, file) {
+    const userID = await getUserID(email)
+    pool.query("INSERT INTO item (userID, name, description, price, category, picture) VALUES (?,?,?,?,?,?)",
+        [userID, name, description, price, category, file], (err, rows, result) => {
+            if (err) console.log(err)
+        })
+}
+
 module.exports = router
+
+
