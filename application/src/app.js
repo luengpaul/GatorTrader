@@ -9,6 +9,8 @@
  */
 
 const express = require('express'), app = express()
+const https= require('https')
+const fs=require('fs')
 const path = require('path')
 const bodyParser = require('body-parser')
 const session = require('express-session')
@@ -53,4 +55,10 @@ app.use('/', postFormRoutes)
 
 const PORT = 3000
 
-app.listen(PORT, () => console.log('Server running on port ' + PORT))
+//Passing app to https server
+https.createServer({
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+    passphrase: 'team10'
+}, app)
+.listen(PORT);

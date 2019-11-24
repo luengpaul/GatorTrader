@@ -8,56 +8,79 @@
 
 const express = require('express'), router = express.Router()
 const pool = require('../database/database')
+const bcrypt= require('bcrypt')
+const saltRounds = 10
 
 
 //User authentication function handles login requests for clients
 router.post('/auth', function(request, response) {
 	var email = request.body.email
 	var password = request.body.password
+	
+
 	if (email && password) {
-		pool.query('SELECT * FROM User WHERE email = ? AND password = ?', [email, password], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true
-				request.session.email = email
-				request.flash('success_msg', 'You are logged in')
-				//response.render('/user', {success_msg:req.flash('success_msg')})
-				response.redirect('/user')
+		pool.query('SELECT * FROM User WHERE email = ? ', [email], function(error, result, fields) {
+			if (result.length > 0) {
+				
+				//Grab password from database returned user 
+				var encryptedPassword
+				Object.keys(result).forEach(function(key){
+					var row= result[key]
+					encryptedPassword=row.password
+				})
+				
+				//Compare passwords for a match 
+				bcrypt.compare(password, encryptedPassword, function (err, result) {	
+					if (err) { throw (err); }
 
-			} else {
-				request.flash('error_msg', 'Incorrect Username and/or Password!')
-				response.redirect('back')
+					if(result==true){
+						request.session.loggedin = true
+						request.session.email = email
+						request.flash('success_msg', 'You are logged in')
+						response.redirect('/user')
+					}
+					else {
+						request.flash('error_msg', 'Incorrect Username and/or Password!')
+						response.redirect('back')
+					}
+				})
+			} 
+			else{
+				console.log("NO such user exists")
 			}
-			request.flash('error_msg', 'Incorrect Username and/or Password!')
-			response.end()
 		})
-	} else {
-		request.flash('error_msg', 'Incorrect Username and/or Password!')
-		response.end()
-	}
+	} 
 })
-
 
 //Post function to handle registration form
 router.post('/regis', function (request, response) {
     console.log("registration being processed")
-	const {firstname, lastname, email, password, password2} = request.body
-		//TODO:check if email exists before 
+		
+	var password= request.body.passwordRegister
+	var email=request.body.email
+
+
+	//TODO:check if email exists before 
+	
+	//Encrypt Password for entry into database
+	bcrypt.hash(password, saltRounds, function (err,   hash) {
+		if (err) { throw (err); }
 		var createUser = {
 			firstname: request.body.firstname,
 			lastname: request.body.lastname,
-			email: request.body.email,
-			password: request.body.password,
-			//password2: request.body.password2
+			email: email,
+			password: hash,
 		}
-		// now the createStudent is an object you can use in your database insert logic.
-		pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
-			if (err) throw err			
-		})
-		request.session.loggedin = true
-		request.session.email = email	
-		return response.redirect('/user')
+		
+	// now the createStudent is an object you can use in your database insert logic.
+	pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
+		if (err) throw err			
+	})
+	request.session.loggedin = true
+	request.session.email = email	
+	return response.redirect('/user')
+	})		
 })
-
 
 //Route for logging out
 router.get('/logout', function (req, res, next) {
