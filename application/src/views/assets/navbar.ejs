@@ -34,6 +34,7 @@
         <% } %>
 
         <div class="navbar-nav mx-auto">
+            <% include messages.ejs%>
         <form class="form-inline" action="/results" method="post">
           <select id="resizing_select" class="ml-auto no-gutters btn btn-dark btn-outline-secondary" name="searchEntry" onchange="this.form.submit()">
             <option value="" selected>All</option>

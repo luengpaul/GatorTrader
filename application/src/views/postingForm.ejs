@@ -2,12 +2,12 @@
 <html lang="en" dir="ltr">
 
 <!--Imports header from assets -->
-<% include assets/head.html %>
+<% include assets/head.ejs %>
 
 <body id="postingFormPage">
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
- 
+<% include assets/messages.ejs%>
  <!--POSTING FORM-->
  <div class="PostingFormContainer">
     <form action="/postingform" method="post" class="PostingForm" enctype="multipart/form-data" role="form" data-toggle="validator">

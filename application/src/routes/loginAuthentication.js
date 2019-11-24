@@ -19,17 +19,19 @@ router.post('/auth', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true
 				request.session.email = email
-			 	//request.flash('success_msg', 'You are logged in')
+				request.flash('success_msg', 'You are logged in')
+				//response.render('/user', {success_msg:req.flash('success_msg')})
 				response.redirect('/user')
+
 			} else {
-				//request.flash('error_msg', 'Incorrect Username and/or Password!')
+				request.flash('error_msg', 'Incorrect Username and/or Password!')
 				response.redirect('back')
 			}
-			//request.flash('error_msg', 'Incorrect Username and/or Password!')
+			request.flash('error_msg', 'Incorrect Username and/or Password!')
 			response.end()
 		})
 	} else {
-		//request.flash('error_msg', 'Incorrect Username and/or Password!')
+		request.flash('error_msg', 'Incorrect Username and/or Password!')
 		response.end()
 	}
 })
@@ -60,6 +62,7 @@ router.post('/regis', function (request, response) {
 //Route for logging out
 router.get('/logout', function (req, res, next) {
     if (req.session) {
+    	req.flash('success_msg', 'You are logged out')
         // delete session object
         req.session.destroy(function (err) {
             if (err) {

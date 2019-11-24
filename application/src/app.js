@@ -17,6 +17,7 @@ const loginAuth = require('./routes/loginAuthentication')
 const search = require('./routes/searchFunction')
 const aboutRoutes = require('./routes/aboutPgRoutes')
 const postFormRoutes = require('./routes/postFormRoutes')
+const flash = require('connect-flash')
 
 //configures ejs as templating language
 app.set('views', __dirname + '/views')
@@ -28,13 +29,16 @@ app.use(session({
     resave: true,
     saveUninitialized: true
 }))
+app.use(flash({unsafe: true}))
 
-//configure express-session for login authentication needs
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
+// Global variables
+app.use(function(req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    console.log( res.locals.success_msg);
+    next();
+});
 
 //add middleware layers required for application (static file serving, etc)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -45,6 +49,7 @@ app.use('/', loginAuth)
 app.use('/', search)
 app.use('/', aboutRoutes)
 app.use('/', postFormRoutes)
+
 
 const PORT = 3000
 
