@@ -15,29 +15,27 @@
     <div class="postingFormTitle">
       <h2><strong><u>Contact Seller</u></strong></h2>
     </div>
-      <form class="PostingForm">
+      <form action="/contact" method="POST">
         <div class="form-group row">
           <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
           <div class="row-lg-12">
-            <input id="ForName" type="text" class="border-dark form-control">
+            <input id="ForName" type="text" name="name" class="border-dark form-control" placeholder="Name" required>
           </div>
         </div>
 
         <div class="form-group row">
             <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Phone Number *</label>
             <div class="row-lg-12">
-              <input id="ForName" type="text" class="border-dark form-control">
+              <input id="ForName" type="text" name="phoneNumber" class="border-dark form-control" placeholder="Phone Number" required>
             </div>
           </div>
 
           <div class="form-group row">
             <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Email *</label>
             <div class="row-lg-12">
-              <input id="ForName" type="text" class="border-dark form-control">
+              <input id="ForName" type="text" name="email" class="border-dark form-control" placeholder="Joe@mail.sfsu.edu" required>
             </div>
           </div>
-
-
 
         <div class="form-group row">
           <label class="postingLabel col-sm-3 col-form-label-md" for="mandatoryField">(*) Mandatory Fields</label>
@@ -45,9 +43,11 @@
           <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
               <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
-              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" role="button"  href="">Submit</a>
+<!--              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" role="button"  href="">Submit</a>-->
+              <input type="submit" value="Contact" class="btn btn-success" >
 
-             <!--Button previously being used replaced with the <a> tag above to target modal. Change as needed.-->
+<!--              <button type="button" id="savebutton" class="btn btn-success"  >Yes</button>-->
+              <!--Button previously being used replaced with the <a> tag above to target modal. Change as needed.-->
               <!-- <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button> -->
             </div>
           </div>
@@ -55,10 +55,5 @@
         </div>
     </form>
   </div>
-
-
-
-
-
 </body>
 </html>

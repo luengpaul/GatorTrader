@@ -17,6 +17,7 @@ const loginAuth = require('./routes/loginAuthentication')
 const search = require('./routes/searchFunction')
 const aboutRoutes = require('./routes/aboutPgRoutes')
 const postFormRoutes = require('./routes/postFormRoutes')
+const contactMessageRoutes = require('./routes/contactMessageRoutes')
 const flash = require('connect-flash')
 
 //configures ejs as templating language
@@ -36,7 +37,6 @@ app.use(function(req, res, next) {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('error_msg');
     res.locals.error = req.flash('error');
-    console.log( res.locals.success_msg);
     next();
 });
 
@@ -49,8 +49,9 @@ app.use('/', loginAuth)
 app.use('/', search)
 app.use('/', aboutRoutes)
 app.use('/', postFormRoutes)
+app.use('/', contactMessageRoutes)
 
 
-const PORT = 3000
+const PORT = 3001
 
 app.listen(PORT, () => console.log('Server running on port ' + PORT))

@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
             if (err) {
                 console.log(err)
             }
-            console.log(result)
+            // console.log(result)
             res.render('home', {
                 searchResult: result,
                 categories: categories,
@@ -72,21 +72,21 @@ router.get("/usersales", (req, res) => {
         })
     }
     else {
-        res.send('You dont have access to this website');
+        req.flash('error_msg','You dont have access to this website')
+        //res.send('You dont have access to this website');
     }
     res.end();
 })
 
-//Route for contact seller page
-router.get("/contactSeller", (req, res) => {
-    //timeout necessary to get categories to appear before page is refreshed
-    res.setTimeout(200, () => {
-        res.render('contactSeller', {
-            searchResult: "",
-            categories: categories,
-            isLogin: req.session.loggedin
-        })
-    })
-})
+// //Route for contact seller page
+// router.get("/contactSeller", (req, res) => {
+//     //timeout necessary to get categories to appear before page is refreshed
+    
+//         res.render('contactSeller', {
+//             searchResult: "",
+//             categories: categories,
+//             isLogin: req.session.loggedin
+//         })
+// })
 
 module.exports = router
