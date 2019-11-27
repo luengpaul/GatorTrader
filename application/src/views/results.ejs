@@ -27,7 +27,6 @@
                 <img class="card-image ml-auto mr-auto container" id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
                 <h2 id="itemName"><%=searchResult[i].name %></h2>
                 <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h3>
-                
                   <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="$<%=searchResult[i].price%>" data-itemid="<%=searchResult[i].itemID%>">Details</a>
                 </div>
             <% } %>
@@ -40,7 +39,6 @@
           <img class="card-image ml-auto mr-auto container"id=<%="searchResult[i].name"%> src="/post_images/<%=searchResult[i].picture%>"/>
           <h2 id="itemName"><%=searchResult[i].name %></h2>
           <h3 id="itemPrice">$ <%=searchResult[i].price%><br></h3>
-
             <a data-target="#itemDetails" class="openModal btn btn-warning" href=""  data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="$<%=searchResult[i].price%>" data-itemid="<%=searchResult[i].itemID%>">Details</a>
           </div>
     <% } %>

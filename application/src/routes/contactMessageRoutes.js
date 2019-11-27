@@ -6,8 +6,10 @@ const initCategories = require('../database/initCategories')
 //Initializes categories of items for database
 var categories = initCategories.init()
 var globalItemId
+const content = 'Please contact me'
 
 router.post("/contactSeller", (req, res) => {
+    console.log("This is the sender ID: "+ req.session.userID)
     var itemid = req.body.itemid
     globalItemId = itemid
 
@@ -20,8 +22,10 @@ router.post("/contactSeller", (req, res) => {
 })
 
 router.post("/contact", (req, res) => {
+    console.log("This is the sender ID: "+ req.session.userID)
 
-    if (message(req.session.email, req.body.phoneNumber, req.body.name,  globalItemId)) {
+
+    if (message(req.session.email, req.body.phoneNumber, req.body.name, globalItemId,req.session.userID)) {
         req.flash('success_msg', 'Your message is sent ');
         res.redirect("/")
     }
@@ -54,15 +58,17 @@ function getRecieverID(itemID) {
     })
 }
 
-async function message(email, phoneNumber , name, itemID) {
-    const senderID = await getSenderID(email)
+async function message(email, phoneNumber, name, itemID, sender) {
+    // const senderID = await getSenderID(email)
+    const senderID = sender
+
     const recieverID = await getRecieverID(itemID)
     const newMessage = {
         phoneNumber: phoneNumber,
         senderID,
         recieverID,
         name: name,
-        itemID:itemID
+        itemID: itemID
     }
 
     console.log(newMessage)
@@ -71,5 +77,6 @@ async function message(email, phoneNumber , name, itemID) {
         if (err) console.log(err)
     })
 }
+
 
 module.exports = router
