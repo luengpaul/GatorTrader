@@ -8,26 +8,6 @@ var categories = initCategories.init()
 var globalItemId
 const content = 'Please contact me'
 
-// function createTimeStamp () {
-//     var newDate = new Date()
-//     var month = newDate.getMonth()
-//     var date = newDate.getDate()
-//     var year = newDate.getFullYear()
-//     var hours = newDate.getHours()
-//     var amOrPm = 'am'
-//     if (hours > 12) {
-//       hours = hours - 12
-//       amOrPm = 'pm'
-//     }
-//     var minutes = newDate.getMinutes()
-//     if (minutes < 10) {
-//       minutes = '0' + minutes
-//     }
-//     var calDate = month + '-' + date + '-' + year
-//     var time = hours + ':' + minutes + ' ' + amOrPm
-//     return calDate + '  ' + time
-//   }
-
 router.post("/contactSeller", (req, res) => {
     var itemid = req.body.itemid
     globalItemId = itemid
@@ -42,11 +22,10 @@ router.post("/contactSeller", (req, res) => {
 
 router.post("/contact", (req, res) => {
 
-    if (message(req.body.email, globalItemId, content)) {
+    if (message(req.body.email, req.body.phoneNumber, req.body.name,  globalItemId)) {
         req.flash('success_msg', 'Your message is sent ');
         res.redirect("/")
     }
-
 })
 
 
@@ -76,14 +55,19 @@ function getRecieverID(itemID) {
     })
 }
 
-async function message(email, globalItemId, content) {
+async function message(email, phoneNumber , name, itemID) {
     const senderID = await getSenderID(email)
-    const recieverID = await getRecieverID(globalItemId)
+    const recieverID = await getRecieverID(itemID)
     const newMessage = {
-        contents: content,
+        phoneNumber: phoneNumber,
+        senderID,
         recieverID,
-        senderID
+        name: name,
+        itemID:itemID
     }
+
+    console.log(newMessage)
+
     pool.query('INSERT INTO gatortrader_test.message SET ?', newMessage, (err, rows, result) => {
         if (err) console.log(err)
     })
