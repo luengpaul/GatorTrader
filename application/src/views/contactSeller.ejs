@@ -15,7 +15,7 @@
     <div class="postingFormTitle">
       <h2><strong><u>Contact Seller</u></strong></h2>
     </div>
-      <form action="/contact" method="POST">
+      <form action="/contact" method="POST" >
         <div class="form-group row">
           <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
           <div class="row-lg-12">
@@ -30,27 +30,22 @@
             </div>
           </div>
 
-          <div class="form-group row">
-            <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Email *</label>
-            <div class="row-lg-12">
-              <input id="ForName" type="text" name="email" class="border-dark form-control" placeholder="Joe@mail.sfsu.edu" required>
-            </div>
-          </div>
 
         <div class="form-group row">
           <label class="postingLabel col-sm-3 col-form-label-md" for="mandatoryField">(*) Mandatory Fields</label>
 
-          <div class="row-lg-12">
+    <div class="form-group row">
+        <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
-              <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
-<!--              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" role="button"  href="">Submit</a>-->
-              <input type="submit" value="Contact" class="btn btn-success" >
-
-<!--              <button type="button" id="savebutton" class="btn btn-success"  >Yes</button>-->
-              <!--Button previously being used replaced with the <a> tag above to target modal. Change as needed.-->
-              <!-- <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button> -->
+                <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
+                <%if(isLogin) { %>
+                    <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry">Submit</button>
+                <%} else { %>
+                    <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Submit (Login)</button>
+                <% } %> 
             </div>
-          </div>
+        </div>
+    </div>
 
         </div>
     </form>
