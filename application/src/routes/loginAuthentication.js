@@ -19,9 +19,10 @@ router.post('/auth', function(request, response) {
 			if (results.length > 0) {
 				request.session.loggedin = true
 				request.session.email = email
+				request.session.userID= results[0].userID
 				request.flash('success_msg', 'You are logged in')
 				//response.render('/user', {success_msg:req.flash('success_msg')})
-				response.redirect('/user')
+				response.redirect('/user/messages')
 
 			} else {
 				request.flash('error_msg', 'Incorrect Username and/or Password!')
@@ -55,7 +56,7 @@ router.post('/regis', function (request, response) {
 		})
 		request.session.loggedin = true
 		request.session.email = email	
-		return response.redirect('/user')
+		return response.redirect('/user/messages')
 })
 
 

@@ -18,6 +18,7 @@ const search = require('./routes/searchFunction')
 const aboutRoutes = require('./routes/aboutPgRoutes')
 const postFormRoutes = require('./routes/postFormRoutes')
 const contactMessageRoutes = require('./routes/contactMessageRoutes')
+const user = require('./routes/user.js')
 const flash = require('connect-flash')
 
 //configures ejs as templating language
@@ -50,8 +51,9 @@ app.use('/', search)
 app.use('/', aboutRoutes)
 app.use('/', postFormRoutes)
 app.use('/', contactMessageRoutes)
+app.use('/',user)
 
 
-const PORT = 3000
+const PORT = 3001
 
 app.listen(PORT, () => console.log('Server running on port ' + PORT))

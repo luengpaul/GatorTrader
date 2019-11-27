@@ -47,7 +47,7 @@ router.post('/results', function (req, res, next) {
         })
     } else {
         //else only output the item that the user entered
-        pool.query("SELECT * FROM item WHERE name like '% AND approved = 1" + req.body.searchEntry + "%'", (err, result) => {
+        pool.query("SELECT * FROM item WHERE name like '%" + req.body.searchEntry + "%' AND approved = 1", (err, result) => {
             if (err) {
                 console.log(err)
             } else {
