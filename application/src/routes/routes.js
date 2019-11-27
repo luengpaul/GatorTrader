@@ -22,7 +22,7 @@ router.get("/", (req, res) => {
             if (err) {
                 console.log(err)
             }
-            console.log(result)
+            // console.log(result)
             res.render('home', {
                 searchResult: result,
                 categories: categories,
@@ -50,7 +50,7 @@ router.get("/postingForm", (req, res) => {
 })
 
 //Route for user dashboard pages
-router.get("/user", (req, res) => {
+router.get("/user/messages", (req, res) => {
     if (req.session.loggedin) {
         res.render('userDashboardMessageTab', {
             searchResult: "",
@@ -59,34 +59,25 @@ router.get("/user", (req, res) => {
         })
     }
     else {
-        res.send('You dont have access to this website');
-    }
-    res.end();
-})
-router.get("/usersales", (req, res) => {
-    if (req.session.loggedin) {
-        res.render('userDashboardSalesItemTab', {
-            searchResult: "",
-            categories: categories,
-            isLogin: req.session.loggedin
-        })
-    }
-    else {
-        res.send('You dont have access to this website');
+        //res.send('You dont have access to this website');
+        req.flash('error_msg', 'You have to log in')
     }
     res.end();
 })
 
-//Route for contact seller page
-router.get("/contactSeller", (req, res) => {
-    //timeout necessary to get categories to appear before page is refreshed
-    res.setTimeout(200, () => {
-        res.render('contactSeller', {
-            searchResult: "",
-            categories: categories,
-            isLogin: req.session.loggedin
-        })
-    })
-})
+// router.get("/user/sales", (req, res) => {
+//     if (req.session.loggedin) {
+//         res.render('userDashboardMessageTab', {
+//             categories: categories,
+//             isLogin: req.session.loggedin
+//         })
+//     }
+//     else {
+//         //res.send('You dont have access to this website');
+//         req.flash('error_msg', 'You have to log in')
+//     }
+//     res.end();
+// })
+
 
 module.exports = router

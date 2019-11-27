@@ -19,6 +19,7 @@ router.post('/auth', function(request, response) {
 	
 
 	if (email && password) {
+
 		pool.query('SELECT * FROM User WHERE email = ? ', [email], function(error, result, fields) {
 			if (result.length > 0) {
 				
@@ -32,7 +33,6 @@ router.post('/auth', function(request, response) {
 				//Compare passwords for a match 
 				bcrypt.compare(password, encryptedPassword, function (err, result) {	
 					if (err) { throw (err); }
-
 					if(result==true){
 						request.session.loggedin = true
 						request.session.email = email
@@ -71,6 +71,7 @@ router.post('/regis', function (request, response) {
 			email: email,
 			password: hash,
 		}
+
 		
 	// now the createStudent is an object you can use in your database insert logic.
 	pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
@@ -78,7 +79,7 @@ router.post('/regis', function (request, response) {
 	})
 	request.session.loggedin = true
 	request.session.email = email	
-	return response.redirect('/user')
+	return response.redirect('/user/messages')
 	})		
 })
 

@@ -51,6 +51,7 @@ router.post('/postingform', upload.single('img'), (req, res) => {
 
     //synchronously gets userID of user that posted and then creates a database record from all the postform values
     postUpload(req.session.email, req.body.name, req.body.description, req.body.price, req.body.category, req.file.filename)
+    res.redirect('back')
 })
 
 function getUserID(email) {
