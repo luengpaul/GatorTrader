@@ -10,32 +10,33 @@
 <% include assets/navbar %>
 
 
-  <!--POSTING FORM-->
-  <div class="PostingFormContainer">
-    <div class="postingFormTitle">
-      <h2><strong><u>Contact Seller</u></strong></h2>
-    </div>
-      <form action="/contact" method="POST" >
-        <div class="form-group row">
-          <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
-          <div class="row-lg-12">
-            <input id="ForName" type="text" name="name" class="border-dark form-control" placeholder="Name" required>
-          </div>
+<!--POSTING FORM-->
+<div class="PostingFormContainer">
+<div class="postingFormTitle">
+    <h2><strong><u>Contact Seller</u></strong></h2>
+</div>
+    <form action="/contact" method="post" data-toggle="validator">
+    <div class="form-group row">
+        <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Name *</label>
+        <div class="row-lg-12">
+            <input id="ForName" type="text" name="name" class="border-dark form-control"  
+                    pattern="[ A-Za-z0-9]+" maxlength="40" placeholder="Name" required>
         </div>
-
-        <div class="form-group row">
-            <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Phone Number *</label>
-            <div class="row-lg-12">
-              <input id="ForName" type="text" name="phoneNumber" class="border-dark form-control" placeholder="Phone Number" required>
-            </div>
-          </div>
-
-
-        <div class="form-group row">
-          <label class="postingLabel col-sm-3 col-form-label-md" for="mandatoryField">(*) Mandatory Fields</label>
+    </div>
 
     <div class="form-group row">
+        <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">Phone Number *</label>
         <div class="row-lg-12">
+            <input id="ForName" type="text" name="phoneNumber" class="border-dark form-control" 
+                    pattern="[ 0-9]+" maxlength="11" placeholder="Phone Number" required>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label class="postingLabel col-sm-3 col-form-label-md" for="mandatoryField">(*) Mandatory Fields</label>
+
+        <div class="form-group row">
+            <div class="row-lg-12">
             <div class="CancelandSubmitContainer">
                 <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
                 <%if(isLogin) { %>
@@ -43,12 +44,12 @@
                 <%} else { %>
                     <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Submit (Login)</button>
                 <% } %> 
-            </div>
         </div>
     </div>
+</div>
 
-        </div>
-    </form>
-  </div>
+    </div>
+</form>
+</div>
 </body>
 </html>
