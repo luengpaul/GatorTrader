@@ -44,7 +44,11 @@
           </select>
         </form>
 
-
+        <form class="form-inline Searchwindow" action="/results" method="post">
+          <input class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">
+          <input class="btn btn-warning btn-outline-warning searchButton" type="submit" value="Search">
+        </form>
+      
         <script>
         const mySel = document.getElementById("resizing_select");
         mySel.addEventListener("change",function() {
@@ -59,20 +63,13 @@
         // mySel.onchange();
         </script>
 
-
-
-        <form class="form-inline Searchwindow" action="/results" method="post">
-          <input class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">
-          <input class="btn btn-warning btn-outline-warning searchButton" type="submit" value="Search">
-        </form>
       </div>
-
       <ul class="navbar-nav ml-auto">
         <li class="nav-item active">
-          <a id="" class="btn btn-outline-warning btn-lg SellButton" href="/postingForm" *>SELL<span class="sr-only">(current)</span></a>
+          <a id="sellbtn" class="btn btn-outline-warning btn-lg SellButton" href="/postingForm" *>SELL<span class="sr-only">(current)</span></a>
         </li>
         <li id="" class="nav-item">
-          <a id="navItem" class="btn btn-outline-warning btn-lg SellButton" href="about">ABOUT</a>
+          <a id="aboutbtn" class="btn btn-outline-warning btn-lg SellButton" href="about">ABOUT</a>
         </li>
       </ul>
 
