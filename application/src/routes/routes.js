@@ -50,7 +50,7 @@ router.get("/postingForm", (req, res) => {
 })
 
 //Route for user dashboard pages
-router.get("/user", (req, res) => {
+router.get("/user/messages", (req, res) => {
     if (req.session.loggedin) {
         res.render('userDashboardMessageTab', {
             searchResult: "",
@@ -63,7 +63,7 @@ router.get("/user", (req, res) => {
     }
     res.end();
 })
-router.get("/usersales", (req, res) => {
+router.get("/user/sales", (req, res) => {
     if (req.session.loggedin) {
         res.render('userDashboardSalesItemTab', {
             searchResult: "",

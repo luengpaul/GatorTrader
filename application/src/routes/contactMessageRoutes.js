@@ -6,7 +6,6 @@ const initCategories = require('../database/initCategories')
 //Initializes categories of items for database
 var categories = initCategories.init()
 var globalItemId
-const content = 'Please contact me'
 
 router.post("/contactSeller", (req, res) => {
     var itemid = req.body.itemid
