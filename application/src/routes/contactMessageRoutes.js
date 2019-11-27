@@ -21,7 +21,7 @@ router.post("/contactSeller", (req, res) => {
 
 router.post("/contact", (req, res) => {
 
-    if (message(req.body.email, req.body.phoneNumber, req.body.name,  globalItemId)) {
+    if (message(req.session.email, req.body.phoneNumber, req.body.name,  globalItemId)) {
         req.flash('success_msg', 'Your message is sent ');
         res.redirect("/")
     }
