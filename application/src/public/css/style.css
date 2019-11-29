@@ -3,16 +3,23 @@ body {
     background-color: #eeeeee;
 }
 
-#sellbtn{
-        
+#search-bar{
+ margin-left: 2px;
+ 
 }
 
+#search-submit{
+    margin-left: 2px;
+
+}
+
+/* Creating padding for about button */
 #aboutbtn{
     margin-left:10px;
 }
 
 
-/* Creating padding for sell and about button */
+
 
 
 /*Temporary sizing images to the same size by stretching*/

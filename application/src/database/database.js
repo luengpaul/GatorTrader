@@ -12,6 +12,19 @@
 const util = require('util')
 const mysql = require('mysql')
 
+
+// //Local DB connection
+// const pool = mysql.createPool({
+//   connectionLimit: 20,
+//   host: '127.0.0.1',
+//   port:'3306',
+//   user: 'root',
+//   password: 'aprilhaj27',
+//   //working database name, actual database is 'gatortrader'
+//   database: 'gatortrader_test'
+// })
+
+
 //Initialize the pool with a set connection limit
 const pool = mysql.createPool({
   connectionLimit: 20,

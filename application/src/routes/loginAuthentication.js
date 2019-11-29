@@ -37,7 +37,7 @@ router.post('/auth', function(request, response) {
 						request.session.loggedin = true
 						request.session.email = email
 						request.flash('success_msg', 'You are logged in')
-						response.redirect('/user')
+						response.redirect('/user/messages')
 					}
 					else {
 						request.flash('error_msg', 'Incorrect Username and/or Password!')
