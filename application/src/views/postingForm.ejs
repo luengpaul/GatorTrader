@@ -8,6 +8,87 @@
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
 <% include assets/messages.ejs%>
+
+
+<!-- <script>
+
+
+    function saveForm() {
+    
+    
+    //nothing to work with, get out of here
+    
+    
+    if(typeof window.sessionStorage ==="undefined"){return;}
+    
+    
+    saveValues("input");
+    
+    
+    saveValues("select");
+
+    saveValues('textarea')
+    
+    
+    return true;
+    
+    
+    }
+    
+    
+    function loadForm() {
+    
+    
+    //nothing to work with, get out of here
+    
+    
+    if(typeof window.sessionStorage ==="undefined"){return;}
+    
+    
+    setValues("input");
+    
+    
+    setValues("select");
+    
+    
+    setValues("textarea");
+    
+    
+    
+    }
+    
+    
+    function saveValues(tag){
+    
+    
+    var inputs=document.getElementsByTagName(tag);
+    
+    
+    for(var i=0;i<inputs.length;i++){
+    
+    
+    window.sessionStorage.setItem(inputs[i].name, inputs[i].value);
+    
+    
+    }
+    
+    
+    }
+    
+    
+    function setValues(tag){
+    
+    
+    var inputs=document.getElementsByTagName(tag);
+    
+    for(var i=0;i<inputs.length;i++){
+        inputs[i].value = window.sessionStorage.getItem(inputs[i].name);
+    }
+}
+    </script> -->
+
+
+
  <!--POSTING FORM-->
  <div class="PostingFormContainer">
     <form action="/postingform" method="post" class="PostingForm" enctype="multipart/form-data" role="form" data-toggle="validator">
@@ -58,14 +139,14 @@
     <div class="form-group row">
         <label class="postingLabel col-sm-2 col-form-label-lg" for="postImage">Image *</label>
         <div class="row-lg-12">
-            <input type="file" name="img" />
+            <input name="image" type="file"/>
         </div>
     </div>
         
      
     <div class="form-group row">
         <label class="postingLabel col-sm-2 col-form-label-lg"></label>
-        <input type="checkbox" id="terms" data-error="Required to post" required>
+        <input name="terms" type="checkbox" id="terms" data-error="Required to post" required>
         &nbspBy checking this box I agree to the&nbsp<u>Terms and Conditions</u>
         </label>
     <div class="help-block with-errors"></div>
@@ -77,28 +158,22 @@
             <div class="CancelandSubmitContainer">
                 <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
                 <%if(isLogin) { %>
-                    <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry">Submit</button>
+                    <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry" >Submit</button>
                 <%} else { %>
-                    <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Submit (Login)</button>
+                    <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal"  >Submit (Login)</button>
                 <% } %> 
             </div>
         </div>
     </div>
+</div>
+</div>
+ 
+</div>
+</form>
 
-    <!--TODO: include modal's display into lazy registration submit button above
-      <div class="row-lg-12">
-            <div class="CancelandSubmitContainer">
-              <button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>
-              <a data-target="#successfulPost" data-toggle="modal" class=" postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" role="button"  href="">Submit</a>
- 
-             <!--Button previously being used replaced with the <a> tag above to target modal. Change as needed.-->
-              <!-- <button class="postingSubmitButton  btn btn-secondary btn-outline-warning btn-lg row-sm-12" id="submitItem" type="submit" name="button">Submit</button> -->
-            </div>
-          </div>
- 
-        </div>
-    </form>
-  </div>
+<!-- <script>loadForm()</script> -->
+
+</div>
  
  
  

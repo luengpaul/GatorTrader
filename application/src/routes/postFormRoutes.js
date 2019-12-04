@@ -6,35 +6,26 @@
  */
 
 const express = require('express'), router = express.Router()
-const initCategories = require('../database/initCategories')
 const pool = require('../database/database')
 const multer = require('multer')
+const sharp=require('sharp')
+const storage = require('./upload-config')
+const upload = multer(storage)
+const fs=require('fs')
 const path = require('path')
 
-var categories = initCategories.init()
 
-//image handling: adds user post images to "public/post_images" if they are a valid data type
-var storage = multer.diskStorage({
-    destination: (req, file, cb) => { cb(null, path.join(__dirname, "../public/post_images")) },
-    filename: (req, file, cb) => {
-        //checks for valid file types
-        if (file.mimetype === 'image/jpg') {
-            cb(null, file.fieldname + '-' + Date.now() + ".jpg")
-        }
-        else if (file.mimetype === 'image/jpeg') {
-            cb(null, file.fieldname + '-' + Date.now() + ".jpeg")
-        }
-        else if (file.mimetype === 'image/png') {
-            cb(null, file.fieldname + '-' + Date.now() + ".png")
-        }
-        else if (file.mimetype !== 'image/jpeg' || file.mimetype !== 'image/jpg' || file.mimetype !== 'image/png') {
-            return cb(new Error('Only .png, .jpg and .jpeg format files allowed.'))
-        }
-    }
-})
-const upload = multer({ storage: storage })
+router.post('/postingform', upload.single('image'), async (req, res) => {
+    const { filename: image } = req.file
+   
+    await sharp(req.file.path)
+    .resize(500)
+    .jpeg({quality: 50})
+    .toFile(
+        path.resolve(req.file.destination,'resized',image)
+    )
+    fs.unlinkSync(req.file.path)
 
-router.post('/postingform', upload.single('img'), (req, res) => {
     console.log("--- Post Entry --- ");
     console.log("itemName: " + req.body.itemName);
     console.log("description: " + req.body.description);
@@ -76,4 +67,26 @@ async function postUpload(email, name, description, price, category, file) {
 
 module.exports = router
 
+
+
+// //image handling: adds user post images to "public/post_images" if they are a valid data type
+// var storage = multer.diskStorage({
+//     destination: (req, file, cb) => { cb(null, path.join(__dirname, "../public/post_images")) },
+//     filename: (req, file, cb) => {
+//         //checks for valid file types
+//         if (file.mimetype === 'image/jpg') {
+//             cb(null, file.fieldname + '-' + Date.now() + ".jpg")
+//         }
+//         else if (file.mimetype === 'image/jpeg') {
+//             cb(null, file.fieldname + '-' + Date.now() + ".jpeg")
+//         }
+//         else if (file.mimetype === 'image/png') {
+//             cb(null, file.fieldname + '-' + Date.now() + ".png")
+//         }
+//         else if (file.mimetype !== 'image/jpeg' || file.mimetype !== 'image/jpg' || file.mimetype !== 'image/png') {
+//             return cb(new Error('Only .png, .jpg and .jpeg format files allowed.'))
+//         }
+//     }
+// })
+// const upload = multer({ storage: storage })
 
