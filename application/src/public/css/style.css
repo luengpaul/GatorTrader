@@ -3,6 +3,23 @@ body {
     background-color: #eeeeee;
 }
 
+#search-bar{
+ margin-left: 2px;
+ 
+}
+
+#search-submit{
+    margin-left: 2px;
+
+}
+
+/* Creating padding for about button */
+#aboutbtn{
+    margin-left:10px;
+}
+
+
+
 
 
 /*Temporary sizing images to the same size by stretching*/

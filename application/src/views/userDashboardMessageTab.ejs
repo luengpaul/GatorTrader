@@ -12,12 +12,15 @@
 
        <div class="col-lg-12">
           <div class=" messageEmpty ">
-              <a class="btn btn-warning btn-lg  col-lg-2 cancelForm "href="/user/messages">Messages<span class="sr-only">(current)</span></a>
-              <a class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm "href="/user/sales">Sales Items<span class="sr-only"></span></a>
-            
+            <a class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm "href="/user/messages">Messages<span class="sr-only">(current)</span></a>
+            <a onclick="document.getElementById('user-items').submit();" class="btn btn-warning btn-lg  col-lg-2 cancelForm">Sales Items<span class="sr-only"></span></a>
+              
+            <form class="messageEmpty" id="user-items" name="userform" action="/user/sales" method="POST"></form>
+
               
             
             </div>
+            
  
       <div class="contactSeller col-lg-12"> 
  
@@ -80,13 +83,4 @@
     </div>
 </body>
 </html>
-    
-    
-
-    
-<form id="user-items" name="userform" action="/user/sales" method="POST">                                                                                                                                                                                                                
-                <input type="submit" class="btn btn-warning" value="Sales Item" >               
-                </form>
-
-
                     
