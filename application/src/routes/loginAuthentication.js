@@ -37,7 +37,7 @@ router.post('/auth', function(request, response) {
 						request.session.loggedin = true
 						request.session.email = email
 						request.flash('success_msg', 'You are logged in')
-						response.redirect('/user/messages')
+						response.redirect('back')
 					}
 					else {
 						request.flash('error_msg', 'Incorrect Username and/or Password!')
@@ -92,7 +92,7 @@ router.get('/logout', function (req, res, next) {
             if (err) {
                 return next(err)
             } else {
-                return res.redirect('/')
+                return res.redirect('back')
             }
         })
     }
