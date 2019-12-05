@@ -25,9 +25,14 @@ router.post('/auth', function(request, response) {
 				
 				//Grab password from database returned user 
 				var encryptedPassword
+
+				//Grab userID of person logged in
+				var userID
+
 				Object.keys(result).forEach(function(key){
 					var row= result[key]
 					encryptedPassword=row.password
+					userID= row.userID
 				})
 				
 				//Compare passwords for a match 
@@ -36,6 +41,8 @@ router.post('/auth', function(request, response) {
 					if(result==true){
 						request.session.loggedin = true
 						request.session.email = email
+						request.session.userID=userID
+
 						request.flash('success_msg', 'You are logged in')
 						response.redirect('back')
 					}
