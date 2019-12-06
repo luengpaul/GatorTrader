@@ -34,15 +34,18 @@
         <% } %>
 
         <div class="navbar-nav mx-auto">
-            <% include messages.ejs%>
-        <form class="form-inline" action="/results" method="post">
-          <select id="resizing_select" class="ml-auto no-gutters btn btn-dark btn-outline-secondary" name="searchEntry" onchange="this.form.submit()">
-            <option value="" selected>All</option>
-            <% for(var i=0; i < categories.length; i++) {%>
-            <option value="<%=categories[i]%>"><%=categories[i]%></option>
-            <% } %>
-          </select>
-        </form>
+
+          <div class="dropDown bg-dark">
+              <form class="form-inline" action="/results" method="post">
+                <select id="resizing_select" class="ml-auto btn btn-dark btn-outline-secondary btn-lg dropDown" name="searchEntry" onchange="this.form.submit()">
+                  <option value="" selected>All</option>
+                  <% for(var i=0; i < categories.length; i++) {%>
+                  <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                  <% } %>
+                </select>
+              </form>
+          </div>
+        
 
         <form class="form-inline Searchwindow" action="/results" method="post">
           <input id="search-bar" class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">
