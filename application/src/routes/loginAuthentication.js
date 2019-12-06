@@ -44,16 +44,19 @@ router.post('/auth', function(request, response) {
 						request.session.userID=userID
 
 						request.flash('success_msg', 'You are logged in')
-						response.redirect('back')
+						return response.send({valid: true})
+
 					}
 					else {
-						request.flash('error_msg', 'Incorrect Username and/or Password!')
-						response.redirect('back')
-					}
+						request.flash('error_msg', 'Incorrect Password! Please Try Again')
+						
+						return response.send({valid: false})
+				}
 				})
 			} 
 			else{
-				console.log("NO such user exists")
+				request.flash('error_msg', 'Incorrect Username or Password! Please try again.')
+				return response.send({valid: false})
 			}
 		})
 	} 
