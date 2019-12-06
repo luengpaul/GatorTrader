@@ -9,9 +9,8 @@
  
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
-
        <div class="col-lg-12">
-          <div class=" messageEmpty ">
+         <div class=" messageEmpty ">
             <a class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm "href="/user/messages">Messages<span class="sr-only">(current)</span></a>
             <a onclick="document.getElementById('user-items').submit();" class="btn btn-warning btn-lg  col-lg-2 cancelForm">Sales Items<span class="sr-only"></span></a>
               
@@ -24,6 +23,7 @@
  
       <div class="contactSeller col-lg-12"> 
  
+ 
         <div class="row outline">
           <h5 class= "col-md-2 messageHeader "><u>Name</u></h5> 
           <h5 class= "col-md-2 messageHeader "><u>Item</u></h5> 
@@ -31,56 +31,22 @@
               <h5 class= "col-md-3 messageHeader"><u>Email</u></h5>
               <h5 class= "col-md-2 messageHeader"><u></u></h5>
           </div> 
- 
+          
+          <!--Loop to Display Messages for each row-->
+            <% for (var i =1; i <=5;  i++ ) { %>
           <div class="row outline">
               <h5 class= "col-md-2 messageHeader">Jason</h5> 
               <h5 class= "col-md-2 messageHeader ">Math Textbook</h5> 
                   <h5 class= "col-md-3 messageHeader">XXX-XXX-XXXX</h5> 
                   <h5 class= "col-md-3 messageHeader">Jason@sfsu.edu</h5>
                   <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
-              </div> 
+              </div>                
+            <% } %>
  
-          <div class="row outline">
-                  <h5 class= "col-md-2 messageHeader">Paul</h5> 
-                  <h5 class= "col-md-2 messageHeader ">Pencil</h5> 
-                      <h5 class= "col-md-3 messageHeader">XXX-XXX-XXXX</h5> 
-                      <h5 class= "col-md-3 messageHeader">Paul@sfsu.edu</h5>
-                      <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
-                  </div> 
-          
-          <div class="row outline">
-              <h5 class= "col-md-2 messageHeader">Linda</h5> 
-              <h5 class= "col-md-2 messageHeader ">gameboy Color</h5> 
-                  <h5 class= "col-md-3 messageHeader">XXX-XXX-XXXX</h5> 
-                  <h5 class= "col-md-3 messageHeader">linda@sfsu.edu</h5>
-                  <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
-              </div> 
- 
-              <div class="row outline">
-                  <h5 class= "col-md-2 messageHeader">Dave</h5> 
-                  <h5 class= "col-md-2 messageHeader ">Microwave</h5> 
-                      <h5 class= "col-md-3 messageHeader">XXX-XXX-XXXX</h5> 
-                      <h5 class= "col-md-3 messageHeader">dave@sfsu.edu</h5>
-                      <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
-                  </div> 
-                  <div class="row outline">
-                      <h5 class= "col-md-2 messageHeader">Justin</h5> 
-                      <h5 class= "col-md-2 messageHeader ">Binder</h5> 
-                          <h5 class= "col-md-3 messageHeader">XXX-XXX-XXXX</h5> 
-                          <h5 class= "col-md-3 messageHeader">justin@sfsu.edu</h5>
-                          <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
-                      </div> 
- 
-                      <div class="row outline">
-                          <h5 class= "col-md-2 messageHeader">David</h5> 
-                          <h5 class= "col-md-2 messageHeader ">Biology Textbook</h5> 
-                              <h5 class= "col-md-3 messageHeader">XXX-XXX-XXXX</h5> 
-                              <h5 class= "col-md-3 messageHeader">david@sfsu.edu</h5>
-                              <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
-                          </div> 
+            <!-- RESIZABLE DASHBOARDS-->
+        
       
       </div>
     </div>
 </body>
 </html>
-                    

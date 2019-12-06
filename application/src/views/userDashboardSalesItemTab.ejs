@@ -9,10 +9,10 @@
  
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
-
-
+ 
+ 
        <div class="col-lg-12">
-          <div class=" messageEmpty ">
+         <div class=" messageEmpty ">
             <a class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm "href="/user/messages">Messages<span class="sr-only">(current)</span></a>
             <a onclick="document.getElementById('user-items').submit();" class="btn btn-warning btn-lg  col-lg-2 cancelForm">Sales Items<span class="sr-only"></span></a>
               
@@ -25,8 +25,34 @@
  
       <div class="contactSeller col-lg-12"> 
  
+        <div class="row outline">
+          <h5 class= "col-md-3 messageHeader "><u>Date</u></h5> 
+          <h5 class= "col-md-4 messageHeader "><u>Item Name</u></h5>  
+              <h5 class= "col-md-3 messageHeader"><u>Price</u></h5>
+              <h5 class= "col-md-2 messageHeader"><u></u></h5>
+          </div> 
+ 
+          <!--Loop to Display Sales item for each row-->
+          <% for (var i =1; i <=5;  i++ ) { %>
           <div class="row outline">
-             <div class="itemContainer container-fluid">
+              <h5 class= "col-md-3 messageHeader">10/11/2019</h5> 
+              <h5 class= "col-md-4 messageHeader ">Math Textbook</h5>
+                  <h5 class= "col-md-3 messageHeader">$40.00</h5>
+                  <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Remove</u></h5>
+              </div> 
+              <% } %>
+ 
+         <!--RESIZABLE DASHBOARDS-->
+      
+      </div>
+ 
+    </div>
+ 
+</body>
+</html>
+
+
+<!--
 <table style="width:100%">
     <tr>
       <th>Date</th>
@@ -45,14 +71,7 @@
     </tr>
     <!-- end off loop -->
   </table>
-</div>
-                
-              </div> 
- 
-    </div>
-
-
-
+-->
 
 
 
