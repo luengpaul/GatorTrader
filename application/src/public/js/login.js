@@ -26,12 +26,12 @@ $(function(){
                 var showLoginError=true
                 localStorage.setItem("showLoginError", showLoginError);
                 
-                location.reload(true)
-
-                
-
-                
+                location.reload(true)                
             }
+
+        else if(result.valid){
+            location.reload(true)
+        }
         })
     })
 })
