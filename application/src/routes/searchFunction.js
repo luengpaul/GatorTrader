@@ -14,6 +14,7 @@ var categories = initCategories.init()
 
 //Search function that renders results to posts page
 router.post('/results', function (req, res, next) {
+    var msg = ""
     //deal with category result here later
     console.log("value returned from search entry is (" + req.body.searchEntry + ")")
 
@@ -31,7 +32,6 @@ router.post('/results', function (req, res, next) {
         })
     }
     else if (!req.body.searchEntry) {
-
         pool.query("SELECT * FROM item WHERE approved = 1 ORDER BY date_upload DESC LIMIT 0, 8", (err, result) => {
             if (err) {
                 console.log(err)
@@ -48,12 +48,17 @@ router.post('/results', function (req, res, next) {
     } else {
         //else only output the item that the user entered
         pool.query("SELECT * FROM item WHERE name like '%" + req.body.searchEntry + "%' AND approved = 1", (err, result) => {
+            console.log(result)
             if (err) {
                 console.log(err)
+            }
+            else if (result.length == 0) {
+                msg = "No search results were found for the given entry."
             } else {
                 //console.log(result)
             }
             res.render('results', {
+                displayMessage: msg,
                 searchResult: result,
                 categories: categories,
                 isLogin: req.session.loggedin,
