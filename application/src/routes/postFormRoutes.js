@@ -41,7 +41,7 @@ router.post('/postingform', upload.single('image'), async (req, res) => {
     }
 
     //synchronously gets userID of user that posted and then creates a database record from all the postform values
-    postUpload(req.session.email, req.body.name, req.body.description, req.body.price, req.body.category, req.file.filename)
+    postUpload(req.session.email, req.body.itemName, req.body.description, req.body.price, req.body.category, req.file.filename)
     res.redirect('back')
 })
 
@@ -66,27 +66,3 @@ async function postUpload(email, name, description, price, category, file) {
 }
 
 module.exports = router
-
-
-
-// //image handling: adds user post images to "public/post_images" if they are a valid data type
-// var storage = multer.diskStorage({
-//     destination: (req, file, cb) => { cb(null, path.join(__dirname, "../public/post_images")) },
-//     filename: (req, file, cb) => {
-//         //checks for valid file types
-//         if (file.mimetype === 'image/jpg') {
-//             cb(null, file.fieldname + '-' + Date.now() + ".jpg")
-//         }
-//         else if (file.mimetype === 'image/jpeg') {
-//             cb(null, file.fieldname + '-' + Date.now() + ".jpeg")
-//         }
-//         else if (file.mimetype === 'image/png') {
-//             cb(null, file.fieldname + '-' + Date.now() + ".png")
-//         }
-//         else if (file.mimetype !== 'image/jpeg' || file.mimetype !== 'image/jpg' || file.mimetype !== 'image/png') {
-//             return cb(new Error('Only .png, .jpg and .jpeg format files allowed.'))
-//         }
-//     }
-// })
-// const upload = multer({ storage: storage })
-

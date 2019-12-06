@@ -10,7 +10,23 @@
 <!--Imports navbar from assets -->
 <% include assets/navbar %>
 
- <div class="itemContainer container-fluid">
+
+       <div class="col-lg-12">
+          <div class=" messageEmpty ">
+            <a class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm "href="/user/messages">Messages<span class="sr-only">(current)</span></a>
+            <a onclick="document.getElementById('user-items').submit();" class="btn btn-warning btn-lg  col-lg-2 cancelForm">Sales Items<span class="sr-only"></span></a>
+              
+            <form class="messageEmpty" id="user-items" name="userform" action="/user/sales" method="POST"></form>
+
+              
+            
+            </div>
+            
+ 
+      <div class="contactSeller col-lg-12"> 
+ 
+          <div class="row outline">
+             <div class="itemContainer container-fluid">
 <table style="width:100%">
     <tr>
       <th>Date</th>
@@ -23,10 +39,22 @@
       <td><p><%=salesItems[i].date_upload%></p></td>  
       <td><p><%=salesItems[i].name%></p></td>
       <td><p><%=salesItems[i].price%></p></td>
+           <td><h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5></td>
       <% } %>
-      
+
     </tr>
     <!-- end off loop -->
   </table>
 </div>
+                
+              </div> 
+ 
+    </div>
+
+
+
+
+
+
+ 
  

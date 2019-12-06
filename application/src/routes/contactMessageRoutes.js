@@ -18,16 +18,18 @@ router.post("/contactSeller", (req, res) => {
         categories: categories,
         isLogin: req.session.loggedin
     })
-
+  
 })
 
 router.post("/contact", (req, res) => {
     console.log("This is the sender ID: "+ req.session.userID)
 
-
+    console.log("contact reached")
     if (message(req.session.email, req.body.phoneNumber, req.body.name, globalItemId,req.session.userID)) {
         req.flash('success_msg', 'Your message is sent ');
         res.redirect("/")
+
+        console.log("contact intenrior reached")
     }
 })
 
