@@ -20,7 +20,7 @@ router.get("/user/messages", (req, res) => {
         if (err) {
             console.log(err)
         }
-        console.log(results)
+        // console.log(results)
 
         if (req.session.loggedin) {
             res.render('userDashboardMessageTab', {
@@ -35,34 +35,6 @@ router.get("/user/messages", (req, res) => {
 
 
 //Route for user dashboard posted items tab
-router.post("/user/sales", (req, res) => {
-    
-    console.log("This is the userID " + req.session.userID)
-
-    pool.query("SELECT * FROM item WHERE userID=? ", [req.session.userID], (err, results) => {
-        if (err) {
-            console.log(err)
-        }
-
-        console.log(results)
-
-        if (req.session.loggedin) {
-            res.render('userDashboardSalesItemTab', {
-                salesItems: results,
-                categories: categories,
-                isLogin: req.session.loggedin
-            })
-        }
-        else {
-            req.flash('error_msg','You dont have access to this website')
-            //res.send('You dont have access to this website');
-        }
-        res.end();
-})
-})
-
-
-//Route for user dashboard posted items tab
 router.get("/user/sales", (req, res) => {
     
     console.log("This is the userID " + req.session.userID)
@@ -72,7 +44,7 @@ router.get("/user/sales", (req, res) => {
             console.log(err)
         }
 
-        console.log(results)
+        // console.log(results)
 
         if (req.session.loggedin) {
             res.render('userDashboardSalesItemTab', {
@@ -91,11 +63,12 @@ router.get("/user/sales", (req, res) => {
 
 
 //Route for deleting posted sales item
-router.get("/user/sales/delete", (req, res, next) => {
+router.post("/user/sales/delete", (req, res, next) => {
     var itemID= req.body.itemID
+    console.log("item id is " + itemID)
+
 
     //Delete fucntion called
-
     pool.query("DELETE FROM item WHERE ITEMID=? ", [itemID], (err, results) => {
         if (err) {
             console.log(err)
@@ -106,6 +79,7 @@ router.get("/user/sales/delete", (req, res, next) => {
 
     res.redirect('/user/sales')
 })
+
 
 
 

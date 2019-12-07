@@ -42,7 +42,7 @@
                   <h5 onclick="document.getElementById('delete-item').submit();" class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
                   
               </div>
-              <form class="messageEmpty" id="delete-item" name="delete-item" action="/user/sales/delete" method="GET">
+              <form class="messageEmpty" id="delete-item" name="delete-item" action="/user/sales/delete" method="POST">
                 <input type="hidden" id="itemID" name="itemID" value="<%=salesItems[i].itemID%>">
               </form> 
               <% } %>
