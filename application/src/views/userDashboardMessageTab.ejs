@@ -11,35 +11,37 @@
 <% include assets/navbar %>
        <div class="col-lg-12">
          <div class=" messageEmpty ">
-            <a class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm "href="/user/messages">Messages<span class="sr-only">(current)</span></a>
+            <a onclick="document.getElementById('user-messages').submit();" class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm >Messages<span class="sr-only">(current)</span></a>
             <a onclick="document.getElementById('user-items').submit();" class="btn btn-warning btn-lg  col-lg-2 cancelForm">Sales Items<span class="sr-only"></span></a>
               
             <form class="messageEmpty" id="user-items" name="userform" action="/user/sales" method="POST"></form>
-
+            <form class="messageEmpty" id="user-messages" name="userform" action="/user/messages" method="POST"></form>
               
             
             </div>
+            
             
  
       <div class="contactSeller col-lg-12"> 
  
  
         <div class="row outline">
+        <h5 class= "col-md-3 messageHeader "><u>Date</u></h5> 
+          <h5 class= "col-md-2 messageHeader "><u>Item Name</u></h5> 
           <h5 class= "col-md-2 messageHeader "><u>Name</u></h5> 
-          <h5 class= "col-md-2 messageHeader "><u>Item</u></h5> 
-              <h5 class= "col-md-3 messageHeader"><u>Phone Number</u></h5> 
-              <h5 class= "col-md-3 messageHeader"><u>Email</u></h5>
-              <h5 class= "col-md-2 messageHeader"><u></u></h5>
+           <h5 class= "col-md-3 messageHeader"><u>Phone Number</u></h5> 
+           <h5 class= "col-md-2 messageHeader"><u></u></h5>
           </div> 
           
           <!--Loop to Display Messages for each row-->
-            <% for (var i =1; i <=5;  i++ ) { %>
+               <% for(var i=0; messages[i]; i++) { %>
           <div class="row outline">
-              <h5 class= "col-md-2 messageHeader">Jason</h5> 
-              <h5 class= "col-md-2 messageHeader ">Math Textbook</h5> 
-                  <h5 class= "col-md-3 messageHeader">XXX-XXX-XXXX</h5> 
-                  <h5 class= "col-md-3 messageHeader">Jason@sfsu.edu</h5>
-                  <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
+          <h5 class= "col-md-3 messageHeader"><%=messages[i].date_sent%></h5> 
+        <h5 class= "col-md-2 messageHeader"><%=messages[i].itemName%></h5> 
+              <h5 class= "col-md-2 messageHeader "><%=messages[i].name%></h5> 
+                 <h5 class= "col-md-3 messageHeader"><%=messages[i].phoneNumber%></h5> 
+         
+            <h5 class= "col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
               </div>                
             <% } %>
  

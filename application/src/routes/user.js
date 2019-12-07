@@ -16,15 +16,19 @@ var categories = initCategories.init()
 
 //Route for posting form page
 router.post("/user/messages", (req, res) => {
-    pool.query("SELECT * FROM messages WHERE ", [], (err, results) => {
+    pool.query("SELECT * FROM message WHERE recieverID=? ", [req.session.userID], (err, results) => {
         if (err) {
             console.log(err)
         }
-        res.render('results', {
-            searchResult: results,
-            categories: categories,
-            isLogin: req.session.loggedin,
-        })
+        console.log(results)
+
+        if (req.session.loggedin) {
+            res.render('userDashboardMessageTab', {
+                messages: results,
+                categories: categories,
+                isLogin: req.session.loggedin
+            })
+        }
     })
 })
 
@@ -55,16 +59,5 @@ router.post("/user/sales", (req, res) => {
         res.end();
 })
 })
-
-
-function getUserID(email) {
-        pool.query("SELECT userID FROM User WHERE email = ?", [email], (err, rows, result) => {
-            var userID = 0
-            if (rows[0]) {
-                var userID = rows[0].userID
-                resolve(userID)
-            }
-        })
-}
 
 module.exports = router
