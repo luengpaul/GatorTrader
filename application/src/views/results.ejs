@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
 
 <!--Imports header from assets -->
-<% include assets/head.html %>
+<% include assets/head %>
 
 <!--Imports modal for items details-->
 <% include modals/itemDetailsModal.html %>
@@ -103,10 +103,9 @@ $(document).on("click", ".openModal", function () {
     console.log("This is what click function recieves "+ itemid)
 
     $(".modal-footer #modal-itemid").attr("value", itemid);
-    // $(".modal-footer #modal-userid").attr("value", userid);
 });
 
-// data-* attributes to scan when populating modal values
+
 const ATTRIBUTES = ['name', 'price','description'];
 
 $('[data-toggle="modal"]').on('click', function (e) {

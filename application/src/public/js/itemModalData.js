@@ -1,6 +1,13 @@
+/**
+ * These functions are used to send item details to the popup modal for displaying details 
+ * 
+ * @author Ibraheem Chaudry
+ */
+
+
 //This function send the image source to item display modal
 $(document).on("click", ".openModal", function () {
-    var itemImageSrc ="/post_images/"+ $(this).data('img');
+    var itemImageSrc ="/post_images/resized/"+ $(this).data('img');
     console.log(itemImageSrc);
     $(".modal-body #modalImage").attr("src", itemImageSrc);
 
@@ -8,10 +15,9 @@ $(document).on("click", ".openModal", function () {
     console.log("This is what click function recieves "+ itemid)
 
     $(".modal-footer #modal-itemid").attr("value", itemid);
-    // $(".modal-footer #modal-userid").attr("value", userid);
 });
 
-// data-* attributes to scan when populating modal values
+
 const ATTRIBUTES = ['name', 'price','description'];
 
 $('[data-toggle="modal"]').on('click', function (e) {
