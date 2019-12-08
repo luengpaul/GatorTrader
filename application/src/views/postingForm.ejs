@@ -5,100 +5,100 @@
 <% include assets/head %>
 
 <body id="postingFormPage">
-<!--Imports navbar from assets -->
-<% include assets/navbar %>
-<% include assets/messages.ejs%>
+    <!--Imports navbar from assets -->
+    <% include assets/navbar %>
+    <% include assets/messages.ejs%>
 
 
- <!--POSTING FORM-->
- <div class="PostingFormContainer">
-    <form action="/postingform" method="post" class="PostingForm" enctype="multipart/form-data" role="form" data-toggle="validator">
-        <div class="postingFormTitle">
+    <!--POSTING FORM-->
+    <div class="PostingFormContainer">
+        <form action="/postingform" method="post" class="PostingForm" enctype="multipart/form-data" role="form" data-toggle="validator">
+            <div class="postingFormTitle">
                 <h2><strong><u>Posting Form</u></strong></h2>
-        </div>
-
-    <div class="form-group row">
-        <label class="postingLabel col-sm-2">Item Name *</label>
-        <div class="row-lg-12">
-            <input type="text" name="itemName" class="border-dark form-control" pattern="[ A-Za-z0-9]+" maxlength="20"
-                    placeholder="Alphanumeric characters only." required>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label class="postingLabel col-sm-2 col-form-label-lg">Category *</label>
-        <div class="row-lg-12">
-            <select name="category" class="border-dark form-control">
-                <option value="">Choose category</option>
-                <% for(var i=0; i < categories.length; i++) {%>
-                <option value="<%=categories[i]%>"><%=categories[i]%></option>
-                <% } %>
-            </select>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label class="postingLabel col-sm-2 col-form-label-lg">Description *</label>
-        <div class="row-lg-12">
-            <textarea name="description" class="form-control border-dark col-lg-12" 
-                        rows="5" maxlength="150" required></textarea>
-        </div>
-    </div>
-
-    <div class="form-group row">
-        <label class="postingLabel col-sm-2 col-form-label-lg">Price *</label>
-        <div class="row-lg-12">
-        <div class="input-group-prepend">
-            <span class="input-group-text border-dark">$</span>
-            <input type="text" name="price" class="form-control col-sm-4 border-dark" maxlength="7" 
-                    pattern="^[0-9]+(\.[0-9]{1,2})?$" placeholder="dollars.cents" required>
-        </div>
-        </div>
-    </div>
-       
-     
-    <div class="form-group row">
-        <label class="postingLabel col-sm-2 col-form-label-lg" for="postImage">Image *</label>
-        <div class="row-lg-12">
-            <input name="image" type="file"/>
-        </div>
-    </div>
-        
-     
-    <div class="form-group row">
-        <label class="postingLabel col-sm-2 col-form-label-lg"></label>
-        <input name="terms" type="checkbox" id="terms" data-error="Required to post" required>
-        &nbspBy checking this box I agree to the&nbsp<u>Terms and Conditions</u>
-        </label>
-    <div class="help-block with-errors"></div>
-    </div>
- 
-    <div class="form-group row">
-        <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
-        <div class="row-lg-12">
-            <div class="CancelandSubmitContainer">
-                <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
-                <%if(isLogin) { %>
-                    <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry" >Submit</button>
-                <%} else { %>
-                    <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal"  >Submit (Login)</button>
-                <% } %> 
             </div>
-        </div>
+
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2">Item Name *</label>
+                <div class="row-lg-12">
+                    <input type="text" name="itemName" class="border-dark form-control" pattern="[ A-Za-z0-9]+" maxlength="20"
+                           placeholder="Alphanumeric characters only." required>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2 col-form-label-lg">Category *</label>
+                <div class="row-lg-12">
+                    <select name="category" class="border-dark form-control">
+                        <option value="">Choose category</option>
+                        <% for(var i=0; i < categories.length; i++) {%>
+                        <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                        <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2 col-form-label-lg">Description *</label>
+                <div class="row-lg-12">
+                    <textarea name="description" class="form-control border-dark col-lg-12"
+                              rows="5" maxlength="150" required></textarea>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2 col-form-label-lg">Price *</label>
+                <div class="row-lg-12">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text border-dark">$</span>
+                        <input type="text" name="price" class="form-control col-sm-4 border-dark" maxlength="7"
+                               pattern="^[0-9]+(\.[0-9]{1,2})?$" placeholder="dollars.cents" required>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2 col-form-label-lg" for="postImage">Image *</label>
+                <div class="row-lg-12">
+                    <input name="image" type="file" />
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2 col-form-label-lg"></label>
+                <input name="terms" type="checkbox" id="terms" data-error="Required to post" required>
+                &nbspBy checking this box I agree to the&nbsp<u>Terms and Conditions</u>
+                </label>
+                <div class="help-block with-errors"></div>
+            </div>
+
+            <div class="form-group row">
+                <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
+                <div class="row-lg-12">
+                    <div class="CancelandSubmitContainer">
+                        <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
+                        <%if(isLogin) { %>
+                        <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry">Submit</button>
+                        <%} else { %>
+                        <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Submit (Login)</button>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
     </div>
-</div>
-</div>
- 
-</div>
-</form>
+    </div>
 
-<!-- <script>loadForm()</script> -->
+    </div>
+    </form>
 
-</div>
- 
- 
- 
- 
- 
+    <!-- <script>loadForm()</script> -->
+    </div>
+
+
+
+
+
 </body>
+<% include assets/footer %>
 </html>

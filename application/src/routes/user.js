@@ -69,7 +69,7 @@ router.post("/user/sales/delete", (req, res, next) => {
 
 
     //Delete fucntion called
-    pool.query("DELETE FROM item WHERE ITEMID=? ", [itemID], (err, results) => {
+    pool.query("DELETE FROM item WHERE itemID=? ", [itemID], (err, results) => {
         if (err) {
             console.log(err)
         }
@@ -81,6 +81,23 @@ router.post("/user/sales/delete", (req, res, next) => {
 })
 
 
+//Route for deleting posted sales item
+router.post("/user/messages/delete", (req, res, next) => {
+    var mID = req.body.mID
+    console.log("message id is " + mID)
+
+
+    //Delete fucntion called
+    pool.query("DELETE FROM message WHERE mID=? ", [mID], (err, results) => {
+        if (err) {
+            console.log(err)
+        }
+
+        console.log("Succesfully Deleted message")
+    })
+    
+    res.redirect('/user/messages')
+})
 
 
 
