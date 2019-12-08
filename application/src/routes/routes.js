@@ -1,38 +1,50 @@
-const express = require('express')
-const router = express.Router()
-const mysql = require('mysql')
+/**
+ * This module contains all the routes for the application
+ *
+ * Handles the routing and rendering of webpages.
+ *
+ * @author Alexander Beers.
+ */
 
-var db = mysql.createConnection({
-    host: 'gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com',
-    port: '3306',
-    user: 'admin',
-    password: 'csc648_team10',
-    //working database name, actual database is 'gatortrader'
-    database: 'gatortrader_test'
-})
-db.connect(function (err) {
-    if(err) throw err
-})
+const express = require('express'), router = express.Router()
+const initCategories = require('../database/initCategories')
+const pool = require('../database/database')
 
-var types = []
-db.query("SELECT * FROM category", (err, result) => {
-    if (err) {
-        console.log(err)
-    } else {
-        if (types.length == 0) {
-            for (let i = 0; i < result.length; i++) {
-                types.push(result[i].type)
-            }
-        }
-    }
-})
+//Initializes categories of items for database
+var categories = initCategories.init()
 
+//Route for Home Page
 router.get("/", (req, res) => {
-    //necessary to get categories to appear before page is refreshed
-    res.setTimeout(500, () => {
-        res.render('home', {
-            searchResult: "",
-            categories: types
+    //timeout necessary to get categories to appear before page is refreshed
+    res.setTimeout(200, () => {
+        //initialize homepage to show 8 most recent results
+        pool.query("SELECT * FROM item WHERE approved = 1 ORDER BY date_upload DESC LIMIT 0, 8", (err, result) => {
+            if (err) {
+                console.log(err)
+            }
+            // console.log(result)
+            res.render('home', {
+                searchResult: result,
+                categories: categories,
+                isLogin: req.session.loggedin,
+                feedbackMessage: "Recent posts on Gator Trader"
+            })
+        })
+    })
+})
+
+//Route for posting form page
+router.get("/postingForm", (req, res) => {
+    //timeout necessary to get categories to appear before page is refreshed
+    res.setTimeout(200, () => {
+        res.render('postingForm', {
+            itemName: "",
+            description: "",
+            price: 0.0,
+            image: "",
+            categories: categories,
+            category: "",
+            isLogin: req.session.loggedin
         })
     })
 })

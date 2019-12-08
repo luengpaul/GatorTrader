@@ -1,132 +1,59 @@
+/**
+ * Main file for backend tht manages dependencies, middlware routing, and server functionatlities.
+ *
+ * All the main dependencies used in the project are imported in this file and declared as application functions. 
+ * Middleware routes and services are managed by this file.
+ * Manages sessions for login authentication
+ *
+ * @author Alexander Beers.
+ */
+
 const express = require('express'), app = express()
 const path = require('path')
-const mysql = require('mysql')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 const routes = require('./routes/routes')
+const loginAuth = require('./routes/loginAuthentication')
+const search = require('./routes/searchFunction')
 const aboutRoutes = require('./routes/aboutPgRoutes')
+const postFormRoutes = require('./routes/postFormRoutes')
+const contactMessageRoutes = require('./routes/contactMessageRoutes')
+const user = require('./routes/user.js')
+const flash = require('connect-flash')
 
 //configures ejs as templating language
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('views', __dirname + '/views')
+app.set('view engine', 'ejs')
 
+//configure express-session for login authentication needs
+app.use(session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true
+}))
+app.use(flash({unsafe: true}))
 
-//allows paring incoming request bodies in a middleware before handlers
-app.use(bodyParser.urlencoded({ extended: true }));
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-
-
-//create connection to application database con
-var db = mysql.createConnection({
-    host: 'gatortrader.cdnacoov8a86.us-west-1.rds.amazonaws.com',
-    port: '3306',
-    user: 'admin',
-    password: 'csc648_team10',
-    //working database name, actual database is 'gatortrader'
-
-    database: 'gatortrader_test'
+// Global variables
+app.use(function(req, res, next) {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    res.locals.error = req.flash('error');
+    next();
 });
 
-db.connect(function (err) {
-    if (err) throw err
-    console.log("Connected!")
-})
+//add middleware layers required for application (static file serving, etc)
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, '/public')));
+app.use('/', routes)
+app.use('/', loginAuth)
+app.use('/', search)
+app.use('/', aboutRoutes)
+app.use('/', postFormRoutes)
+app.use('/', contactMessageRoutes)
+app.use('/',user)
 
-//temp solution since dynamically getting all categories from database doesn't rerender
-const types = ['Appliances', 'Electronics', 'Clothes', 'Furniture', 'Tutoring', 'Textbooks']
-
-//routes
-app.get("/", (req, res) => {
-    //res.sendFile(path.join(__dirname, '/views', 'home.html'))
-    res.render('home', {
-        searchResult: "",
-        categories: types
-    })
-    console.log(types)
-})
-
-
-app.get("/about", (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', '/about.html'))
-})
-
-app.get("/team/ibraheem", (req, res) => {
-    res.sendFile(path.join(__dirname, 'views/team', '/ibraheem.html'))
-})
-
-app.get("/team/tom", (req, res) => {
-    res.sendFile(path.join(__dirname, 'views/team', '/tom.html'))
-})
-
-app.get("/team/alexander", (req, res) => {
-    res.sendFile(path.join(__dirname, 'views/team', '/alexander.html'))
-})
-
-
-db.query("SELECT * FROM category", (err, result) => {
-    if (err) {
-        console.log(err)
-    } else {
-        if (types.length == 0) {
-            for (let i = 0; i < result.length; i++) {
-                types.push(result[i].type)
-            }
-        }
-    }
-})
-
-//used for test post that gets value from the protype homepage search bar
-app.post('/', function (req, res) {
-
-    if(!db._connectCalled) {
-        db.connect()
-    }
-  
-    //deal with category result here later
-    console.log("value returned from search entry is (" + req.body.searchEntry + ")")
-
-    //if category was selected output all items for that category
-    if(types.includes(req.body.searchEntry)) {
-            db.query("SELECT * FROM item WHERE category=?", [req.body.searchEntry], (err, result) => {
-            if (err) {
-                console.log(err)
-            } 
-
-            res.render('home', {
-                searchResult: result,
-                categories: types
-            })
-        })
-    }
-    else if (!req.body.searchEntry) {
-        db.query("SELECT * FROM item", (err, result) => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(result)
-            }
-            res.render('home', {
-                searchResult: result,
-                categories: types
-            })
-        })
-    } else {
-        //else only output the item that the user entered
-        db.query("SELECT * FROM item WHERE name like '%" + req.body.searchEntry+ "%'", (err, result) => {
-            if (err) {
-                console.log(err)
-            } else {
-                console.log(result)
-            }
-            res.render('home', {
-                searchResult: result,
-                categories: types
-            })
-        })
-    }
-})
 
 const PORT = 3000
 
 app.listen(PORT, () => console.log('Server running on port ' + PORT))
-
