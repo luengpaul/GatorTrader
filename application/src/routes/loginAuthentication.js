@@ -32,7 +32,7 @@ router.post('/auth', function(request, response) {
 				Object.keys(result).forEach(function(key){
 					var row= result[key]
 					encryptedPassword=row.password
-					userID= row.userID
+					userID = row.userID
 				})
 				
 				//Compare passwords for a match 
@@ -68,12 +68,15 @@ router.post('/regis', function (request, response) {
 		
 	var password= request.body.passwordRegister
 	var email=request.body.email
-
-
 	//TODO:check if email exists before 
-	
-	//Encrypt Password for entry into database
-	bcrypt.hash(password, saltRounds, function (err,   hash) {
+	pool.query('SELECT * FROM User WHERE email = ? ', [email], function(error, result, fields) {
+
+	if(result.length != 0){
+		request.flash('error','Email already registered')
+		response.redirect('/')
+	}else{
+		//Encrypt Password for entry into database
+		bcrypt.hash(password, saltRounds, function (err,   hash) {
 		if (err) { throw (err); }
 		var createUser = {
 			firstname: request.body.firstname,
@@ -81,16 +84,17 @@ router.post('/regis', function (request, response) {
 			email: email,
 			password: hash,
 		}
-
-		
 	// now the createStudent is an object you can use in your database insert logic.
 	pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
 		if (err) throw err			
 	})
+
 	request.session.loggedin = true
 	request.session.email = email	
 	return response.redirect('/user/messages')
 	})		
+}
+	})
 })
 
 //Route for logging out
