@@ -68,13 +68,15 @@ router.post('/regis', function (request, response) {
 		
 	var password= request.body.passwordRegister
 	var email=request.body.email
-	//TODO:check if email exists before 
+	
+	//Check if email already exists in the database
 	pool.query('SELECT * FROM User WHERE email = ? ', [email], function(error, result, fields) {
 
 	if(result.length != 0){
 		request.flash('error','Email already registered')
-		response.redirect('/')
-	}else{
+		response.redirect('back')
+	}
+	else{
 		//Encrypt Password for entry into database
 		bcrypt.hash(password, saltRounds, function (err,   hash) {
 		if (err) { throw (err); }
@@ -84,18 +86,20 @@ router.post('/regis', function (request, response) {
 			email: email,
 			password: hash,
 		}
-	// now the createStudent is an object you can use in your database insert logic.
-	pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
-		if (err) throw err			
-	})
 
-	request.session.loggedin = true
-	request.session.email = email	
-	return response.redirect('/user/messages')
-	})		
-}
-	})
+		// now the createStudent is an object you can use in your database insert logic.
+		pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
+			if (err) throw err			
+		})
+
+		request.session.loggedin = true
+		request.session.email = email	
+		return response.redirect('/user/messages')
+		})		
+	}
 })
+})
+
 
 //Route for logging out
 router.get('/logout', function (req, res, next) {

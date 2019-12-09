@@ -1,5 +1,5 @@
 /**
- * This module contains all the routes for the application
+ * This module contains route for the home page
  *
  * Handles the routing and rendering of webpages.
  *
@@ -29,22 +29,6 @@ router.get("/", (req, res) => {
                 isLogin: req.session.loggedin,
                 feedbackMessage: "Recent posts on Gator Trader"
             })
-        })
-    })
-})
-
-//Route for posting form page
-router.get("/postingForm", (req, res) => {
-    //timeout necessary to get categories to appear before page is refreshed
-    res.setTimeout(200, () => {
-        res.render('postingForm', {
-            itemName: "",
-            description: "",
-            price: 0.0,
-            image: "",
-            categories: categories,
-            category: "",
-            isLogin: req.session.loggedin
         })
     })
 })

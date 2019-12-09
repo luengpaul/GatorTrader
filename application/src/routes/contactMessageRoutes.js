@@ -1,13 +1,18 @@
+/**
+ *Routes and post functions for the contact seller page and form
+ * 
+ * @author Alexander Beers, Ibraheem Chaudry, Saleh Zahran
+ */
+
 const express = require('express'), router = express.Router()
 const pool = require('../database/database')
-const path = require('path')
 const initCategories = require('../database/initCategories')
 
 //Initializes categories of items for database
 var categories = initCategories.init()
 var globalItemId
-const content = 'Please contact me'
 
+//Post method called from the modal to send data to the contact seller page
 router.post("/contactSeller", (req, res) => {
     console.log("This is the sender ID: "+ req.session.userID)
     var itemid = req.body.itemid
@@ -21,11 +26,12 @@ router.post("/contactSeller", (req, res) => {
   
 })
 
+
+//Post function called by the contact seller form
 router.post("/contact", (req, res) => {
     console.log("This is the sender ID: "+ req.session.userID)
 
-    console.log("contact reached")
-    if (message(req.session.email, req.body.phoneNumber, req.body.name, globalItemId,req.session.userID)) {
+    if (message( req.body.phoneNumber, req.body.name, globalItemId,req.session.userID)) {
         req.flash('success_msg', 'Your message is sent ');
         res.redirect("/")
 
@@ -33,6 +39,8 @@ router.post("/contact", (req, res) => {
     }
 })
 
+
+//Grab the id of the reciever using the item ID
 function getRecieverID(itemID) {
     return new Promise(resolve => {
         pool.query('SELECT userID FROM item WHERE itemID = ?', [itemID], function (error, result, fields) {
@@ -46,6 +54,8 @@ function getRecieverID(itemID) {
     })
 }
 
+
+//Grab item name using itemID
 function getItemName(itemID) {
     return new Promise(resolve => {
         pool.query('SELECT name FROM item WHERE itemID = ?', [itemID], function (error, result, fields) {
@@ -59,8 +69,8 @@ function getItemName(itemID) {
     })
 }
 
-async function message(email, phoneNumber, name, itemID, sender) {
-    // const senderID = await getSenderID(email)
+//Add message to the database using the required fields
+async function message( phoneNumber, name, itemID, sender) {
     const senderID = sender
 
     const recieverID = await getRecieverID(itemID)

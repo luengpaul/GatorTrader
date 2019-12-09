@@ -6,22 +6,24 @@
 
 
 $(document).on("click", ".openModal", function () {
+    //Image source
     var itemImageSrc ="/post_images/resized/"+ $(this).data('img');
-    console.log(itemImageSrc);
     $(".modal-body #modalImage").attr("src", itemImageSrc);
 
-    var itemid= $(this).data('itemid')
-
+    //Name
     var name= $(this).data('name')
     document.getElementById("itemHeader").innerHTML = name
 
+    // Price
     var price= $(this).data('price')
     document.getElementById("itemPrice").innerHTML= price
 
+    //Description
     var description= $(this).data('description')
     document.getElementById("itemDescription").innerHTML= description
 
-    console.log("This is what click function recieves "+ itemid)
+    //Item Id
+    var itemid= $(this).data('itemid')
     $(".modal-footer #modal-itemid").attr("value", itemid);
 });
 

@@ -1,9 +1,6 @@
 /**
- * This module contains all the routes for the application
+ * Routes and functions for the user dashboard
  *
- * Handles the routing and rendering of webpages.
- *
- * @author 
  */
 
 const express = require('express'), router = express.Router()

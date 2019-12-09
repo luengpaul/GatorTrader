@@ -7,16 +7,13 @@
 
  //Checks if error messages need to be displayed in modal on page refresh
 $(document).ready(function() {
-    // console.log("Document is ready")
 
     //This variable is being set when login function is called
     var showLoginError = localStorage.getItem("showLoginError")
 
-    // console.log("Current state of whether to show login modal or not" + showLoginError)
-
     //If errors need to be displayed pop open modal
     if(showLoginError){
-        // console.log("The conditional is being reached.")
+        //Clear local storage after diplaying the modal once
         localStorage.clear()
         $("#loginModal").modal();
     }
