@@ -13,11 +13,21 @@ body {
  
 }
  
-/* Creating padding for about button */
-#aboutbtn{
-
+.search-sort{
+   padding-top: 2%;
+   
 }
- 
+
+.invisible-form{
+    visibility: hidden;
+    position: relative;
+    z-index: -1;
+  }
+  
+
+.hidden-select{
+    visibility: hidden;
+}
  
  
  

@@ -12,11 +12,14 @@ const initCategories = require('../database/initCategories')
 //Initialize categories of items from database.
 var categories = initCategories.init()
 
+var results=null
+
+console.log("This is what the global variable for results holds : "+ results)
 //Search function that renders results to posts page
 router.post('/results', function (req, res, next) {
     var msg = ""
     //deal with category result here later
-    console.log("value returned from search entry is (" + req.body.searchEntry + ")")
+    // console.log("value returned from search entry is (" + req.body.searchEntry + ")")
 
     //if category was selected output all items for that category
     if (categories.includes(req.body.searchEntry)) {
@@ -24,7 +27,16 @@ router.post('/results', function (req, res, next) {
             if (err) {
                 console.log(err)
             }
+            else if (result.length == 0) {
+                msg = "No search results were found for the given entry."
+            }
+            else{
+                results=result
+               
+            }
+            
             res.render('results', {
+                displayMessage: msg,
                 searchResult: result,
                 categories: categories,
                 isLogin: req.session.loggedin,
@@ -32,11 +44,12 @@ router.post('/results', function (req, res, next) {
         })
     }
     else if (!req.body.searchEntry) {
-        pool.query("SELECT * FROM item WHERE approved = 1 ORDER BY date_upload DESC LIMIT 0, 8", (err, result) => {
+        pool.query("SELECT * FROM item WHERE approved = 1 ORDER BY date_upload DESC ", (err, result) => {
             if (err) {
                 console.log(err)
-            } else {
-                //console.log(result)
+            }  else{
+                results=result
+               
             }
             res.render('results', {
                 searchResult: result,
@@ -54,8 +67,9 @@ router.post('/results', function (req, res, next) {
             }
             else if (result.length == 0) {
                 msg = "No search results were found for the given entry."
-            } else {
-                //console.log(result)
+            }else{
+                results=result
+              
             }
             res.render('results', {
                 displayMessage: msg,
@@ -67,5 +81,34 @@ router.post('/results', function (req, res, next) {
     }
 
 })
+
+
+//sorted search function that renders results to posts page
+router.post('/results/sort', function (req, res, next) {
+    var sortBy= req.body.sortBy
+
+        //sort by price low to high
+        if(sortBy == "price-asc"){
+          
+            results.sort((a,b)=>{
+                return (a.price < b.price) ? 1 : -1 
+            })
+        }
+         //sort by price low to high
+         if(sortBy == "price-desc"){
+           
+            results.sort((a,b)=>{
+                return (a.price > b.price) ? 1 : -1 
+            })
+        }
+
+        res.render('results', {
+            searchResult: results,
+            categories: categories,
+            isLogin: req.session.loggedin,
+        })
+
+})
+
 
 module.exports = router

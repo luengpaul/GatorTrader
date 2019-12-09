@@ -13,11 +13,21 @@
 
     <!--Imports navbar from assets -->
     <% include assets/navbar %>
-
+<div class="row justify-content-end search-sort">
+    <form  class="col-2" action="/results/sort" method="post">
+    <select id="" class="btn btn-warning " name="sortBy" onchange="this.form.submit()">
+      <option value="" selected>Sort By</option>
+    
+      <option value="price-asc">Price: Low to High </option>
+      <option value="price-desc">Price: High to Low </option>
+          
+    </select>
+  </form></div>
+    
 
     <!--Container of result listings -->
     <div class="itemContainer container-fluid">
-
+        
         <%if(typeof(displayMessage) != "undefined") { %> <h2><%=displayMessage%></h2> <% } %>
 
 

@@ -15,17 +15,30 @@
             <a onclick="document.getElementById('user-messages').submit();" class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm ">Messages<span class="sr-only">(current)</span></a>
             <a onclick="document.getElementById('user-items').submit();" class="btn btn-warning btn-lg  col-lg-2 cancelForm">Sales Items<span class="sr-only"></span></a>
 
-            <form class="messageEmpty" id="user-items" name="userform" action="/user/sales" method="GET"></form>
-            <form class="messageEmpty" id="user-messages" name="userform" action="/user/messages" method="GET"></form>
+            <form class="messageEmpty" id="user-items"  action="/user/sales" method="GET"></form>
+            <form class="messageEmpty" id="user-messages"  action="/user/messages" method="GET"></form>
         </div>
+
+         <!-- Forms to call Sorting functions -->
+         <form class="messageEmpty invisible-form hidden-select" id="sort-items" action="/user/sales/sort" method="POST">
+            <select id="sort-option" class="btn btn-warning " name="sortBy">    
+            <option value="date"></option>
+            <option value="name"> </option>
+            <option value="price"> </option>         
+            </select>
+        </form>
+
 
         <div class="contactSeller col-lg-12">
             <div class="row outline">
-                <h5 class="col-md-3 messageHeader "><u>Date</u></h5>
-                <h5 class="col-md-4 messageHeader "><u>Item Name</u></h5>
-                <h5 class="col-md-3 messageHeader"><u>Price</u></h5>
+                <h5 class="btn col-md-3 messageHeader" id="item-date" onclick="document.getElementById('sort-option').value='date'; document.getElementById('sort-items').submit();"><u>Date</u></h5>
+                <h5 class="btn col-md-4 messageHeader" id="item-name" onclick="document.getElementById('sort-option').value='name' ; document.getElementById('sort-items').submit();"><u>Item Name</u></h5>
+                <h5 class="btn col-md-3 messageHeader" id="item-price" onclick="document.getElementById('sort-option').value='price' ; document.getElementById('sort-items').submit();"><u>Price</u></h5>
                 <h5 class="col-md-2 messageHeader"><u></u></h5>
             </div>
+
+           
+
 
             <!--Loop to Display Sales item for each row-->
             <% for(var i=0; salesItems[i]; i++) { %>
@@ -36,7 +49,7 @@
                 <h5 onclick="document.getElementById('delete-item').submit();" class="col-md-2 messageHeader btn btn-warning "><u>Delete</u></h5>
             </div>
 
-            <form class="messageEmpty" id="delete-item" name="delete-item" action="/user/sales/delete" method="POST">
+            <form class="messageEmpty invisible-form" id="delete-item" name="delete-item" action="/user/sales/delete" method="POST">
                 <input type="hidden" id="itemID" name="itemID" value="<%=salesItems[i].itemID%>">
             </form>
             <% } %>
@@ -49,12 +62,6 @@
 
 <style>
 
-#delete-item{
-  position: relative;
-  left: 0px;
-  top: 0px;
-  z-index: -1;
-}
 
 </style>
 

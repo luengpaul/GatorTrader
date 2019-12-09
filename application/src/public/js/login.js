@@ -17,7 +17,8 @@ $(document).ready(function() {
     //If errors need to be displayed pop open modal
     if(showLoginError){
         // console.log("The conditional is being reached.")
-            $("#loginModal").modal();
+        localStorage.clear()
+        $("#loginModal").modal();
     }
 });
 

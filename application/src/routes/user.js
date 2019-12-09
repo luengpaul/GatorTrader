@@ -13,6 +13,8 @@ const pool = require('../database/database')
 //Initializes categories of items for database
 var categories = initCategories.init()
 
+var salesItems= null
+
 
 //Route for user dashboard messages tab
 router.get("/user/messages", (req, res) => {
@@ -39,11 +41,14 @@ router.get("/user/sales", (req, res) => {
     
     console.log("This is the userID " + req.session.userID)
 
-    pool.query("SELECT * FROM item WHERE userID=? ", [req.session.userID], (err, results) => {
+    pool.query("SELECT * FROM item WHERE  userID=? ORDER BY date_upload DESC", [req.session.userID], (err, results) => {
         if (err) {
             console.log(err)
         }
 
+        else{
+            salesItems=results
+        }
         // console.log(results)
 
         if (req.session.loggedin) {
@@ -99,6 +104,78 @@ router.post("/user/messages/delete", (req, res, next) => {
     res.redirect('/user/messages')
 })
 
+
+var dateSortAscending=true
+var priceSortAscending= null
+var nameSortAscending= null
+
+//Sorting items
+router.post("/user/sales/sort", (req, res , next) =>{
+
+    var sortBy= req.body.sortBy
+
+    
+    if(sortBy == "date"){
+        if(dateSortAscending){
+        salesItems.sort((a,b)=>{
+            return (a.date_upload < b.date_upload ) ? 1 : -1 
+        })
+        dateSortAscending=false
+    }
+         else{
+        salesItems.sort((a,b)=>{
+            return (a.date_upload > b.date_upload ) ? 1 : -1 
+           
+        })
+        dateSortAscending=true
+    }
+}
+
+
+    if(sortBy == "name"){
+        if(nameSortAscending){
+            salesItems.sort((a,b)=>{
+            return (a.name< b.name ) ? 1 : -1 
+        })
+        nameSortAscending=false
+    }
+         else{
+        salesItems.sort((a,b)=>{
+            return (a.name > b.name ) ? 1 : -1 
+        })
+        nameSortAscending=true
+    }
+}
+
+    if(sortBy == "price"){
+        if(priceSortAscending){
+            salesItems.sort((a,b)=>{
+            return (a.price< b.price ) ? 1 : -1 
+        })
+        priceSortAscending=false
+    }
+         else{
+        salesItems.sort((a,b)=>{
+            return (a.price > b.price ) ? 1 : -1 
+        })
+        priceSortAscending=true
+    }
+    }
+
+
+    if (req.session.loggedin) {
+        res.render('userDashboardSalesItemTab', {
+            salesItems: salesItems,
+            categories: categories,
+            isLogin: req.session.loggedin
+        })
+    }
+    else {
+        req.flash('error_msg','You dont have access to this website')
+        //res.send('You dont have access to this website');
+    }
+
+})
 
 
 
