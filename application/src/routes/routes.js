@@ -49,35 +49,4 @@ router.get("/postingForm", (req, res) => {
     })
 })
 
-//Route for user dashboard pages
-router.get("/user/messages", (req, res) => {
-    if (req.session.loggedin) {
-        res.render('userDashboardMessageTab', {
-            searchResult: "",
-            categories: categories,
-            isLogin: req.session.loggedin
-        })
-    }
-    else {
-        //res.send('You dont have access to this website');
-        req.flash('error_msg', 'You have to log in')
-    }
-    res.end();
-})
-
-// router.get("/user/sales", (req, res) => {
-//     if (req.session.loggedin) {
-//         res.render('userDashboardMessageTab', {
-//             categories: categories,
-//             isLogin: req.session.loggedin
-//         })
-//     }
-//     else {
-//         //res.send('You dont have access to this website');
-//         req.flash('error_msg', 'You have to log in')
-//     }
-//     res.end();
-// })
-
-
 module.exports = router
