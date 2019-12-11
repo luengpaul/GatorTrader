@@ -13,14 +13,27 @@ body {
 
 }
 
+
 /* Creating padding for about button */
 #aboutbtn{
 
+ 
+.search-sort{
+   padding-top: 2%;
+   
 }
 
+.invisible-form{
+    visibility: hidden;
+    position: relative;
+    z-index: -1;
+  }
+  
 
 
-
+.hidden-select{
+    visibility: hidden;
+}
 
 /*Temporary sizing images to the same size by stretching*/
 img {
@@ -655,7 +668,7 @@ body, h1, h2, h3, h4, h5, h6 {
 
 .messageHeader {
     color: black;
-    height: 20%;
+    height: 40%;
 }
 
 .messageFriends {
@@ -735,6 +748,12 @@ body, h1, h2, h3, h4, h5, h6 {
 /*end for user dash*/
 
 /*Begin for Contact Seller*/
+
+ 
+.items-dashboard{
+    background-color: lightgray;
+}
+
 
 .contactSeller {
     background-color: lightgray;

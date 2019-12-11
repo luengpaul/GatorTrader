@@ -1,3 +1,9 @@
+/**
+ * Configurations for file upload 
+ *
+ * @author Alexander Beers.
+ */
+
 const multer = require('multer')
 const path = require('path')
 
