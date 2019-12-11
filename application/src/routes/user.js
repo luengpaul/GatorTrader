@@ -73,7 +73,7 @@ router.post("/user/sales/delete", (req, res, next) => {
         if (err) {
             console.log(err)
         }
-
+        console.log(itemID)
         console.log("Succesfully Deleted item")
     })
 
@@ -92,7 +92,7 @@ router.post("/user/messages/delete", (req, res, next) => {
         if (err) {
             console.log(err)
         }
-
+        console.log(mID)
         console.log("Succesfully Deleted message")
     })
     

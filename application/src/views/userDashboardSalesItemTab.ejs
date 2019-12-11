@@ -12,7 +12,7 @@
  
     <div class="col-lg-12">
         <div class=" messageEmpty ">
-            <a onclick="document.getElementById('user-messages').submit();" class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm ">Messages<span class="sr-only">(current)</span></a>
+            <a onclick="document.getElementById('user-messages').submit();" class="btn btn-outline-warning btn-lg  col-lg-2 cancelForm ">Messages<span class="sr-only"></span></a>
             <a onclick="document.getElementById('user-items').submit();" class="btn btn-warning btn-lg  col-lg-2 cancelForm">Sales Items<span class="sr-only"></span></a>
 
             <form class="messageEmpty" id="user-items" action="/user/sales" method="GET"></form>
@@ -33,7 +33,7 @@
                         <img src="/sortBtn.png" style="width:25px; height:25px;" />
                     </h5>
                 </div>
-                <div class="btn col-md-3 messageHeader" style=" border-right:2px solid black;">
+                <div class="btn col-md-3 messageHeader" style="border-right:2px solid black;">
                     <h5 style="display:inline; float:left;">Price&nbsp&nbsp</h5><h5 id="sortBtn" style="display:inline; float:left;" onclick="document.getElementById('sort-option').value = 'price';
                                document.getElementById('sort-items').submit();">
                         <img src="/sortBtn.png" style="width:25px; height:25px;" />
@@ -44,12 +44,12 @@
 
             <!--Loop to Display Sales item for each row-->
             <% for(var i=0; salesItems[i]; i++) { %>
-            <div class="row messageHeader outline">
+            <div class="row messageHeader outline" style="border-bottom:1px solid black;">
                 <h5 class="col-md-3 my-auto"><%=salesItems[i].date_upload%></h5>
                 <h5 class="col-md-3 my-auto"><%=salesItems[i].name%></h5>
                 <h5 class="col-md-3 my-auto"><%=salesItems[i].price%></h5>
-                <div class="col text-center my-auto" ><h5 onclick="document.getElementById('sort-option').value = '<%=salesItems[i].itemID%>';
-                            document.getElementById('delete-item').submit();" class=" btn btn-warning"  >Delete</h5></div>
+                <div class="col text-center my-auto  btn btn-warning" style="border-left:2px solid black;"><h5 onclick="document.getElementById('sort-option').value = '<%=salesItems[i].itemID%>';
+                            document.getElementById('delete-item').submit();">Delete</h5></div>
             </div>
             <% } %>
         </div>
