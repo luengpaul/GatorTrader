@@ -45,14 +45,15 @@
             <!--Loop to Display Sales item for each row-->
             <% for(var i=0; salesItems[i]; i++) { %>
             <div class="row messageHeader outline" style="border-bottom:1px solid black;">
-                <h5 class="col-md-3 my-auto"><%=salesItems[i].date_upload%></h5>
+                <h5 class="col-md-3 my-auto"><%=salesItems[i].date_upload.toString().substring(0,25)%></h5>
                 <h5 class="col-md-3 my-auto"><%=salesItems[i].name%></h5>
-                <h5 class="col-md-3 my-auto"><%=salesItems[i].price%></h5>
-                <div class="col text-center my-auto  btn btn-warning" style="border-left:2px solid black;"><h5 onclick="document.getElementById('sort-option').value = '<%=salesItems[i].itemID%>';
-                            document.getElementById('delete-item').submit();">Delete</h5></div>
+                <h5 class="col-md-3 my-auto"><%=salesItems[i].price%></h5>           
+                <div class="col text-center my-auto btn btn-warning" style="border-left:2px solid black;"
+                onclick="document.getElementById('itemID').value= '<%=salesItems[i].itemID%>';
+                            document.getElementById('delete-item').submit();"><h5 >Delete</h5></div>
+                </div>
+                <% } %>
             </div>
-            <% } %>
-        </div>
     </div>
     <!-- Forms to call Sorting functions -->
     <form class="messageEmpty invisible-form hidden-select" id="sort-items" action="/user/sales/sort" method="POST">
@@ -64,7 +65,7 @@
     </form>
 
     <form class="messageEmpty invisible-form" id="delete-item" name="delete-item" action="/user/sales/delete" method="POST">
-        <input type="hidden" id="itemID" name="itemID">
+        <input type="hidden" id="itemID" name="itemID" value="test">
     </form>
 </body>
 <% include assets/footer %>

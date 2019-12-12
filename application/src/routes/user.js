@@ -11,6 +11,8 @@ const pool = require('../database/database')
 var categories = initCategories.init()
 
 var salesItems= null
+var messages=null
+
 
 
 //Route for user dashboard messages tab
@@ -58,13 +60,13 @@ router.get("/user/sales", (req, res) => {
             //res.send('You dont have access to this website');
         }
         res.end();
-})
+    })
 })
 
 
 //Route for deleting posted sales item
 router.post("/user/sales/delete", (req, res, next) => {
-    var itemID= req.body.itemID
+    var itemID = req.body.itemID
     console.log("item id is " + itemID)
 
 

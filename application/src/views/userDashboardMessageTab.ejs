@@ -53,12 +53,12 @@
             <!--Loop to Display Messages for each row-->
             <% for(var i=0; messages[i]; i++) { %>
             <div class="row messageHeader outline" style="border-bottom:1px solid black;">
-                <h5 class="col-md-3 my-auto"><%=messages[i].date_sent%></h5>
+                <h5 class="col-md-3 my-auto"><%=messages[i].date_sent.toString().substring(0,25)%></h5>
                 <h5 class="col-md-2 my-auto"><%=messages[i].itemName%></h5>
                 <h5 class="col-md-2 my-auto"><%=messages[i].name%></h5>
                 <h5 class="col-md-3 my-auto"><%=messages[i].phoneNumber%></h5>
                 <div class="col text-center my-auto  btn btn-warning" style="border-left:2px solid black;">
-                    <h5 onclick="document.getElementById('sort-option').value = '<%=messages[i].mID%>';
+                    <h5 onclick="document.getElementById('mID').value = '<%=messages[i].mID%>';
                             document.getElementById('delete-message').submit();">
                         Delete
                     </h5>

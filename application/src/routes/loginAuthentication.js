@@ -110,7 +110,7 @@ router.get('/logout', function (req, res, next) {
             if (err) {
                 return next(err)
             } else {
-                return res.redirect('back')
+                return res.redirect('/')
             }
         })
     }
