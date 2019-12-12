@@ -23,7 +23,34 @@ body {
     position: relative;
     z-index: -1;
   }
-  
+
+.GatorLogo {
+    width: 387px;
+    height: 95px;
+    position: relative;
+    right: 10px;
+}
+
+
+.GatorTraderBannerLogo {
+    margin: 0;
+    height: 80px;
+    width: 80px;
+    border: 2px solid purple;
+    border-radius: 25px;
+}
+
+.GatorTraderLogo {
+    font-family: 'Lobster', cursive;
+    color: #FAF5FF;
+    font-size: 50px;
+}
+
+#GatorTraderLogoSmall {
+    font-family: 'Lobster', cursive;
+    color: black;
+    font-size: 40px;
+}
 
 .hidden-select{
     visibility: hidden;
@@ -210,14 +237,14 @@ h1 {
     margin: auto;
     position: relative;
     bottom: 41px;
-    width: 656px;
+    width: 456px;
     height: 41px;
     background-color: #3a4750;
 }
- 
+
 .dropdownMenu {
-    margin: 0;
-    left: 0;
+    margin: auto;
+    left: 25%;
     bottom: 43px;
     height: 60px;
     position: relative;
@@ -226,8 +253,8 @@ h1 {
  
 .dropDown {
     margin: 0;
-    height: 39px;
-    left: 0;
+    height: 46px;
+    right: -7%;
     position: relative;
     display: inline-block;
     border: none;
@@ -236,12 +263,14 @@ h1 {
 .Searchwindow {
     margin: 0;
     position: relative;
-    height: 39px;
+    height: 46px;
     display: inline-block;
     width: 465px;
     border: none;
+    right: -9%;
+    
 }
- 
+
 .searchButton {
     position: relative;
     display: inline-block;
@@ -250,20 +279,23 @@ h1 {
     margin: 0;
     font-size: 20px;
 }
- 
- 
+
+
 input[type=text] {
+    width: 350px;
     color: black;
     font-weight: 600;
 } 
  
 input[type=email] {
+    width: 350px;
     color: black;
     font-weight: 600;
-} 
- 
- 
+}
+
+
 input[type=password] {
+    width: auto;
     color: black;
     font-weight: 600;
 } 
