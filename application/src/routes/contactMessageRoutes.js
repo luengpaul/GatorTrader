@@ -86,7 +86,7 @@ async function message( phoneNumber, name, itemID, sender) {
 
     console.log(newMessage)
 
-    pool.query('INSERT INTO gatortrader_test.message SET ?', newMessage, (err, rows, result) => {
+    pool.query('INSERT INTO message SET ?', newMessage, (err, rows, result) => {
         if (err) console.log(err)
     })
 }

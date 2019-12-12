@@ -33,7 +33,8 @@ const pool = mysql.createPool({
   user: 'admin',
   password: 'csc648_team10',
   //working database name, actual database is 'gatortrader'
-  database: 'gatortrader_test'
+  //database: 'gatortrader_test'
+    database: 'gatortrader'
 })
 
 // Ping database to check for common exception errors.

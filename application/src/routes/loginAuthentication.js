@@ -17,9 +17,7 @@ router.post('/auth', function(request, response) {
 	var email = request.body.email
 	var password = request.body.password
 	
-
 	if (email && password) {
-
 		pool.query('SELECT * FROM User WHERE email = ? ', [email], function(error, result, fields) {
 			if (result.length > 0) {
 				
@@ -41,17 +39,16 @@ router.post('/auth', function(request, response) {
 					if(result==true){
 						request.session.loggedin = true
 						request.session.email = email
-						request.session.userID=userID
+						request.session.userID = userID
 
 						request.flash('success_msg', 'You are logged in')
 						return response.send({valid: true})
 
-					}
-					else {
+					} else {
 						request.flash('error_msg', 'Incorrect Password! Please Try Again')
 						
 						return response.send({valid: false})
-				}
+				  }
 				})
 			} 
 			else{
@@ -66,8 +63,8 @@ router.post('/auth', function(request, response) {
 router.post('/regis', function (request, response) {
     console.log("registration being processed")
 		
-	var password= request.body.passwordRegister
-	var email=request.body.email
+	var password = request.body.passwordRegister
+	var email = request.body.email
 	
 	//Check if email already exists in the database
 	pool.query('SELECT * FROM User WHERE email = ? ', [email], function(error, result, fields) {
@@ -88,7 +85,8 @@ router.post('/regis', function (request, response) {
 		}
 
 		// now the createStudent is an object you can use in your database insert logic.
-		pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
+    pool.query('INSERT INTO User SET ?', createUser, function (err, response) {
+		//pool.query('INSERT INTO gatortrader_test.User SET ?', createUser, function (err, response) {
 			if (err) throw err			
 		})
 
