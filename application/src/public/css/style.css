@@ -3,31 +3,23 @@ body {
     background-color: #eeeeee;
 }
 
-#search-bar{
- margin-left: 2px;
-
-}
-
-#search-submit{
+#search-bar {
     margin-left: 2px;
-
 }
 
-
-/* Creating padding for about button */
-#aboutbtn{
-
- 
-.search-sort{
-   padding-top: 2%;
-   
+#search-submit {
+    margin-left: 2px;
 }
 
-.invisible-form{
+.search-sort {
+    padding-top: 2%;
+}
+
+.invisible-form {
     visibility: hidden;
     position: relative;
     z-index: -1;
-  }
+}
 
 .GatorLogo {
     width: 387px;
@@ -57,8 +49,7 @@ body {
     font-size: 40px;
 }
 
-
-.hidden-select{
+.hidden-select {
     visibility: hidden;
 }
 
@@ -101,7 +92,7 @@ img {
 /* #resizing_select {
   width: 80px;
  }
-
+ 
 #resizing_select:focus {
   min-width: 80px;
   width: auto;
@@ -127,8 +118,8 @@ img {
 
 .LoginButton {
     z-index: 9999;
-    float:right;
-    padding-right:20px;
+    float: right;
+    padding-right: 20px;
 }
 
 .card-group {
@@ -140,7 +131,6 @@ img {
     margin-left: 200px;
     border: 2px solid;
     height: 100%;
-
     width: 75%;
     background-color: #d3d3d3;
 }
@@ -199,12 +189,11 @@ img {
 
 .navbar {
     background-color: #330033;
-
 }
 
 
 .Introduction {
-    padding-top:20px;
+    padding-top: 20px;
     position: relative;
     margin: auto 2.5%;
     font-family: sans-serif;
@@ -229,13 +218,6 @@ h1 {
 .GatorTrader {
     font-family: 'Lobster', cursive;
     font-size: 40px;
-}
-
-.GatorLogo{
-  width: 387px;
-  height: 95px;
-  position: relative;
-  right: 10px;
 }
 
 .LogoPlusSearch {
@@ -274,14 +256,13 @@ h1 {
 }
 
 .Searchwindow {
-    margin: auto;
+    margin: 0;
     position: relative;
     height: 46px;
     display: inline-block;
     width: 465px;
     border: none;
     right: -9%;
-    
 }
 
 .searchButton {
@@ -379,7 +360,7 @@ h2 {
     border: 1px solid black;
 }
 
-.sortDropDown{
+.sortDropDown {
     position: relative;
     left: 93%;
 }
@@ -668,13 +649,13 @@ body, h1, h2, h3, h4, h5, h6 {
     max-height: fit-content;
 }
 
-.modalMessageFont{
-    font-size:15px;
+.modalMessageFont {
+    font-size: 15px;
     font-family: Helvetica, Arial, sans-serif;
 }
 
 
-#formSubmit{
+#formSubmit {
     float: right;
 }
 
@@ -766,7 +747,7 @@ body, h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 20%;
     background-color: white;
-    position:relative;
+    position: relative;
     padding-top: 25px;
 }
 
@@ -780,11 +761,9 @@ body, h1, h2, h3, h4, h5, h6 {
 
 /*Begin for Contact Seller*/
 
- 
-.items-dashboard{
+.items-dashboard {
     background-color: lightgray;
 }
-
 
 .contactSeller {
     background-color: lightgray;
@@ -805,15 +784,15 @@ body, h1, h2, h3, h4, h5, h6 {
     outline: 2px solid black;
 }
 
-.backgroundColor{
-    background-color:#330033
+.backgroundColor {
+    background-color: #330033
 }
 
 
-.newAboutButton{
-    padding-right:200px;
+.newAboutButton {
+    padding-right: 200px;
     padding-bottom: 20px;
-    background-color:#330033;
+    background-color: #330033;
 }
 
 
