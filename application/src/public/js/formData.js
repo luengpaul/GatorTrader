@@ -5,54 +5,55 @@
  */
 
 
+// window.onbeforeunload = function() {
+//     sessionStorage.setItem("itemName", $('#item-post-name').val());
+//     sessionStorage.setItem("description", $('#item-post-description').val());
+//     sessionStorage.setItem("price", $('#item-post-price').val());
+//     sessionStorage.setItem("category", $('#item-post-category').val());
+   
+// }
 
-function saveForm() {
+// window.onload = function() {
 
-    //nothing to work with, get out of here
-    if(typeof window.sessionStorage ==="undefined"){return;}
+// var itemName = sessionStorage.getItem("itemName");
+// if (itemName !== null) $('#item-post-name').val(itemName);
 
-    //Attirbutes to save from the form
-    saveValues("input");
-    saveValues("select");
-    saveValues('textarea')
+// var description= sessionStorage.getItem("description");
+// if (description !== null) $('#item-post-description').val(description);
 
-
-    return true;
-}
-
-
-function loadForm() {
-
-    //nothing to work with, get out of here
-    if(typeof window.sessionStorage ==="undefined"){return;}
+// var price = sessionStorage.getItem("price");
+// if (price !== null) $('#item-post-price').val(price);
 
 
-    //Attibutes to load after form reload
-    setValues("input");
-    setValues("select");
-    setValues("textarea");
+// var category= sessionStorage.getItem("category");
+// if (category !== null) $('#item-post-category').val(category);
 
-}
+// sessionStorage.clear()
 
 
-function saveValues(tag){
-
-    var inputs=document.getElementsByTagName(tag);
-
-    for(var i=0;i<inputs.length;i++){
-        window.sessionStorage.setItem(inputs[i].name, inputs[i].value);
-    }
-
-}
 
 
-function setValues(tag){
+    // <script>
 
-    var inputs=document.getElementsByTagName(tag);
+    //     // const description = document.getElementById("item-post-description");
+    //     // const reg=new RegExp("[ A-Za-z0-9,.!?$]+") 
 
-    for(var i=0;i<inputs.length;i++){
-        inputs[i].value = window.sessionStorage.getItem(inputs[i].name);
-        }
-}
+
+    //     // description.addEventListener("input", function (event) {
+    //     //     var text= $('#item-post-description').val()
+
+
+    //     //     if (! reg.test(text)) {
+    //     //         description.setCustomValidity("You cannot input those characters!");
+    //     //     } else {
+    //     //         description.setCustomValidity("");
+    //     //     }
+    //     // });
+
+
+
+
+
+    // </script>
 
 
