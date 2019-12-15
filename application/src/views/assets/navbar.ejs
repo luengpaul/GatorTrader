@@ -60,8 +60,9 @@
                         </div>
 
 
-                        <form class="form-inline Searchwindow" action="/results" method="post">
-                            <input id="search-bar" class="form-control  " type="text" placeholder="Search for products..." name="searchEntry">
+                        <form class="form-inline Searchwindow" action="/results" role="form" data-toggle="validator" method="post">
+                            <input id="search-bar" class="form-control  " type="text" placeholder="Search for products..." 
+                                   oninvalid="this.setCustomValidity('Please use alphanumeric characters only')" oninput="setCustomValidity('')"  name="searchEntry" pattern="[ A-Za-z0-9]+" maxlength="20">
                             <input id="search-submit" class="btn btn-warning btn-outline-warning searchButton" type="submit" value="Search">
                             <a id="sellbtn" class="btn btn-outline-warning btn-md SellButton" href="/postingForm" *>Sell<span class="sr-only">(current)</span></a>
                         </form>

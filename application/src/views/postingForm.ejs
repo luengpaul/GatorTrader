@@ -17,7 +17,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="postingLabel col-sm-2">Item Name *</label>
+                <label class="postingLabel col-sm-2 col-form-label-lg">Item Name </label>
                 <div class="row-lg-12">
                     <input type="text" id="item-post-name" name="itemName" class="border-dark form-control" pattern="[ A-Za-z0-9]+" maxlength="20"
                            placeholder="Alphanumeric characters only." val="" required>
@@ -25,7 +25,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="postingLabel col-sm-2 col-form-label-lg">Category *</label>
+                <label class="postingLabel col-sm-2 col-form-label-lg">Category </label>
                 <div class="row-lg-12">
                     <select id="item-post-category" name="category" class="border-dark form-control">
                         <option value="">Choose category</option>
@@ -37,7 +37,7 @@
             </div>
 
             <div class="form-group row">
-                <label class="postingLabel col-sm-2 col-form-label-lg">Description *</label>
+                <label class="postingLabel col-sm-2 col-form-label-lg">Description </label>
                 <div class="row-lg-12">
                     <textarea id="item-post-description" name="description" class="form-control border-dark col-lg-12"
                               rows="5" cols="32" maxlength="150" required></textarea>
@@ -47,7 +47,7 @@
 
 
             <div class="form-group row">
-                <label class="postingLabel col-sm-2 col-form-label-lg">Price *</label>
+                <label class="postingLabel col-sm-2 col-form-label-lg">Price </label>
                 <div class="row-lg-12">
                     <div class="input-group-prepend">
                         <span class="input-group-text border-dark">$</span>
@@ -59,7 +59,7 @@
 
 
             <div class="form-group row">
-                <label class="postingLabel col-sm-2 col-form-label-lg" for="postImage">Image *</label>
+                <label class="postingLabel col-sm-2 col-form-label-md" for="postImage">Image </label>
                 <div class="row-lg-12">
                     <input name="image" type="file" required />
                 </div>
@@ -69,12 +69,12 @@
             <div class="form-group row">
                 <label class="postingLabel col-sm-2 col-form-label-lg"></label>
                 <input name="terms" type="checkbox" id="terms" data-error="Required to post" required>
-                &nbspBy checking this box I agree to the&nbsp<u>Terms and Conditions</u>
+                <p><br />&nbsp&nbsp&nbspBy checking this box I agree to the&nbsp<u>Terms and Conditions.</u><br />&nbsp&nbsp&nbspAdminstrator approval of all posts may take up to 24 hours.</p>
                 <div class="help-block with-errors"></div>
-            </div>
-
+            </div> 
+            
             <div class="form-group row">
-                <label class="postingLabel col-sm-3 col-form-label-md">(*) Indicates Required Fields</label>
+                <label class="postingLabel col-sm-3 col-form-label-lg"></label>
                 <div class="row-lg-12">
                     <div class="CancelandSubmitContainer">
                         <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
@@ -85,7 +85,7 @@
                         <% } %>
                     </div>
                 </div>
-            </div>    
+            </div>
         </form>
     </div> 
 
