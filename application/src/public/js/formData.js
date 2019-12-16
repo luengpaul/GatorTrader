@@ -4,7 +4,6 @@
  * @author Ibraheem Chaudry 
  */
 
-
 // window.onbeforeunload = function() {
 //     sessionStorage.setItem("itemName", $('#item-post-name').val());
 //     sessionStorage.setItem("description", $('#item-post-description').val());

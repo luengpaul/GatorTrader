@@ -1,6 +1,7 @@
 /**
  * Routes and functions for the user dashboard
  *
+ * @author Alexander Beers, Ibraheem Chaudry.
  */
 
 const express = require('express'), router = express.Router()
@@ -10,10 +11,8 @@ const pool = require('../database/database')
 //Initializes categories of items for database
 var categories = initCategories.init()
 
-var salesItems= null
-var messages=null
-
-
+var salesItems = null
+var messages = null
 
 //Route for user dashboard messages tab
 router.get("/user/messages", (req, res) => {
@@ -22,9 +21,9 @@ router.get("/user/messages", (req, res) => {
             console.log(err)
         } else {
             messages = results
-            var noResult= false
-            if(messages.length==0){
-                noResult=true
+            var noResult = false
+            if (messages.length == 0) {
+                noResult = true
             }
         }
         if (req.session.loggedin) {
@@ -35,14 +34,11 @@ router.get("/user/messages", (req, res) => {
                 userName: req.session.name,
                 noResult: noResult
             })
-        }
-        else{
+        } else {
             res.redirect('/')
         }
     })
 })
-
-
 
 //Route for user dashboard posted items tab
 router.get("/user/sales", (req, res) => {
@@ -55,8 +51,8 @@ router.get("/user/sales", (req, res) => {
         } else {
             salesItems=results
             var noResult= false
-            if(salesItems.length==0){
-                noResult=true
+            if(salesItems.length == 0){
+                noResult = true
             }
         }
         // console.log(results)
@@ -115,43 +111,43 @@ router.post("/user/messages/delete", (req, res, next) => {
 })
 
 
-var dateSortToggle=true
-var priceSortToggle= null
-var nameSortToggle= null
+var dateSortToggle = true
+var priceSortToggle = null
+var nameSortToggle = null
 
 //Sorting items
 router.post("/user/sales/sort", (req, res , next) =>{
 
-    var sortBy= req.body.sortBy
+    var sortBy = req.body.sortBy
 
     
-    if(sortBy == "date"){
-        if(dateSortToggle){
-        salesItems.sort((a,b)=>{
+    if (sortBy == "date") {
+        if (dateSortToggle) {
+        salesItems.sort((a,b) => {
             return (a.date_upload < b.date_upload ) ? 1 : -1 
         })
-        dateSortToggle=false
+        dateSortToggle = false
     } else {
-        salesItems.sort((a,b)=>{
+        salesItems.sort((a,b) => {
             return (a.date_upload > b.date_upload ) ? 1 : -1 
            
         })
-        dateSortToggle=true
+        dateSortToggle = true
     }
 }
 
 
     if(sortBy == "name"){
         if(nameSortToggle){
-            salesItems.sort((a,b)=>{
-            return (a.name< b.name ) ? 1 : -1 
+            salesItems.sort((a,b) => {
+            return (a.name < b.name) ? 1 : -1 
         })
-        nameSortToggle=false
+        nameSortToggle = false
     } else {
-        salesItems.sort((a,b)=>{
+        salesItems.sort((a,b) => {
             return (a.name > b.name ) ? 1 : -1 
         })
-        nameSortToggle=true
+        nameSortToggle = true
     }
 }
 
@@ -160,12 +156,12 @@ router.post("/user/sales/sort", (req, res , next) =>{
             salesItems.sort((a,b)=>{
             return (a.price< b.price ) ? 1 : -1 
         })
-        priceSortToggle=false
+        priceSortToggle = false
     } else {
         salesItems.sort((a,b)=>{
             return (a.price > b.price ) ? 1 : -1 
         })
-        priceSortToggle=true
+        priceSortToggle = true
     }
     }
 
@@ -243,11 +239,7 @@ router.post("/user/messages/sort", (req, res, next) => {
         }
     }
 
-
-   res.redirect('/user/messages')
-
+    res.redirect('/user/messages')
 })
-
-
 
 module.exports = router

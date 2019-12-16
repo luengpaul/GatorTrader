@@ -28,5 +28,5 @@ module.exports={
             return cb(new Error('Only .png, .jpg and .jpeg format files allowed.'))
         }
     }
-})
+    })
 }

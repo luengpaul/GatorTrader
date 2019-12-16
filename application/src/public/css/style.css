@@ -1,6 +1,4 @@
 body {
-
-
     position: relative;
 }
 
@@ -44,7 +42,6 @@ footer {
     position: relative;
     right: 10px;
 }
-
 
 .GatorTraderBannerLogo {
     margin: 0;
@@ -105,16 +102,6 @@ img {
     color: black;
     font-size: 40px;
 }
-
-/* #resizing_select {
-  width: 80px;
- }
- 
-#resizing_select:focus {
-  min-width: 80px;
-  width: auto;
-}   */
-
 
 /*This css fixes the horizontal scrolling into white space bug on posting form page*/
 #postingFormPage {
@@ -207,7 +194,6 @@ img {
 .navbar {
     background-color: #330033;
 }
-
 
 .Introduction {
     padding-top: 20px;
@@ -304,7 +290,6 @@ input[type=email] {
     font-weight: 600;
 }
 
-
 input[type=password] {
     width: auto;
     color: black;
@@ -319,8 +304,6 @@ input[type=submit] {
     font-weight: 600;
 }
 
-
-
 .GatorTraderBannerLogo {
     margin: 0;
     height: 80px;
@@ -334,9 +317,6 @@ input[type=submit] {
     color: #FAF5FF;
     font-size: 50px;
 }
-
-
-
 
 .SellButton {
     font-size: 35px;
@@ -367,7 +347,6 @@ h2 {
     border-radius: 5px;
 }
 
-
 .resultsContainer {
     position: relative;
     margin: auto;
@@ -381,11 +360,6 @@ h2 {
     position: relative;
     left: 93%;
 }
-
-
-/*
-* STYLE SHEET FROM OTHER PAGE ON BOTTOM
-*/
 
 #resultArea {
     max-width: 500px;
@@ -419,13 +393,11 @@ h2 {
     font-size: 25px;
 }
 
-
 #brandName {
     font-family: 'Tenor Sans', sans-serif;
     font-size: 48px;
     color: gold;
 }
-
 
 .sidebar {
     height: 100%;
@@ -654,12 +626,10 @@ body, h1, h2, h3, h4, h5, h6 {
     color: white;
 }
 
-
 .login-modal-container {
     width: 600px;
     max-height: fit-content;
 }
-
 
 .register-modal-container {
     width: 600px;
@@ -671,15 +641,11 @@ body, h1, h2, h3, h4, h5, h6 {
     font-family: Helvetica, Arial, sans-serif;
 }
 
-
 #formSubmit {
     float: right;
 }
 
-
-
 /*Added for User Dash*/
-
 .dash {
     width: 70%;
     height: 450px;
@@ -688,7 +654,6 @@ body, h1, h2, h3, h4, h5, h6 {
     left: 410px;
     bottom: 150px;
 }
-
 
 .dashText {
     position: relative;
@@ -768,8 +733,6 @@ body, h1, h2, h3, h4, h5, h6 {
     padding-top: 25px;
 }
 
-
-
 .welcomeText {
     color: white;
 }
@@ -794,7 +757,6 @@ body, h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-
 /*End for Contact Seller*/
 
 .outline {
@@ -805,13 +767,11 @@ body, h1, h2, h3, h4, h5, h6 {
     background-color: #330033
 }
 
-
 .newAboutButton {
     padding-right: 200px;
     padding-bottom: 20px;
     background-color: #330033;
 }
-
 
 .navbar-collapse {
     flex-grow: 0 !important;

@@ -5,6 +5,7 @@
  *
  * @author Ibraheem Chaudry.
  */
+
 var pool = require('./database')
 
 var categories = []

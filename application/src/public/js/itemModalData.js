@@ -4,7 +4,6 @@
  * @author Ibraheem Chaudry
  */
 
-
 $(document).on("click", ".openModal", function () {
     //Image source
     var itemImageSrc ="/post_images/resized/"+ $(this).data('img');
@@ -15,7 +14,7 @@ $(document).on("click", ".openModal", function () {
     document.getElementById("itemHeader").innerHTML = name
 
     // Price
-    var price= $(this).data('price')
+    var price= "$ " + $(this).data('price')
     document.getElementById("itemPrice").innerHTML= price
 
     //Description

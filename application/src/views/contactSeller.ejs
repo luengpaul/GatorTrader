@@ -9,6 +9,11 @@
     <% include assets/navbar %>
 
     <!--POSTING FORM-->
+
+    <% if(valid){ %>
+    <h1>&nbsp;&nbsp;&nbsp;Message succesfully sent</h1>
+
+        <% } else { %>
     <div class="PostingFormContainer">
         <div class="postingFormTitle">
             <h2><strong><u>Contact Seller</u></strong></h2>
@@ -48,7 +53,7 @@
             </div>
         </form>
     </div>
-
+    <% } %>
     <script>
         window.onbeforeunload = function() {
             sessionStorage.setItem("name", $('#contact-name').val());

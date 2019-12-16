@@ -35,7 +35,6 @@ router.get("/postingForm", (req, res) => {
     })
 })
 
-
 //Post function to make an upload item request to the database
 router.post('/postingform', upload.single('image'), async (req, res) => {
     const { filename: image } = req.file
@@ -62,22 +61,20 @@ router.post('/postingform', upload.single('image'), async (req, res) => {
     }
 
     //synchronously gets userID of user that posted and then creates a database record from all the postform values
-   if( postUpload(req.session.email, req.body.itemName, req.body.description, req.body.price, req.body.category, req.file.filename)){
+   if (postUpload(req.session.email, req.body.itemName, req.body.description, req.body.price, req.body.category, req.file.filename)) {
        console.log("Form was succesfully uploaded")
        res.render('postingForm', {
-        itemPosted: true,
-        categories: categories,
-        category: "",
-        itemName: "",
-        description: "",
-        price: 0.0,
-        image: "",
-        isLogin: req.session.loggedin,
-        userName: req.session.name
-    })
-   }
-
-    
+           itemPosted: true,
+           categories: categories,
+           category: "",
+           itemName: "",
+           description: "",
+           price: 0.0,
+           image: "",
+           isLogin: req.session.loggedin,
+           userName: req.session.name
+       })
+   }  
 })
 
 //Query for a userID using user email address

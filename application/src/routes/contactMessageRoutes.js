@@ -22,24 +22,26 @@ router.post("/contactSeller", (req, res) => {
         searchResult: "",
         categories: categories,
         isLogin: req.session.loggedin,
-        userName: req.session.name
+        userName: req.session.name,
+        valid: false
     })
   
 })
-
 
 //Post function called by the contact seller form
 router.post("/contact", (req, res) => {
     console.log("This is the sender ID: "+ req.session.userID)
 
     if (message( req.body.phoneNumber, req.body.name, globalItemId,req.session.userID)) {
-        req.flash('success_msg', 'Your message is sent ');
-        res.redirect("/")
-
-        console.log("contact intenrior reached")
+        res.render('contactSeller', {
+            searchResult: "",
+            categories: categories,
+            isLogin: req.session.loggedin,
+            userName: req.session.name,
+            valid: true
+        })
     }
 })
-
 
 //Grab the id of the reciever using the item ID
 function getRecieverID(itemID) {
@@ -54,7 +56,6 @@ function getRecieverID(itemID) {
         })
     })
 }
-
 
 //Grab item name using itemID
 function getItemName(itemID) {
@@ -89,8 +90,8 @@ async function message( phoneNumber, name, itemID, sender) {
 
     pool.query('INSERT INTO message SET ?', newMessage, (err, rows, result) => {
         if (err) console.log(err)
+        return true
     })
 }
-
 
 module.exports = router
