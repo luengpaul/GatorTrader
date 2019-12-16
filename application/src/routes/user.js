@@ -22,13 +22,22 @@ router.get("/user/messages", (req, res) => {
             console.log(err)
         } else {
             messages = results
+            var noResult= false
+            if(messages.length==0){
+                noResult=true
+            }
         }
         if (req.session.loggedin) {
             res.render('userDashboardMessageTab', {
                 messages: results,
                 categories: categories,
-                isLogin: req.session.loggedin
+                isLogin: req.session.loggedin,
+                userName: req.session.name,
+                noResult: noResult
             })
+        }
+        else{
+            res.redirect('/')
         }
     })
 })
@@ -45,6 +54,10 @@ router.get("/user/sales", (req, res) => {
             console.log(err)
         } else {
             salesItems=results
+            var noResult= false
+            if(salesItems.length==0){
+                noResult=true
+            }
         }
         // console.log(results)
 
@@ -52,14 +65,14 @@ router.get("/user/sales", (req, res) => {
             res.render('userDashboardSalesItemTab', {
                 salesItems: results,
                 categories: categories,
-                isLogin: req.session.loggedin
+                isLogin: req.session.loggedin,
+                userName: req.session.name,
+                noResult: noResult
             })
         }
         else {
-            req.flash('error_msg','You dont have access to this website')
-            //res.send('You dont have access to this website');
+           res.redirect('/')
         }
-        res.end();
     })
 })
 
@@ -156,18 +169,7 @@ router.post("/user/sales/sort", (req, res , next) =>{
     }
     }
 
-
-    if (req.session.loggedin) {
-        res.render('userDashboardSalesItemTab', {
-            salesItems: salesItems,
-            categories: categories,
-            isLogin: req.session.loggedin
-        })
-    }
-    else {
-        req.flash('error_msg','You dont have access to this website')
-        //res.send('You dont have access to this website');
-    }
+    res.redirect('/user/sales')
 
 })
 
@@ -242,17 +244,7 @@ router.post("/user/messages/sort", (req, res, next) => {
     }
 
 
-    if (req.session.loggedin) {
-        res.render('userDashboardMessageTab', {
-            messages: messages,
-            categories: categories,
-            isLogin: req.session.loggedin
-        })
-    }
-    else {
-        req.flash('error_msg', 'You dont have access to this website')
-        //res.send('You dont have access to this website');
-    }
+   res.redirect('/user/messages')
 
 })
 

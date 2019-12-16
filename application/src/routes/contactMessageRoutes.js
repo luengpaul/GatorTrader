@@ -21,7 +21,8 @@ router.post("/contactSeller", (req, res) => {
     res.render('contactSeller', {
         searchResult: "",
         categories: categories,
-        isLogin: req.session.loggedin
+        isLogin: req.session.loggedin,
+        userName: req.session.name
     })
   
 })

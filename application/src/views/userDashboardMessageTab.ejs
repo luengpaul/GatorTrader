@@ -19,6 +19,9 @@
             <form class="messageEmpty" id="user-messages" action="/user/messages" method="GET"></form>
 
         </div>
+        <% if(noResult){ %>
+            <div><h1 >You have no new messages.</h1></div>
+        <% } else { %>
         <div class="items-dashboard col-lg-12">
             <div class="row outline">
                 <div class="btn col-md-3 messageHeader" style="border-right:2px solid black;">
@@ -68,6 +71,7 @@
             <% } %>
         </div>
     </div>
+    <% } %>
 
     <!-- Forms to call Sorting functions -->
     <form class="messageEmpty invisible-form hidden-select" id="sort-items" action="/user/messages/sort" method="POST">
@@ -79,7 +83,7 @@
         </select>
     </form>
 
-    <form class="messageEmpty" id="delete-message" name="delete-message" action="/user/messages/delete" method="POST">
+    <form class="messageEmpty invisible-form" id="delete-message" name="delete-message" action="/user/messages/delete" method="POST">
         <input type="hidden" id="mID" name="mID">
     </form>
 </body>

@@ -40,6 +40,7 @@ router.post('/results', (req, res) => {
                     searchResult: result,
                     categories: categories,
                     isLogin: req.session.loggedin,
+                    userName: req.session.name
                 })
             })
         }
@@ -60,6 +61,7 @@ router.post('/results', (req, res) => {
                     searchResult: result,
                     categories: categories,
                     isLogin: req.session.loggedin,
+                    userName: req.session.name
                 })
             })
         } else {
@@ -81,6 +83,7 @@ router.post('/results', (req, res) => {
                     searchResult: result,
                     categories: categories,
                     isLogin: req.session.loggedin,
+                    userName: req.session.name
                 })
             })
         }
@@ -110,6 +113,7 @@ router.post('/results/sort', function (req, res, next) {
             searchResult: results,
             categories: categories,
             isLogin: req.session.loggedin,
+            userName: req.session.name
         })
 
 })

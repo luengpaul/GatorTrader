@@ -28,7 +28,9 @@ router.get("/postingForm", (req, res) => {
             image: "",
             categories: categories,
             category: "",
-            isLogin: req.session.loggedin
+            isLogin: req.session.loggedin,
+            itemPosted: false,
+            userName: req.session.name
         })
     })
 })
@@ -60,8 +62,22 @@ router.post('/postingform', upload.single('image'), async (req, res) => {
     }
 
     //synchronously gets userID of user that posted and then creates a database record from all the postform values
-    postUpload(req.session.email, req.body.itemName, req.body.description, req.body.price, req.body.category, req.file.filename)
-    res.redirect('back')
+   if( postUpload(req.session.email, req.body.itemName, req.body.description, req.body.price, req.body.category, req.file.filename)){
+       console.log("Form was succesfully uploaded")
+       res.render('postingForm', {
+        itemPosted: true,
+        categories: categories,
+        category: "",
+        itemName: "",
+        description: "",
+        price: 0.0,
+        image: "",
+        isLogin: req.session.loggedin,
+        userName: req.session.name
+    })
+   }
+
+    
 })
 
 //Query for a userID using user email address
@@ -83,6 +99,8 @@ async function postUpload(email, name, description, price, category, file) {
     pool.query("INSERT INTO item (userID, name, description, price, category, picture) VALUES (?,?,?,?,?,?)",
         [userID, name, description, price, category, file], (err, rows, result) => {
             if (err) console.log(err)
+
+            return true
         })
 }
 

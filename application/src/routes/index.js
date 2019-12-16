@@ -27,7 +27,8 @@ router.get("/", (req, res) => {
                 searchResult: result,
                 categories: categories,
                 isLogin: req.session.loggedin,
-                feedbackMessage: "Recent posts on Gator Trader"
+                feedbackMessage: "Recent posts on Gator Trader",
+                userName: req.session.name
             })
         })
     })
