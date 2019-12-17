@@ -204,13 +204,15 @@ router.post("/user/messages/sort", (req, res, next) => {
 
     if (sortBy == "date") {
         if (mDateSortToggle) {
+            console.log("First if statement is called")
             messages.sort((a, b) => {
-                return (a.date_upload < b.date_upload) ? 1 : -1
+                return (a.date_sent < b.date_sent) ? 1 : -1
             })
             mDateSortToggle = false
         } else {
+            console.log("Second if statement is called")
             messages.sort((a, b) => {
-                return (a.date_upload > b.date_upload) ? 1 : -1
+                return (a.date_sent > b.date_sent) ? 1 : -1
 
             })
             mDateSortToggle = true
