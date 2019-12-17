@@ -12,12 +12,10 @@ const initCategories = require('../database/initCategories')
 //Initialize categories of items from database.
 var categories = initCategories.init()
 var results = null
-var msg = ""
 
 console.log("This is what the global variable for results holds : "+ results)
 //Search function that renders results to posts page
 router.post('/results', (req, res) => {
-    getMessage()
     var message = ""
     res.setTimeout(200, () => {
         console.log("value returned from search entry is (" + req.body.searchEntry + ")")
@@ -33,7 +31,7 @@ router.post('/results', (req, res) => {
                 if (result.length == 0) {
                     message = "No search results were found for the given entry. Consider modifying your search."
                 } else {
-                    message = "Search returned " + result.length.toString() + msg
+                    message = "Search returned " + result.length.toString() + " Result(s)."
                 }
                 res.render('results', {
                     displayMessage: message,
@@ -54,7 +52,7 @@ router.post('/results', (req, res) => {
                 if (result.length == 0) {
                     message = "No search results were found for the given entry. Consider modifying your search."
                 } else {
-                    message = "Search returned " + result.length.toString() + msg
+                    message = "Search returned " + result.length.toString() + " Result(s)."
                 }
                 res.render('results', {
                     displayMessage: message,
@@ -76,7 +74,7 @@ router.post('/results', (req, res) => {
                 if (result.length == 0) {
                     message = "No search results were found for the given entry. Consider modifying your search."
                 } else {
-                    message = "Search returned " + result.length.toString() + msg
+                    message = "Search returned " + result.length.toString() + " Result(s)."
                 }
                 res.render('results', {
                     displayMessage: message,
@@ -117,12 +115,5 @@ router.post('/results/sort', function (req, res, next) {
         })
 
 })
-
-//gets total number of posts for result displayMessage suffix
-function getMessage() {
-    pool.query("SELECT * FROM item", (err, result) => {
-       msg = " result(s) from " + result.length.toString() + " total posts."
-    })   
-}
 
 module.exports = router

@@ -18,6 +18,8 @@ footer {
     box-shadow: 0 100vh 0 100vh #330033;
 }
 
+
+
 #search-bar {
     margin-left: 2px;
 }
@@ -74,7 +76,7 @@ img {
     object-fit: stretch;
 }
 
-/*This is styling for the header for item description modal*/
+/*This is styling for the header for description modal*/
 #itemHeader {
     font-family: 'Oswald', sans-serif;
     font-size: 48px;
@@ -318,15 +320,21 @@ input[type=submit] {
     font-size: 50px;
 }
 
-.SellButton {
+.aboutButton {
     font-size: 35px;
 }
 
-.aboutButton {
+.sellButton{
+        font-size: 35px;
+        height: 40px;
+        width: 50px;
+}
+
+/* .aboutButton {
     margin: 0;
     font-size: 30px;
     color: #2B8C25;
-}
+} */
 
 .contentOnPage {
     top: 230px;
@@ -631,10 +639,15 @@ body, h1, h2, h3, h4, h5, h6 {
     max-height: fit-content;
 }
 
+#registerModal {
+    overflow-y: auto;
+}
+
+/* 
 .register-modal-container {
     width: 600px;
     max-height: fit-content;
-}
+} */
 
 .modalMessageFont {
     font-size: 15px;
@@ -731,6 +744,11 @@ body, h1, h2, h3, h4, h5, h6 {
     background-color: white;
     position: relative;
     padding-top: 25px;
+}
+
+#sellbtn{
+    margin-left: 5px;
+
 }
 
 .welcomeText {

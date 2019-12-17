@@ -24,11 +24,16 @@
                 <div class="col-md-3 text-center">
                     <% for(var i=0; searchResult[i]; i=i+4) { %><br>
                     <div class="card border-dark">
-                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%> src="/post_images/resized/<%=searchResult[i].picture%>"/>
+                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%>
+                            src="/post_images/resized/<%=searchResult[i].picture%>" />
                         <h2 id="itemName"><%=searchResult[i].name %></h2>
                         <h3 id="itemPrice">
                             $ <%=searchResult[i].price%><br></h4>
-                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>" data-itemid="<%=searchResult[i].itemID%>">Details</a>
+                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal"
+                                data-description="<%=searchResult[i].description%>"
+                                data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>"
+                                data-price="<%=searchResult[i].price%>"
+                                data-itemid="<%=searchResult[i].itemID%>">Details</a>
                     </div>
                     <% } %>
 
@@ -37,11 +42,16 @@
                 <div class="col-md-3 text-center">
                     <% for(var i=1; searchResult[i]; i=i+4) { %><br>
                     <div class="card border-dark">
-                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%> src="/post_images/resized/<%=searchResult[i].picture%>"/>
+                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%>
+                            src="/post_images/resized/<%=searchResult[i].picture%>" />
                         <h2 id="itemName"><%=searchResult[i].name %></h2>
                         <h3 id="itemPrice">
                             $ <%=searchResult[i].price%><br></h4>
-                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>" data-itemid="<%=searchResult[i].itemID%>">Details</a>
+                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal"
+                                data-description="<%=searchResult[i].description%>"
+                                data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>"
+                                data-price="<%=searchResult[i].price%>"
+                                data-itemid="<%=searchResult[i].itemID%>">Details</a>
                     </div>
                     <% } %>
 
@@ -50,11 +60,16 @@
                 <div class="col-md-3 text-center">
                     <% for(var i=2; searchResult[i]; i=i+4) { %><br>
                     <div class="card border-dark">
-                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%> src="/post_images/resized/<%=searchResult[i].picture%>"/>
+                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%>
+                            src="/post_images/resized/<%=searchResult[i].picture%>" />
                         <h2 id="itemName"><%=searchResult[i].name %></h2>
                         <h3 id="itemPrice">
                             $ <%=searchResult[i].price%><br></h4>
-                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>" data-itemid="<%=searchResult[i].itemID%>">Details</a>
+                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal"
+                                data-description="<%=searchResult[i].description%>"
+                                data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>"
+                                data-price="<%=searchResult[i].price%>"
+                                data-itemid="<%=searchResult[i].itemID%>">Details</a>
                     </div>
                     <% } %>
 
@@ -63,11 +78,17 @@
                 <div class="col-md-3 text-center">
                     <% for(var i=3; searchResult[i]; i=i+4) { %><br>
                     <div class="card border-dark">
-                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%> src="/post_images/resized/<%=searchResult[i].picture%>"/>
+                        <img class="card-image ml-auto mr-auto" id=<%="searchResult[i].name"%>
+                            src="/post_images/resized/<%=searchResult[i].picture%>" />
                         <h2 id="itemName"><%=searchResult[i].name %></h2>
                         <h3 id="itemPrice">
                             $ <%=searchResult[i].price%><br></h4>
-                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal" data-description="<%=searchResult[i].description%>" data-img="<%=searchResult[i].picture%>" data-name="<%= searchResult[i].name %>" data-price="<%=searchResult[i].price%>" data-itemid="<%=searchResult[i].itemID%>">Details</a>
+                            <a data-target="#itemDetails" class="openModal btn btn-warning" href="" data-toggle="modal"
+                                data-description="<%=searchResult[i].description%>"
+                                data-img="<%=searchResult[i].picture%>" 
+                                data-name="<%= searchResult[i].name %>"
+                                data-price="<%=searchResult[i].price%>"
+                                data-itemid="<%=searchResult[i].itemID%>">Details</a>
                     </div>
                     <% } %>
 
@@ -76,4 +97,5 @@
         </div>
 </body>
 <% include assets/footer %>
+
 </html>

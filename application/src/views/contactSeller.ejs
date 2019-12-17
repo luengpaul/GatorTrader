@@ -62,10 +62,10 @@
 
         window.onload = function() {
             var name = sessionStorage.getItem("name");
-            if (name !== null) $('#contact-name').val(name);
+            if (name !== null && name !== "undefined") $('#contact-name').val(name);
 
             var phoneNumber = sessionStorage.getItem("phoneNumber");
-            if (phoneNumber !== null) $('#contact-phoneNumber').val(phoneNumber);
+            if (phoneNumber !== null && phoneNumber !== "undefined") $('#contact-phoneNumber').val(phoneNumber);
         }
     </script>
 </body>

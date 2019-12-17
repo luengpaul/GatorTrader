@@ -20,7 +20,7 @@
 
         </div>
         <% if(noResult){ %>
-            <div><h1 >You have no new messages.</h1></div>
+            <div><h1>You have no new messages.</h1></div>
         <% } else { %>
         <div class="items-dashboard col-lg-12">
             <div class="row outline">
@@ -71,7 +71,6 @@
             <% } %>
         </div>
     </div>
-    <% } %>
 
     <!-- Forms to call Sorting functions -->
     <form class="messageEmpty invisible-form hidden-select" id="sort-items" action="/user/messages/sort" method="POST">
@@ -86,6 +85,8 @@
     <form class="messageEmpty invisible-form" id="delete-message" name="delete-message" action="/user/messages/delete" method="POST">
         <input type="hidden" id="mID" name="mID">
     </form>
+
+    <% } %>
 </body>
 <% include assets/footer %>
 </html>

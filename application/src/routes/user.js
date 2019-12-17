@@ -13,6 +13,7 @@ var categories = initCategories.init()
 
 var salesItems = null
 var messages = null
+var noResult= null
 
 //Route for user dashboard messages tab
 router.get("/user/messages", (req, res) => {
@@ -21,7 +22,7 @@ router.get("/user/messages", (req, res) => {
             console.log(err)
         } else {
             messages = results
-            var noResult = false
+            noResult = false
             if (messages.length == 0) {
                 noResult = true
             }
@@ -50,7 +51,7 @@ router.get("/user/sales", (req, res) => {
             console.log(err)
         } else {
             salesItems=results
-            var noResult= false
+            noResult= false
             if(salesItems.length == 0){
                 noResult = true
             }
@@ -118,8 +119,11 @@ var nameSortToggle = null
 //Sorting items
 router.post("/user/sales/sort", (req, res , next) =>{
 
+    console.log("Function being called.")
+
     var sortBy = req.body.sortBy
 
+    console.log("This is the sortby getting recieved" + sortBy)
     
     if (sortBy == "date") {
         if (dateSortToggle) {
@@ -165,7 +169,22 @@ router.post("/user/sales/sort", (req, res , next) =>{
     }
     }
 
-    res.redirect('/user/sales')
+
+
+    console.log("The function reaches the line before rendering")
+    
+    if (req.session.loggedin) {
+        res.render('userDashboardSalesItemTab', {
+            salesItems: salesItems,
+            categories: categories,
+            isLogin: req.session.loggedin,
+            userName: req.session.name,
+            noResult: noResult
+        })
+    }
+    else {
+       res.redirect('/')
+    }
 
 })
 
@@ -177,7 +196,11 @@ var phoneNumSortToggle = null
 //Sorting messages
 router.post("/user/messages/sort", (req, res, next) => {
 
+
+    console.log("Function being called.")
     var sortBy = req.body.sortBy
+
+    console.log("This is the sortby getting recieved" + sortBy)
 
     if (sortBy == "date") {
         if (mDateSortToggle) {
@@ -238,8 +261,20 @@ router.post("/user/messages/sort", (req, res, next) => {
             phoneNumSortToggle = true
         }
     }
+      
+    if (req.session.loggedin) {
+        res.render('userDashboardMessageTab', {
+            messages: messages,
+            categories: categories,
+            isLogin: req.session.loggedin,
+            userName: req.session.name,
+            noResult: noResult
+        })
+    }
+    else {
+       res.redirect('/')
+    }
 
-    res.redirect('/user/messages')
 })
 
 module.exports = router
