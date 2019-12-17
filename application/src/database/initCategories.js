@@ -6,17 +6,16 @@
  * @author Ibraheem Chaudry.
  */
 
-var pool= require('./database')
+var pool = require('./database')
 
-var categories= []
+var categories = []
 
 //fetches all categories from database 
 const init = () => {
     pool.query("SELECT * FROM category", (err, result) => {
         if (err) {
             console.log(err)
-        } 
-        else {
+        } else {
             if (categories.length == 0) {
                 for (let i = 0; i < result.length; i++) {
                     categories.push(result[i].type)
@@ -27,4 +26,4 @@ const init = () => {
     return categories
 }
 
-module.exports= {init}
+module.exports = { init }

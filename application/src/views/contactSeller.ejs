@@ -1,41 +1,73 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
-
 <!--Imports header from assets -->
-<% include assets/head.html %>
+<% include assets/head %>
 
-<body>
+<body id="postingFormPage">
+    <!--Imports navbar from assets -->
+    <% include assets/navbar %>
 
-<!--Imports navbar from assets -->
-<% include assets/navbar %>
+    <!--POSTING FORM-->
 
+    <% if(valid){ %>
+    <h1>&nbsp;&nbsp;&nbsp;Message succesfully sent</h1>
 
-       <div class="col-lg-12">
-      <div class="contactSeller col-lg-12"> 
-          <h5 class= "messageHeader"><u>Contact Seller</u></h5> 
-          <div class="messageBox">
-              <h5>To: Jackdaniels@mail.sfsu.edu</h5>
-              <h6>From: TomSikder@mail.sfsu.edu</h6>
-              <h6>Item ID: 12345</h6>
-              <h6>Name: Slightly Used Couch</h6>
-          </div>
-          <h6 class= "messageHeader"><u>10/13/2019</u></h6>
-          <div class="messageUser">
-              <h6>Hi, I'm interested in your couch post. Which meet up spot would you like to meet up at?</h6>              
-          </div>
-          <div class="messageFriend">
-              <h6>Hi, I'm down to meet to meet up right next to Cesar Chavez center if that's ok with you.</h6>              
-          </div>
-      </div>
+        <% } else { %>
+    <div class="PostingFormContainer">
+        <div class="postingFormTitle">
+            <h2><strong><u>Contact Seller</u></strong></h2>
+        </div>
+        <form action="/contact" method="post" data-toggle="validator">
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">&nbsp;&nbsp;&nbsp;Name *</label>
+                <div class="row-lg-12">
+                    <input id="contact-name" type="text" name="name" class="border-dark form-control"
+                           pattern="[ A-Za-z0-9]+" maxlength="40" placeholder="Name" required>
+                </div>
+            </div>
 
-      <div class=" messageEmpty "> 
-        <textarea id="FormDescription" class=" border-dark col-lg-8" name="text" rows="5"></textarea>
-        <a class="btn btn-success btn-lg  col-lg-1 cancelForm "href="#">Cancel<span class="sr-only">(current)</span></a>
-        <a class="btn btn-outline-warning btn-lg  col-lg-1 cancelForm "href="#">Send<span class="sr-only">(current)</span></a>
-      </div>
+            <div class="form-group row">
+                <label class="postingLabel col-sm-2 col-form-label-lg " for="FormName">&nbsp;&nbsp;&nbsp;Phone Number *</label>
+                <div class="row-lg-12">
+                    <input id="contact-phoneNumber" type="text" name="phoneNumber" class="border-dark form-control"
+                           pattern="[ 0-9]+" maxlength="10" placeholder="Phone Number" required>
+                </div>
+            </div>
 
+            <div class="form-group row">
+                <label class="postingLabel col-sm-3 col-form-label-md" for="mandatoryField">&nbsp;&nbsp;&nbsp;(*) Mandatory Fields</label>
+
+                <div class="form-group row">
+                    <div class="row-lg-12">
+                        <div class="CancelandSubmitContainer">
+                            <!--<button class="postingCancelButton  btn btn-secondary btn-outline-success btn-lg row-sm-12" id="navItem" type="button" name="button">Cancel</button>-->
+                            <%if(isLogin) { %>
+                            <button type="submit" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" id="submitItem" name="entry">Submit</button>
+                            <%} else { %>
+                            <button type="button" class="postingSubmitButton btn btn-primary btn-outline-warning btn-lg row-sm-12" data-toggle="modal" data-target="#loginModal">Submit</button>
+                            <% } %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
+    <% } %>
+    <script>
+        window.onbeforeunload = function() {
+            sessionStorage.setItem("name", $('#contact-name').val());
+            sessionStorage.setItem("phoneNumber", $('#contact-phoneNumber').val());
+        }
 
+        window.onload = function() {
+            var name = sessionStorage.getItem("name");
+            if (name !== null && name !== "undefined") $('#contact-name').val(name);
+
+            var phoneNumber = sessionStorage.getItem("phoneNumber");
+            if (phoneNumber !== null && phoneNumber !== "undefined") $('#contact-phoneNumber').val(phoneNumber);
+        }
+    </script>
 </body>
+<% include assets/footer %>
 </html>

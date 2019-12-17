@@ -1,79 +1,103 @@
-<% include loginModal.html %>
+<% include ../modals/loginModal.ejs %>
+<% include ../modals/registerModal.ejs %>
+<% include ../modals/successfulPostModal.ejs %>
+<!--Imports modal for items details-->
+<% include ../modals/itemDetailsModal.ejs %>
 
-<!-- NavBar using bootstrap -->
-<section id="Navbar">
-  <nav class="container-fluid navbar navbar-expand-lg navbar-dark fixed-top ">
-      <div class="classSectionHeader">
-          <p>SFSU Software Engineering Project CSC 648-848, Fall 2019.  For Demonstration Only</p>
-        </div>
-        
-    <a class="navbar-brand" href="/"><span class="GatorTraderLogo">Gator Trader</span></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<!--HEADER-->
+<div class="main-container"></div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="row">
+    <div class="classSectionHeader col-sm-12">
+        <p>SFSU Software Engineering Project CSC 648-848, Fall 2019.  For Demonstration Only</p>
+    </div>
 
-
+    <div class="col-lg-12 backgroundColor">
         <!-- Conditionally display Sign In or Sign Out -->
         <% if(isLogin){ %>
-          <div class="LoginButton">
-             <div class="dropdown">
-               <button class="btn btn-outline-warning dropdown-toggle" type="button" data-toggle="dropdown">User</button>
-               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                 <a class="dropdown-item" href="/user">Dashboard</a>
-                 <a class="dropdown-item btn btn-default btn-sm" href="/logout">Log out</a>
-               </div>
-             </div>
-           </div>
+        <div class="LoginButton">
+            <div class="dropdown">
+                <button class="btn btn-lg btn-outline-warning dropdown-toggle" type="button" data-toggle="dropdown">Hi, <%=userName%></button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+                    <a onclick="document.getElementById('user-dashboard').submit();" class="btn dropdown-item">Dashboard</a>
+                    <form id="user-dashboard" name="user-dashboard" action="/user/messages" method="GET"></form>
+                    <a class="dropdown-item btn btn-default btn-sm" href="/logout">Log out</a>
+                </div>
+            </div>
+        </div>
         <% } else { %>
-          <div class="LoginButton">
-            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#loginModal">Login/ Register</button>
-          </div>
+        <div class="LoginButton">
+            <button type="button" class="btn btn-outline-warning" data-toggle="modal" data-target="#loginModal">Login/Register</button>
+        </div>
         <% } %>
 
-        <div class="navbar-nav mx-auto">
-        <form class="form-inline" action="/results" method="post">
-          <select id="resizing_select" class="ml-auto no-gutters btn btn-dark btn-outline-secondary" name="searchEntry" onchange="this.form.submit()">
-            <option value="" selected>All</option>
-            <% for(var i=0; i < categories.length; i++) {%>
-            <option value="<%=categories[i]%>"><%=categories[i]%></option>
-            <% } %>
-          </select>
-        </form>
+    </div>
 
 
-        <script>
-        const mySel = document.getElementById("resizing_select");
-        mySel.addEventListener("change",function() {
-        sessionStorage.setItem("selValue",this.value); // save it
-        });
+    <!-- NavBar using bootstrap -->
 
-        let val = sessionStorage.getItem("selValue");
+    <div class="col-lg-12">
 
-        if (val) mySel.value=val; // set the dropdown
+        <section id="Navbar">
+            <nav class="container-fluid navbar navbar-expand-lg navbar-dark ">
 
-        // trigger the change in case there are other events on the select
-        // mySel.onchange();
-        </script>
 
-         
+                <a class="navbar-brand" href="/">
+                    <img src="/GatorTraderLogo6.png" class="GatorLogo" alt="GatorLogo">
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-        <form class="form-inline Searchwindow" action="/results" method="post">
-          <input class="form-control col-lg-8 " type="text" placeholder="Search for products..." name="searchEntry">
-          <input class="btn btn-warning btn-outline-warning searchButton" type="submit" value="Search">
-        </form>
-      </div>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="btn btn-outline-warning btn-lg SellButton" href="/postingForm" *>SELL<span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a id="navItem" class="nav-link btn-outline-success btn-lg aboutButton" href="about">ABOUT</a>
-        </li>
-      </ul>
+                    <div class="navbar-nav mx-auto">
+
+                        <div class="dropDown ">
+                            <form action="/results" method="post">
+                                <select id="resizing_select" class="ml-auto btn btn-dark btn-outline-secondary btn-lg dropDown" name="searchEntry" onchange="this.form.submit()">
+                                    <option value="" selected>All</option>
+                                    <% for(var i=0; i < categories.length; i++) {%>
+                                    <option value="<%=categories[i]%>"><%=categories[i]%></option>
+                                    <% } %>
+                                </select>
+                            </form>
+                        </div>
+
+
+                        <form class="form-inline Searchwindow" action="/results" role="form" data-toggle="validator" method="post">
+                            <input id="search-bar" class="form-control  " type="text" placeholder="Search for products..." 
+                                   oninvalid="this.setCustomValidity('Please use alphanumeric characters only')" oninput="setCustomValidity('')"  name="searchEntry" pattern="[ A-Za-z0-9]+" maxlength="20">
+                            <input id="search-submit" class="btn btn-warning btn-outline-warning searchButton" type="submit" value="Search">
+                            <a id="sellbtn" class="btn btn-outline-warning btn-md sellButton" href="/postingForm" *>Sell<span class="sr-only">(current)</span></a>
+                        </form>
+
+                    </div>
+                </div>
+
+            </nav>
+        </section>
 
     </div>
-  </nav>
-</section>
+
+</div>
+
+<div class="row newAboutButton">
+    <div class="col-lg-1">
+    </div>
+    <div class="col-lg-11 ">
+        <a id="aboutbtn" class="btn btn-outline-warning btn-sm aboutButton" href="about">About</a>
+    </div>
+</div>
+
+<script>
+    const mySel = document.getElementById("resizing_select");
+    mySel.addEventListener("change", function () {
+        sessionStorage.setItem("selValue", this.value); // save it
+    });
+    let val = sessionStorage.getItem("selValue");
+    if (val) mySel.value = val; // set the dropdown
+// trigger the change in case there are other events on the select
+// mySel.onchange();
+</script>
+
