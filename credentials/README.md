@@ -8,7 +8,7 @@
 # Below is a list of items required. Missing items will causes points to be deducted from multiple milestone submissions.
 
 1. Server URL or IP
-<br>Website Url: www.sfsustore.ml
+<br>Website Url: www.gatortrader.ga
 <br>Server Url: http://ec2-18-189-150-121.us-east-2.compute.amazonaws.com/
 
 2. SSH username
