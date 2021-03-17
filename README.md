@@ -1,13 +1,7 @@
-# csc648 Repository
+Mockup of landing page and admin page using Figma:
+![landing mockup](https://user-images.githubusercontent.com/51522463/111401250-289c3e80-8686-11eb-8683-39f0977012b2.JPG)
+![admin](https://user-images.githubusercontent.com/51522463/111401297-3ea9ff00-8686-11eb-93c7-703d90e8c068.JPG)
 
-## Please when ready add your teams application URL or IP to the repository description. This will help with grading. Teams are expected to keep this value up to date.
-
-## Please do the following steps before completing Milestone 0.
-1. Change the name of the repository. All that needs to change is the NN to your respective team number. Team numbers whose value is less than 10, please pad with a 0. Ex team 1 is Team01 team 11 is Team11. Please make sure to also remove the username from the repository as well. Teams with incorrectly name repository will have points deducted from their milestone 0 grades.
-      - Please follow the naming convention assigned by your instructor.
-
-1. PLEASE REMOVE THE USERNAME FROM THE REPOSITORY NAME!!!
-
-2. Add ALL members of your team to this repository. For it to count, they must ACCEPT the invite.
-
-## NO code needs to be stored in the root of your repository. You may rename the application folder if you like to your team's application name. But all source code related to your team's application should be stored inside the application folder.
+Final Product:
+![gator](https://user-images.githubusercontent.com/51522463/111401311-45d10d00-8686-11eb-9439-c1bb6e83cff5.png)
+![admin](https://user-images.githubusercontent.com/51522463/111401319-4a95c100-8686-11eb-80ce-179fcf97018b.png)
